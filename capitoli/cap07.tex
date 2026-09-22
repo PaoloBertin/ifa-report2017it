@@ -3,29 +3,284 @@
 %==============================================================
 \chapter{Verifica e validazione}
 \label{cap:07}
+La verifica e la validazione si riferiscono a misure di assicurazione della qualità finalizzate all'evitamento dei guasti durante la progettazione e la realizzazione delle parti dei sistemi di comando legate alla sicurezza (SRP/CS) che eseguono funzioni di sicurezza. La Parte 2 della EN ISO 13849~\cite{eniso13849-2} tratta in particolare in modo esauriente questo argomento.
 
-Breve introduzione al capitolo: oggetto, obiettivi e collegamento
-con i capitoli precedenti.
+La \textbf{verifica} comprende analisi e prove della SRP/CS e dei loro aspetti parziali, aventi lo scopo di determinare se i risultati ottenuti in una fase di progettazione o sviluppo soddisfino i requisiti previsti per la fase in questione, ossia, ad esempio, se la disposizione circuitale corrisponda alla progettazione del circuito, o se i requisiti pertinenti alle applicazioni previste siano compilati in modo esaustivo (integralmente) nella specifica.
+
+La \textbf{validazione} si riferisce alla dimostrazione che l'idoneità sia assicurata rispetto ai requisiti imposti. In altre parole, durante o al termine del processo di sviluppo/progettazione viene esaminato se i requisiti funzionali e progettuali specificati per la parte del comando della macchina legata alla sicurezza siano stati in generale raggiunti, ovvero, nel contesto della EN ISO 13849, se la SRP/CS soddisfi i pertinenti requisiti della presente norma per ciascuna funzione di sicurezza.
+
+Il processo di valutazione di una funzione di sicurezza nella sua realizzazione tramite la SRP/CS è pertanto una combinazione di fasi di verifica e di validazione, che riguardano sia la SRP/CS nel suo complesso, sia aspetti specifici della stessa. I termini verifica e validazione sono di seguito indicati anche come attività V\&V (V\&V activities).
+
+Nota: questo capitolo (Capitolo 7) tratta il processo di verifica e validazione per la SRP/CS nel senso di un processo volto a dimostrare la conformità alla norma EN ISO 13849. I dettagli dei metodi delle attività V\&V indicate non possono essere "insegnati" in questa sede, né possono essere trattate tutte le prove parziali richieste per la conformità del prodotto alla Direttiva Macchine, come quelle relative alla protezione contro la scossa elettrica, all'apparecchiatura tecnica (elettrica, idraulica, pneumatica), o all'ergonomia.
 
 %--------------------------------------------------------------
-\section{Prima sezione}
+\section{Procedura di verifica e convalida}
 \label{sec:07-1}
+La Figura~\ref{fig:07-01} mostra i dettagli pertinenti del processo iterativo per la progettazione della SRP/CS riportato nella EN ISO 13849-1~\cite{eniso13849-1}, Figura 3, che tratta le attività di verifica e validazione.
 
-Testo della sezione.
+% La minipage tiene insieme disegno e didascalia (figura non fluttuante)
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \centering
+        \captionsetup{hypcap=false}
+        \resizebox{0.92\textwidth}{!}{\input{immagini/fig07-01}}
+        \captionof{figure}{Attività V\&V della EN ISO 13849-1}
+        \label{fig:07-01}
+    \end{minipage}
+\end{center}
 
-\subsection{Sottosezione}
+La Figura~\ref{fig:07-02} può essere utilizzata per la pianificazione dell'esecuzione delle attività V\&V, comprese le relative attività pertinenti e una procedura costruttiva ragionevole. La figura è tratta dalla Parte 2 della EN ISO 13849, ma è stata semplificata graficamente al fine di presentare le attività V\&V in modo più chiaro.
+
+% La minipage tiene insieme disegno e didascalia (figura non fluttuante)
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \centering
+        \captionsetup{hypcap=false}
+        \resizebox{\textwidth}{!}{\input{immagini/fig07-02}}
+        \captionof{figure}{Panoramica della procedura di verifica e validazione secondo la EN ISO 13849-2}
+        \label{fig:07-02}
+    \end{minipage}
+\end{center}
+
+Gli aspetti più importanti della procedura di verifica e validazione sono illustrati di seguito.
+
+\subsection{Principi di verifica e validazione}
 \label{subsec:07-1-1}
+La verifica e la validazione sono finalizzate ad assicurare la conformità della progettazione della SRP/CS alle norme di riferimento. Poiché la EN ISO 13849-1 è armonizzata ai sensi della Direttiva Macchine come norma di tipo B per i comandi delle macchine, le attività V\&V devono dimostrare che ciascuna parte legata alla sicurezza e ciascuna delle funzioni di sicurezza da essa eseguite soddisfi i requisiti della EN ISO 13849-1. L'attenzione è qui rivolta alle proprietà specificate delle funzioni di sicurezza e ai requisiti relativi al Performance Level specificato (vedere anche i punti 7.3 e 7.4). La EN ISO 13849-2 specifica inoltre che la progettazione ergonomica della o delle interfacce utente debba essere affrontata dal processo V\&V.
 
-Testo della sottosezione.
+La verifica e la validazione sono finalizzate ad assicurare la conformità della progettazione della SRP/CS alle norme di riferimento. Poiché la EN ISO 13849-1 è armonizzata ai sensi della Direttiva Macchine come norma di tipo B per i comandi delle macchine, le attività V\&V devono dimostrare che ciascuna parte legata alla sicurezza e ciascuna delle funzioni di sicurezza da essa eseguite soddisfi i requisiti della EN ISO 13849-1. L'attenzione è qui rivolta alle proprietà specificate delle funzioni di sicurezza e ai requisiti relativi al Performance Level specificato (vedere anche i punti 7.3 e 7.4). La EN ISO 13849-2 specifica inoltre che la progettazione ergonomica della o delle interfacce utente debba essere affrontata dal processo V\&V.
 
-%--------------------------------------------------------------
-\section{Seconda sezione}
-\label{sec:07-2}
+Queste attività dovrebbero essere avviate il più presto possibile nel corso dello sviluppo/progettazione, al fine di individuare ed eliminare tempestivamente guasti e scostamenti rispetto alla specifica. Il personale incaricato delle misure di verifica e validazione non dovrebbe, per quanto possibile, essere coinvolto nel processo di progettazione delle parti legate alla sicurezza, ossia dovrebbe poter operare in modo indipendente dal processo di progettazione e sviluppo. I soggetti coinvolti possono essere altre persone, reparti o organismi non subordinati al reparto di progettazione nella gerarchia dell'organizzazione. Il livello di indipendenza dovrebbe essere commisurato al rischio, ossia al Performance Level richiesto (PLr).
 
-Testo della sezione.
+\subsection{Piano di verifica e validazione}
+\label{subsec:07-1-2}
+Un piano di verifica e validazione ha lo scopo di descrivere l'esecuzione del processo V\&V per le funzioni di sicurezza specificate, l'integrità di sicurezza e tutte le influenze operative e ambientali di cui occorre tenere conto. Il "processo di validazione" secondo la EN ISO 13849-2, che naturalmente comprende anche le attività di verifica, presuppone la redazione di un piano di verifica e validazione, ma non ne specifica in dettaglio né la forma né il contenuto. Tutte le attività V\&V che accompagnano il processo di sviluppo/progettazione sono stabilite in forma vincolante in un piano di verifica e validazione (piano V\&V). Il piano dovrebbe contenere le seguenti informazioni:
+\begin{itemize}
+    \item identificazione della SRP/CS oggetto di analisi, ove opportuno dei suoi componenti, e delle possibili varianti/variazioni;
+    \item identificazione delle funzioni di sicurezza con la loro assegnazione alla/e SRP/CS coinvolta/e;
+    \item elenco di riferimento di tutti i documenti richiamati (comprese le norme e le regole tecniche da applicare), con descrizioni dei requisiti, delle specifiche e degli obblighi nel campo di applicazione della SRP/CS oggetto di analisi, insieme alle regole di progettazione aziendali interne, quali le regole aziendali di progettazione hardware e le regole/documenti guida di programmazione;
+    \item elenco di riferimento delle norme di prova da applicare (ossia le norme che disciplinano i metodi di prova e l'esecuzione delle prove, non i requisiti di prodotto: ad esempio la serie IEC 60068 relativa alle influenze ambientali);
+    \item le analisi e le prove da eseguire; con informazioni aggiuntive sulla sequenza in cui i metodi di analisi e di prova devono essere eseguiti, ove specificato;
+    \item indicazione se, e in tal caso quali, dimostrazioni di conformità esistano già per i singoli componenti; compresa l'indicazione dei riferimenti ai certificati preesistenti;
+    \item elenchi dei guasti da applicare (vedere anche il punto 7.1.3 e l'Allegato C)
+    \item ulteriori riferimenti a documenti relativi alla generazione delle conferme, ad esempio: manuale del sistema di gestione della qualità (QM), istruzioni procedurali, moduli/modelli per le attività V\&V
+    \item personale responsabile delle rispettive analisi e prove (persone, reparto o organismo/istituto di prova, ove applicabile);
+    \item condizioni ambientali (di prova) specificate e apparecchiature/strumentazione di prova/strumenti/attrezzature ausiliarie per l'esecuzione delle analisi e delle prove, insieme a ulteriori condizioni operative da osservare; queste informazioni possono anche essere elencate nella documentazione dei risultati delle singole attività V\&V
+    \item la documentazione specificata dei risultati delle prove (rapporti/verbali di prova) e l'ulteriore documentazione dettagliata dell'esecuzione delle attività V\&V (ad es. specifiche di prova, specifiche dei casi di prova, liste di controllo);
+    \item criteri di valutazione per i risultati delle analisi e delle prove, comprese le misure da adottare in caso di mancato superamento di un'analisi/prova;
+    \item aspetti formali quali identificazione del documento, gestione delle versioni e cronologia delle modifiche, autori/responsabili, nota/e di rilascio, firma/e, ecc.
+\end{itemize}
 
-%--------------------------------------------------------------
-\section{Conclusioni del capitolo}
-\label{sec:07-3}
+Il piano di verifica e validazione dovrebbe ragionevolmente essere redatto in una fase iniziale dello sviluppo (si raccomanda: in parallelo alla specifica), fornendo così il massimo beneficio per la gestione continuativa del progetto. Costituisce inoltre una buona prassi consolidata far rivedere o ispezionare il piano V\&V da una persona competente in materia di gestione della qualità (QM) e assicurazione della qualità (QA).
+Nel caso di SRP/CS complessive più grandi o più complesse, un'opzione è che il piano V\&V stabilisca quali attività di validazione debbano essere eseguite soltanto dopo che i sistemi interessati siano stati installati all'interno di una macchina, oppure se, in alternativa, possano essere utilizzate macchine di prova automatiche o simulatori sostitutivi (ad esempio mediante simulazione "hardware in the loop").
 
-Sintesi dei contenuti e rimandi al capitolo successivo.
+\subsection{Liste guasti}
+\label{subsec:07-1-3}
+Il processo V\&V deve esaminare e dimostrare il comportamento a fronte dei modi di guasto della SRP/CS. I principi dell'analisi dei guasti sono enunciati negli Allegati da A a D della EN ISO 13849-2, come guasti da considerare (modi di guasto) ed esclusioni di guasto. L'Allegato C del presente rapporto tratta in dettaglio gli argomenti degli elenchi dei guasti, dei guasti/modi di guasto ipotizzati e delle esclusioni di guasto. Questi elenchi generali dei guasti si basano sull'esperienza pregressa. Un ridotto numero di ulteriori norme, quali la IEC 61800-5-2 [20], relativa alla sicurezza funzionale degli azionamenti elettrici di potenza, e la IEC 61784-3 [39], relativa alla trasmissione funzionalmente sicura su bus di campo, contiene elenchi di guasti specialistici. Anche l'Allegato A.2, Tabella A.1, della IEC 61508-2, relativa alla sicurezza funzionale dei sistemi elettronici programmabili, contiene alcuni dettagli precisi sui guasti di CPU, RAM, ROM e clock.
+
+Il modello di guasto per i componenti microelettronici altamente integrati (microprocessori, DSP, ASIC, FPGA, SoC, ecc.) risulta tuttavia generalmente alquanto astratto nella sua caratterizzazione. È altamente vantaggioso che vengano impiegati, sia per la realizzazione sia per la dimostrazione, elementi standard (sia software sia hardware) per le misure diagnostiche dei guasti (autotest, routine di monitoraggio, componenti di monitoraggio). Esempi di tali elementi standard sono gli autotest CPU standard indicati nel BGIA Report 7/2006, Self-tests for microprocessors incorporating safety functions [50]; gli autotest RAM quali Galpat, March, Checkerboard e numerosi altri; e i moduli commerciali di watchdog/monitoraggio per applicazioni IEC 61508/ISO 26262. Per componenti/elementi non indicati negli elenchi dei guasti della EN ISO 13849-2, ad esempio per tecnologie innovative, il fabbricante dovrebbe integrare propri corrispondenti elenchi di guasti e di esclusioni di guasto. Qualora vengano assunte esclusioni di guasto, esse devono essere supportate da una motivazione adeguata. Gli elenchi dei guasti integrati dal fabbricante costituiscono quindi parte della documentazione tecnica soggetta a revisione.
+
+Non esistono elenchi dei guasti nelle norme né per il SRESW né per il SRASW (vedere punto 6.3). Anche nella letteratura generale di riferimento, i guasti del software vengono generalmente trattati con riferimento a esempi, piuttosto che sotto forma di elenchi dei guasti esaustivi. Gli strumenti basati su PC per l'analisi statica del software (per la verifica sintattica, semantica e delle regole di codifica) forniscono un supporto molto utile e informazioni esaustive sui guasti.
+In linea di principio, per quanto riguarda i guasti per causa comune (CCF), devono essere considerati gli stessi guasti, unitamente alle possibili cause di CCF e alle relative contromisure indicate nell'Allegato F.
+
+\subsection{Documenti per le attività V\&V}
+\label{subsec:07-1-4}
+Come può essere dedotto dalla Figura 7.1, per l'esecuzione di ciascuna attività V\&V è necessaria una documentazione dettagliata. Ciò riguarda la documentazione tecnica rilevante lungo l'intero processo V\&V (in particolare le specifiche), oppure la documentazione prodotta nel corso della progettazione e della realizzazione della SRP/CS, che può essere necessaria soltanto per singole analisi/prove selezionate. Occorre tenere adeguatamente conto dei seguenti contenuti (sintesi):
+\begin{itemize}
+    \item specifica completa dei requisiti relativi alle funzioni di sicurezza e dei requisiti relativi alla progettazione della SRP/CS. La descrizione dei requisiti deve comprendere tutte le caratteristiche prestazionali, le proprietà, i modi di funzionamento e gli stati e processi previsti, da cui possano essere derivati i criteri di valutazione;
+    \item condizioni operative e ambientali con i relativi dati nominali, derivati dalle applicazioni previste o dalle norme applicabili; dati nominali dei componenti;
+    \item descrizione funzionale dell'esecuzione di tutte le funzioni di sicurezza, con descrizione degli stati e dei processi: deve essere inclusa la gestione dei guasti/avarie nella SRP/CS, ossia le risposte e gli stati della SRP/CS nei possibili modi di guasto/avaria, così come il concetto operativo, comprese tutte le interazioni dell'utente
+    \item descrizione progettuale della SRP/CS (con le specifiche dei componenti meccanici, elettrici, elettronici, idraulici e pneumatici impiegati), mediante disegni/schizzi, schemi, piani, dati e testo esplicativo idonei: ciò comprende, ad esempio, disegni generali, schemi strutturali e a blocchi, diagrammi di processo/di transizione di stato, piani di cablaggio, descrizioni dei collegamenti e delle interfacce, schemi concettuali, schemi circuitali, schemi elettrici, schemi circuitali oleopneumatici, piani di assemblaggio, tabelle di dati tecnici/dati nominali dei componenti, ove applicabile schede tecniche
+    \item analisi dei guasti/analisi dei modi di guasto e dei loro effetti (FMEA), oppure analisi dei modi di guasto, dei loro effetti e della diagnostica (FMEDA), tenendo conto degli elenchi dei guasti applicati; per la categoria 4, incluso l'accumulo di guasti
+    \item descrizione delle misure tecniche adottate per il controllo dei guasti (misure diagnostiche dei guasti)
+    \item principi di sicurezza di base e ben collaudati osservati durante il processo di progettazione, e determinazione documentata degli aspetti quantificabili PFH~D~, MTTF~D~, DC~avg~ e CCF per il Performance Level PL di ciascuna SRP/CS (documentazione di quantificazione), incluso l'elenco delle misure contro i guasti per causa comune
+    \item documentazione software completa (vedere anche il punto 6.3)
+    \item regole di progettazione seguite per la progettazione e la realizzazione, quali regole di progettazione per circuiti analogici e digitali, linee guida di programmazione, ecc.
+    \item documentazione probatoria (attestati, rapporti di prova, verbali tecnici) di componenti, unità o SRP/CS già validati. Inoltre: documentazione probatoria dei valori di affidabilità raggiunti, qualora questi siano stati ottenuti con modalità diverse da quelle previste dalla EN ISO 13849. Dati e, ove applicabile, documentazione probatoria relativa a componenti ben collaudati.
+\end{itemize}
+
+I documenti devono essere completi, il loro contenuto privo di contraddizioni, strutturato in modo logico, facilmente comprensibile e verificabile.
+
+\subsection{Analisi}
+\label{subsec:07-1-5}
+Una SRP/CS o suoi aspetti parziali sono valutati in larga misura mediante analisi. Ciò comporta sia l'impiego di metodi di analisi eseguibili manualmente, quali ispezioni, revisioni o walk-through per la specifica della documentazione tecnica e delle informazioni di accompagnamento; sia l'impiego di strumenti di analisi (spesso basati su PC), quali simulatori di circuiti, strumenti per l'analisi statica e dinamica dell'hardware/software, oppure strumenti FMEA/FMEDA e simulatori di guasto per l'analisi di componenti e circuiti in condizione di guasto. La verifica relativa alle condizioni operative e ambientali spinge l'ambito dell'analisi ai suoi limiti. Nuovi metodi e processi nello sviluppo di prodotto (quali i metodi di sviluppo basati su modelli o virtuali) porteranno senza dubbio all'emergere di nuovi metodi e strumenti di analisi. La necessaria decisione su dove i metodi analitici debbano essere accompagnati da prove viene documentata in forma semplice nel piano V\&V.
+
+\subsection{Test}
+\label{subsec:07-1-6}
+Ove le analisi non siano possibili per l'aspetto parziale in esame, o la valutazione mediante la sola analisi non sia adeguata, devono essere eseguite prove al fine di dimostrare che i requisiti siano soddisfatti. Le prove devono essere pianificate in modo sistematico ed eseguite in modo logico, generalmente con riferimento a stadi di sviluppo realizzabili nella pratica, quali prototipi, modelli funzionali o software/codice. Le prove devono essere eseguite su una configurazione che assomigli il più possibile alla configurazione operativa prevista. Le condizioni ambientali in cui le prove devono essere eseguite devono essere definite in anticipo. Le prove possono essere eseguite sia manualmente sia automaticamente.
+Qualora le prove siano impiegate ai fini della verifica, l'incertezza di misura deve essere ragionevole. La EN ISO 13849-2 fornisce indicazioni sui limiti da osservare.
+I punti da 7.3 a 7.7 descrivono le tipiche attività V\&V dei singoli aspetti: funzioni di sicurezza, PL, categoria, MTTFD, DC e CCF, software, informazioni per l'utente e interfaccia utente; il punto 7.8 le descrive quindi con riferimento all'esempio di una taglierina a ghigliottina per carta.
+
+\subsection{Documentazione dei risultati}
+\label{subsec:07-1-7}
+Tutte le attività di analisi e di prova devono essere documentate unitamente ai relativi risultati. Nel documentare i risultati, è importante che le specifiche tecniche e i criteri di valutazione richiamati siano datati o identificati tramite numero di versione; che l'oggetto dell'analisi/della prova (documento, software, campione di prova, ecc.) sia identificato in modo univoco; che siano registrate le configurazioni selezionate; che siano incluse le condizioni di analisi/prova, comprese la relativa predisposizione e la procedura; e che tutti i punti/casi di verifica/validazione siano registrati insieme ai risultati. Devono naturalmente essere documentate le informazioni formali quali identificativi del documento, persone che eseguono la prova/analisi, data, firma, ecc.
+A seconda del livello di automazione e degli strumenti e apparecchiature impiegati per la misura V\&V, la documentazione dei risultati varierà. I contenuti sopra indicati dovrebbero tuttavia essere considerati l'ambito minimo della documentazione. È pertanto opportuna una gestione della documentazione coerente con le esigenze derivanti dal processo V\&V. Il supporto e le risorse di qualsiasi tipo impiegati a tale scopo, dai moduli di registrazione ai sistemi di gestione documentale, possono essere considerati preziosi.
+
+\subsection{Completamento o iterazione}
+\label{subsec:07-1-8}
+La combinazione delle diverse SRP/CS coinvolte in una funzione di sicurezza raggiunge un Performance Level PL. Al termine del processo V\&V, questo PL deve essere confrontato con il Performance Level richiesto PLr per la funzione di sicurezza in questione. Una qualità di sicurezza adeguata è stata raggiunta quando la valutazione "PL ≥ PLr?", come mostrato nella Figura 7.2, fornisce un risultato positivo.
+
+Qualora i requisiti stabiliti nella specifica della SRP/CS non siano soddisfatti integralmente, a questo punto si deve tornare anche al processo di progettazione e realizzazione. Se le attività V\&V per tutte le funzioni di sicurezza sono state completate con esito positivo, la valutazione della SRP/CS è considerata dalla norma conclusa. In caso contrario, il processo V\&V deve essere proseguito con riferimento alle funzioni di sicurezza ancora irrisolte.
+
+ornare al processo di progettazione e realizzazione significa anche individuare gli elementi del processo V\&V che non sono stati superati e assegnarli alle attività V\&V a cui devono essere nuovamente sottoposti. A tale scopo, il piano V\&V (vedere punto 7.1.2) può contenere elementi idonei, in cui possono essere effettuate le relative annotazioni.
+Lo scenario dei risultati negativi deve pertanto essere affrontato nei processi di progettazione e sviluppo della SRP/CS. Di conseguenza, sono richiesti processi e misure per la gestione del software difettoso (per documenti, registrazioni, dati, configurazioni, software, campioni/prototipi, ecc.).
+
+\section{Verifica delle specifiche e della documentazione tecnica}
+\label{subsec:07-2}
+Di gran lunga, il documento più frequentemente citato (non solo nel presente rapporto) in relazione alla realizzazione di una SRP/CS è la specifica. Con ciò si intende la specifica di tutti i requisiti (specifica tecnica), la specifica delle funzioni di sicurezza, la specifica della progettazione (naturalmente per quanto concerne la sicurezza) con particolare attenzione all'integrità del software, e la specifica delle condizioni operative, ambientali e applicative previste. Il Capitolo 6 del presente rapporto, in particolare il Riquadro 6.1, contiene informazioni esaustive sul contenuto richiesto della specifica tecnica. È possibile, seppure inconsueto, l'impiego di strumenti di specifica assistiti da computer e di metodi formali per la redazione della specifica.
+La verifica si rivolge pertanto al documento "specifica" e assume la forma di ispezione e revisione. Si è dimostrata efficace la suddivisione della procedura in due parti. La verifica viene eseguita anzitutto da personale esperto all'interno dell'organizzazione del fabbricante. Segue quindi la verifica da parte di un organismo esterno competente, quale un istituto di prova.
+La verifica dell'intera documentazione di sviluppo e progettazione è disciplinata dal punto 12 della EN ISO 13849-2. Questo punto è collegato per rimando incrociato al contenuto richiesto della documentazione tecnica (punto 10 della norma). Le analisi costituiscono attività idonee per la verifica dei documenti di sviluppo/progettazione (documentazione tecnica). Ispezione, revisione e walk-through costituiscono metodi tipici a tale scopo; si rimanda, ove necessario, ad esempio alla IEC 61508-7 [10].
+
+\section{Validazione dewlle funzioni di sicurezza}
+\label{subsec:07-3}
+La validazione della o delle funzioni di sicurezza realizzate comprende le attività che dimostrano la piena conformità alle caratteristiche funzionali e ai criteri prestazionali stabiliti nella specifica. È inoltre utile, ai fini della determinazione se la o le funzioni di sicurezza siano state correttamente definite e realizzate, il riesame della realizzazione dei punti elencati al punto 5.3.1 riguardo alla specifica delle funzioni di sicurezza.
+Per consentire una dimostrazione dell'avvenuto soddisfacimento dei requisiti funzionali, devono essere eseguite le seguenti prove parziali:
+\begin{itemize}
+    \item test funzionale;
+    \item test funzionale esteso del comportamento della SRP/CS in risposta a segnali di ingresso, processi dell'operatore o input atipici, inattesi, proceduralmente errati, o esterni alla specifica (non validi);
+    \item simulazione (ove possibile);
+    \item prove prestazionali (parametri funzionali, tempo di risposta, ecc.);
+\end{itemize}
+
+\section{Verifica del PL della SRP/CS}
+\label{subsec:07-4}
+Il presente punto descrive le attività normalmente eseguite per la dimostrazione del Performance Level PL raggiunto di una singola SRP/CS. La procedura da seguire per combinazioni di più SRP/CS è illustrata al punto 7.6.
+Il PL di una SRP/CS è determinato, da un lato, da aspetti/valori quantificabili quali l'MTTFD, la DC, i CCF e la categoria, e, dall'altro, da aspetti qualitativi quali il comportamento in condizioni di guasto della funzione di sicurezza, le misure progettuali relative al software legato alla sicurezza e ai guasti sistematici, e il comportamento funzionale nelle condizioni operative e ambientali (massime) previste. La valutazione dei singoli aspetti è seguita da una descrizione di una procedura per la verifica della stima del PL. Come la EN ISO 13849-1 e -2, anche il presente rapporto e questo punto assumono che venga scelto il "metodo semplificato" per la stima del PL. Questo metodo è già stato descritto.
+
+\subsection{Verifica della categoria}
+\label{subsec:07-4-1}
+L'obiettivo della verifica della categoria è confermare che tutti i requisiti posti sulla categoria siano soddisfatti nella fase di sviluppo in esame; si rimanda ai punti da 6.2.2 a 6.2.7 del presente rapporto e ai punti da 9.2.1 a 9.2.5 di [6].
+Devono essere eseguite le seguenti analisi:
+\begin{itemize}
+    \item analisi della struttura e del percorso dei segnali della documentazione tecnica del circuito;
+    \item valutazione della realizzazione e dell'efficacia delle misure diagnostiche dei guasti;
+    \item verifica dell'osservanza dei principi di sicurezza di base;
+    \item verifica della realizzazione dei principi di sicurezza ben collaudati (categoria 1 e superiori);
+    \item verifica dell'impiego di componenti ben collaudati (soltanto categoria 1);
+    \item valutazione dei guasti da analizzare e delle esclusioni di guasto ammissibili, comprese le relative motivazioni ove aggiunte caso per caso agli elenchi dei guasti;
+\end{itemize}
+
+\subsection{Verifica dwei valori MTTFD}
+\label{subsec:07-4-2}
+I valori di MTTF\textsubscript{D} impiegati per la determinazione del PL dovrebbero essere verificati almeno per plausibilità. Ciò comprende tipicamente la valutazione se siano indicate fonti idonee per l'origine dei valori. È inoltre raccomandato il riesame della motivazione precisa fornita per i valori, per i componenti dominanti e, negli altri casi, a campione per tutti gli altri componenti. Le fonti di dati indicate al punto 6.2.12 e nell'Allegato D possono ad esempio essere utilizzate a tale scopo. L'idonea determinazione dei valori di B10D, T10D e nop viene verificata analiticamente, e la correttezza del calcolo viene successivamente controllata, almeno per plausibilità.
+
+\subsection{Verifica dei valori DC}
+\label{subsec:07-4-3}
+La copertura diagnostica (DC) assegnata ai blocchi o, ove applicabile, ai componenti deve essere dimensionata in modo riproducibile. Anche in questo caso viene tipicamente analizzata l'origine dichiarata dei valori e la relativa motivazione. L'Allegato E fornisce indicazioni sulla stima dei valori di DC, che può anch'essa fungere da base per la verifica.
+
+La progettazione realizzata deve essere analizzata per stabilire se le misure diagnostiche dei guasti descritte siano state effettivamente realizzate. A tale scopo, è generalmente necessario che le funzioni e i moduli diagnostici dei guasti siano identificati nella documentazione di sviluppo, e che ne venga stimata l'efficacia. Inoltre, le prove del comportamento in condizioni di guasto della SRP/CS (prova dei modi di guasto e dei loro effetti/prova mediante iniezione di guasti) dovrebbero dimostrare che il corretto rilevamento dei guasti sia garantito dalle funzioni diagnostiche dei guasti. Infine, il calcolo della DC\textsubscript{avg} deve essere verificato almeno per plausibilità.
+
+\subsection{Verifica delle misure nei confronti dei CCF}
+\label{subsec:07-4-4}
+L'Allegato F della EN ISO 13849-1 contiene un metodo a punteggio per la valutazione delle misure selezionate contro i guasti per causa comune (CCF). Oltre alla verifica del raggiungimento del numero totale di punti e all'accertamento che le misure selezionate siano descritte in modo esauriente nei documenti associati, l'analisi o la prova dimostra che le misure siano state effettivamente realizzate. Le tipiche attività V\&V impiegate a tale scopo comprendono l'analisi statica dell'hardware e la prova funzionale in condizioni ambientali (condizioni limite)
+
+\subsection{Verifica delle misure tecniche nei contro i guasti sistematici}
+\label{subsec:07-4-5}
+Le attività V\&V relative alle misure tecniche per l'evitamento e il controllo dei guasti sistematici valutano se le misure progettuali richieste, descritte nell'Allegato G della EN ISO 13849-1 e illustrate ulteriormente al punto 6.1.2 del presente rapporto, siano state realizzate. La conferma può tipicamente essere fornita mediante:
+\begin{itemize}
+    \item prove funzionali ai valori limite e con valori nominali modificati, e prova dei modi di guasto e dei loro effetti/prova mediante iniezione di guasti sulle unità di alimentazione (ad es. interruzione della tensione, fluttuazione di tensione, sovratensione, sottotensione, variazioni della corrente alternata e della frequenza, variazione del clock e altri fenomeni e sollecitazioni operative che possono portare al guasto);
+    \item prova dell'immunità ai disturbi causati da influenze ambientali, ossia prova funzionale nelle condizioni ambientali specificate (condizioni climatiche, sollecitazioni meccaniche, compatibilità elettromagnetica, ecc.) Vedere il punto 10 di [6];
+    \item analisi della realizzazione del monitoraggio dell'esecuzione del programma;
+    \item verifica e prova delle proprietà legate alla sicurezza dei sistemi di comunicazione dati; ove utilizzati, identificazione dei componenti certificati;
+    \item verifica dei documenti di sviluppo che confermano l'applicazione dei principi di sicurezza di base e ben collaudati e delle ulteriori misure adottate, quali la diversità hardware;
+\end{itemize}
+
+Il presente rapporto non tratta le valutazioni delle misure organizzative richieste dalla EN ISO 13849-2 [6] per l'evitamento dei guasti sistematici, quali i sistemi di gestione della qualità per il processo di fabbricazione (punto 9.4 e di [6]).
+
+\subsection{Verifica e validazione del software}
+\label{subsec:07-4-6}
+Le attività di verifica eseguite nel corso della specifica, della progettazione e della codifica del software (ispezione/revisione della specifica software, della progettazione software e del codice, analisi statica del software, test di modulo, simulazione software, test di integrazione) sono già state descritte in modo esauriente al punto 6.3. Anche per la verifica del software, in questo contesto devono essere specificate misure progettuali software graduate in funzione del PL da raggiungere.
+
+L'ultima attività di sviluppo nel "modello a V" semplificato è la validazione del software. Deve essere esaminato se i requisiti indicati nella specifica del software legato alla sicurezza, relativi al comportamento funzionale e ai criteri prestazionali (ad es. le specifiche relative alla tempistica), siano stati realizzati correttamente. A questo stadio, la validazione non considera più il funzionamento interno del software, bensì il suo comportamento "esterno", ossia il comportamento in uscita in risposta alle variazioni sugli ingressi, con il software completo integrato nell'hardware. Il software viene qui considerato come una "scatola nera" (black box), e viene validato mediante il "test a scatola nera" (black-box test). Prove I/O supplementari garantiscono che i segnali di ingresso e di uscita legati alla sicurezza siano utilizzati correttamente. Il test funzionale viene quindi eseguito a livello di sistema (sulla SRP/CS). L'esecuzione di un caso di prova esteso con casi di guasto (eventualmente simulati) serve a dimostrare l'efficacia e la corretta realizzazione del rilevamento dei guasti e della gestione dei guasti (reazione in caso di guasto) realizzati dal software.
+
+Le singole funzioni software già certificate o validate mediante misure di assicurazione della qualità, sotto forma di blocchi funzionali di sicurezza, non richiedono una nuova prova. Deve tuttavia essere fornita evidenza che la validazione sia già stata eseguita. Qualora, tuttavia, più blocchi funzionali di sicurezza di questo tipo vengano combinati per uno specifico progetto, la funzione di sicurezza risultante deve essere validata nel suo insieme.
+
+Nel caso particolare del SRESW impiegato in SRP/CS con PL e e non sviluppato con diversità per i due canali, i requisiti per il SIL 3 stabiliti al punto 7 della IEC 61508-3 [42] devono essere soddisfatti integralmente durante lo sviluppo del software. Ciò comprende le attività V\&V richieste nei punti pertinenti.
+Qualora il software legato alla sicurezza venga successivamente modificato, esso deve essere nuovamente verificato e validato in misura adeguata. Il piano di verifica e validazione descritto al punto 7.1.2 può e dovrebbe fungere da ausilio per la pianificazione a tale scopo.
+
+Un ulteriore ambito della verifica del software riguarda le SRP/CS configurabili, parametrizzabili e programmabili. Qualora la parametrizzazione e la programmabilità siano basate su software, la realizzazione e l'efficacia delle misure devono essere dimostrate anche in conformità ai requisiti del punto 4.6.4 della EN ISO 13849-1, e quindi con gli strumenti di configurazione impiegati (programmi di parametrizzazione/programmazione, ove applicabile) come parte obbligatoria delle attività V\&V. Queste attività comprendono sia analisi della documentazione di tali strumenti sia prove sugli elementi stessi.
+
+\subsection{Verifica della valutazione del PL}
+\label{subsec:07-4-7}
+La verifica che il PL sia stato valutato correttamente per ciascuna SRP/CS comporta in particolare la comprensione della corretta applicazione del metodo di valutazione impiegato, compresi i calcoli corretti.
+
+Se il PL è stato valutato mediante la procedura semplificata, può essere eseguito un controllo, con riferimento alla Figura 6.10, per stabilire se il PL corretto per la SRP/CS sia stato determinato a partire dai valori di categoria, MTTFD e DCavg precedentemente confermati.
+
+\section{Verifica delle informazioni d’uso}
+\label{sec:07-5}
+Le informazioni importanti sull'uso sicuro delle SRP/CS (Safety-Related Parts of Control Systems - parti dei sistemi di comando legate alla sicurezza) devono essere rese disponibili sotto forma di manuali di istruzioni, istruzioni di montaggio, targhette dei dati identificativi e istruzioni di manutenzione. Questi elementi documentali, indicati nel loro insieme come informazioni per l'uso e, secondo la Direttiva Macchine, comprendenti anche i dépliant/opuscoli di vendita(!), devono essere valutati per accertare se includano tutti i contenuti indicati ai punti 9 e 11 della EN ISO 13849-1. La EN ISO 13849 non stabilisce regole proprie riguardo alla forma della documentazione (lingua, formato digitale o cartaceo). Si applicano invece i requisiti (e le decisioni del comitato) previsti a livello della Direttiva Macchine. Per la presentazione (impaginazione, tipografia, ecc.) delle informazioni per l'uso, ci si può attenere a principi guida generali come quelli della IEC 82079-1, Preparation of instructions for use [51]. La loro applicazione in fase di valutazione non è tuttavia obbligatoria. Le informazioni fornite con il prodotto vengono di norma analizzate mediante ispezione e/o revisione documentale.
+
+\section{Validazione della combinazione e dell'integrazione delle SRP/CS}
+\label{sec:07-6}
+Le singole SRP/CS devono essere validate separatamente prima della combinazione. Affinché siano evitati guasti sistematici durante la combinazione/integrazione delle SRP/CS, devono essere eseguite le seguenti attività V\&V:
+\begin{itemize}
+    \item verifica dei documenti di progettazione che, nel loro insieme, descrivono la realizzazione della funzione di sicurezza interessata;
+    \item confronto dei dati caratteristici delle interfacce tra le SRP/CS (ad es. tensioni, correnti, pressioni, dati informativi);
+    \item FMEA/analisi dei guasti della combinazione/integrazione
+    \item test funzionale;
+    \item Test funzionale esteso;
+    \item verifica della determinazione semplificata del PL complessivo a partire dai PL delle singole SRP/CS, come descritto al punto 6.4;
+\end{itemize}
+
+L'integrazione di (più) SRP/CS non è - ancora - sinonimo della loro messa in servizio con le relative prove di messa in servizio su una macchina. Le attività di validazione qui indicate, integrate dalla prova di interfaccia/"prova I/O" altamente vantaggiosa, sono tuttavia idonee a tale scopo senza restrizioni.
+
+Il retrofit della tecnica di sicurezza, o l'integrazione di nuove SRP/CS in comandi di macchine esistenti, può presentare una sfida particolare. Pianificare per tempo le attività V\&V sopra indicate, applicarle in modo accurato indipendentemente dalle pressioni che possano insorgere, eventualmente non prima dell'installazione in loco, e documentare le attività dall'inizio alla fine, contribuisce in modo sostanziale a un'integrazione affidabile delle SRP/CS.
+
+\section{Verifica dell'interfaccia utente}
+\label{sec:07-7}
+I requisiti stabiliti dalla EN ISO 13849 riguardo all'ergonomia dell'interfaccia utente si riferiscono a obiettivi progettuali universali quali la prevenzione di azioni pericolose, l'elusione/manomissione della SRP/CS, principi ergonomici generali come la semplicità, e i principi ergonomici richiamati nella EN ISO 12100 [3] e nella ISO 9355 [52]. Al tempo stesso, essa richiede esplicitamente che si tenga conto dell'uso scorretto prevedibile.
+Qualora siano necessari ulteriori documenti guida per la verifica delle interfacce utente, può risultare vantaggioso applicare linee guida progettuali quali le seguenti: VDI/VDE 3850, Development of usable user interfaces for technical plants (Sviluppo di interfacce utente utilizzabili per impianti tecnici) [31]; la guida VDMA all'ergonomia del software e alla progettazione delle interfacce utente [53]; e la EN ISO 9241-11, Ergonomia dell'interazione uomo-sistema - Parte 11: Usabilità [54].
+Infine, il presente punto è finalizzato a confermare l'idea secondo cui l'impiego di SRP/CS - così come anche di moduli e strumenti software - già certificati o sottoposti a esame del tipo semplifica e accelera considerevolmente la verifica e la validazione della circuiteria per le funzioni di sicurezza.
+
+\section{Verifica e validazione di una taglierina a ghigliottina}
+\label{sec:07-8}
+La descrizione generale della verifica e della validazione delle funzioni di sicurezza e del PL è integrata, nel presente punto, da una spiegazione delle attività V\&V per l'esempio pratico della taglierina a ghigliottina per carta descritto ai punti 5.7 e 6.5. Si assume qui che siano disponibili tutti i documenti necessari e un prototipo della macchina. Sulla base dei documenti, le fasi di verifica e validazione saranno qui illustrate per un esempio rappresentativo delle funzioni di sicurezza, "SF2 - Posizionamento controllato delle mani dell'operatore al di fuori della zona pericolosa durante un movimento pericoloso" (punto 5.7.3). Tra i documenti disponibili figura il piano di verifica e validazione, che descrive le attività richieste nelle varie fasi (punto 7.1.2). In ragione del livello del potenziale di pericolo, è opportuno che il lavoro venga svolto da persone indipendenti, ad esempio appartenenti a un reparto diverso (punto 7.1.1).
+Il presente punto rispetta la definizione di verifica e validazione enunciata nell'introduzione al Capitolo 7. Frequentemente, tuttavia, i confini risultano sfumati, e la classificazione precisa risulta difficile. Un esempio è costituito dai test, ad esempio del software. Questi test vengono anche indicati, nella letteratura di riferimento, come validazione, il cui scopo è determinare se il programma o parti di esso adempiano alla loro funzione (come indicato nella specifica). Queste fasi potrebbero altrettanto essere descritte come verifica.
+
+\subsection{Verifica del PL raggiunto }
+\label{sec:07-8-1}
+Una stima del rischio ha mostrato che per la funzione di sicurezza SF2 desiderata deve essere raggiunto un Performance Level richiesto PLr pari a e. Questa analisi è coerente con il requisito della EN 1010-1 [28], che specifica ulteriormente i requisiti tecnici con riferimento ai requisiti della pertinente norma sui comandi bimanuali, la EN 574 [55]. Le condizioni di base da soddisfare sono indicate nella specifica di sistema e confermate dalla validazione. La verifica ora eseguita conferma la corretta realizzazione dei termini, in questo caso mediante il calcolo del PL con l'ausilio dello strumento software SISTEMA. Questo PL viene raggiunto nel calcolo della probabilità di guasto, tenendo conto di tutti gli aspetti quantificabili. Anche tutti i requisiti relativi agli aspetti qualitativi, quali il comportamento in condizioni di guasto della funzione di sicurezza, comprese le misure per il rilevamento dei guasti realizzate nel software legato alla sicurezza, le misure contro i guasti sistematici e il comportamento nelle condizioni ambientali, sono adeguatamente soddisfatti per il PL e.
+
+Le conclusioni sopra riportate sono state chiaramente raggiunte in momenti diversi nel corso dello sviluppo, oppure, di fatto, hanno potuto essere raggiunte soltanto durante determinate fasi. La dimostrazione del soddisfacimento dei requisiti CEM, ad esempio, non è possibile prima che sia stato realizzato un prototipo.
+
+Le attività di validazione/verifica riportate di seguito non costituiscono una sequenza da seguire rigorosamente. L'intento è piuttosto quello di illustrare, con riferimento all'esempio della SF2, il lavoro comportato dalle rispettive fasi del modello V\&V.
+
+\subsection{Validazione dei requisiti legati alla sicurezza}
+\label{sec:07-8-2}
+
+\textit{Lista dei guasti}
+Il PL viene determinato sulla base degli elenchi dei guasti secondo la EN ISO 13849-2 [6].
+
+\textit{Documenti}
+Come già indicato al punto 7.1.4, l'analisi/la prova viene condotta con riferimento, tra l'altro, agli schemi circuitali, alle distinte dei componenti, alla specifica completa, alla descrizione funzionale, nonché alla descrizione progettuale, all'analisi dei guasti/dei modi di guasto e dei loro effetti, alla specifica del software e alla documentazione software.
+
+\textit{Validazione della funzione di sicurezza}
+Al fine di verificare i requisiti funzionali della funzione di sicurezza, viene eseguito un test funzionale, integrato da un test funzionale esteso per la verifica del comportamento della funzione di sicurezza in risposta a input rari o non definiti. Un possibile esempio di tale prova è la verifica della risposta della SRP/CS quando una richiesta di taglio valida proveniente dal comando bimanuale è accompagnata da un segnale di guasto, ad esempio su apparecchiature periferiche o avviato da un comando di arresto proveniente da una barriera fotoelettrica. Vengono inoltre condotte prove prestazionali di aspetti funzionali. Queste comprendono, ad esempio, il controllo del tempo da osservare per l'azionamento simultaneo secondo la EN 574 [55]. Soltanto quando i due attuatori S1 e S2 vengono azionati entro un intervallo di ≤ 0,5 secondi possono essere generati i segnali di uscita per l'azionamento della barra di pressione e della lama.
+Le prove e le analisi sopra indicate per le caratteristiche di sicurezza specificate sono state superate.
+
+\textit{Verifica del PL della SRP/CS}
+\begin{itemize}
+    \item \textit{Verifica della categoria}. I termini di riferimento essenziali per la categoria della SRP/CS sono stabiliti in una fase iniziale dello sviluppo, sulla base della specifica completa o vincolante. Anche per il PLr e determinato è stata selezionata la categoria 4. La verifica della specifica ha mostrato che la struttura circuitale su di essa basata (ridondanza diversificata, vedere anche il punto 6.5.2) soddisfa i requisiti di una categoria 4.\\
+    Per il comando bimanuale, come previsto in questo caso, vengono eseguite su un prototipo prove del comportamento in condizioni di guasto, con riferimento alla documentazione di sviluppo. Ciò verifica se i requisiti complessivi per una categoria 4 siano soddisfatti anche in questo caso. La prova viene eseguita mediante l'iniezione controllata di guasti. La SRP/CS deve rispondere ai guasti iniettati nel modo specificato. Viene anzitutto eseguita un'analisi, seguita da una prova, per accertare il comportamento quando, ad esempio, singoli relè a contattore non sono più in grado di eseguire i comandi di commutazione, oppure come reagisce la SRP/CS quando uno dei due attuatori S1 o S2 viene azionato con ritardo, o non viene affatto azionato. La funzione di sicurezza deve essere garantita in ogni momento quando un singolo guasto viene iniettato nella SRP/CS. Un singolo guasto deve essere rilevato al momento della successiva esecuzione della funzione di sicurezza o prima di essa. Qualora il guasto non venga rilevato, l'accumulo di ulteriori guasti non deve comportare la perdita della funzione di sicurezza. La risposta sicura attesa per ciascun guasto iniettato è descritta nel relativo verbale di prova, e il comportamento della SRP/CS viene annotato con il criterio di valutazione "superato" o "non superato".\\
+    L'osservanza del principio di diseccitazione, quale esempio di principio di sicurezza di base, può essere dimostrata mediante l'iniezione di interruzioni e la valutazione della relativa risposta. Qualora, ad esempio, venga a mancare la tensione di alimentazione, la barra di pressione e la lama vengono riportate nelle rispettive posizioni iniziali per azione della forza delle molle.\\
+    Le prove di plausibilità possono essere citate in questo contesto come esempio di principi di sicurezza ben collaudati: i contatti meccanicamente collegati nei relè a contattore K3-K6 vengono riletti (riscontrati) da entrambi i canali. Vengono eseguite prove per dimostrare il corretto funzionamento del riscontro.
+    \item \textit{verifica dei valori MTTF\textsubscript{D}}. Il valore di 150 anni, sostituito per le valvole 1V3, 1V4, 2V2 e 2V1, è qui considerato a titolo esemplificativo per la verifica dei valori di MTTFD (vedere Figura 6.15). Il valore fornito dal fabbricante è stato ottenuto da una fonte affidabile, e la sua plausibilità è stata confermata mediante confronto con il corrispondente valore riportato nella Tabella C.1 della EN ISO 13849-1 [5] (vedere Tabella D.2 del presente rapporto). Le condizioni indicate dal fabbricante per l'assunzione del valore di MTTFD (ad es. i cambi d'olio) sono descritte nel manuale d'istruzioni, e si presume che tali condizioni siano osservate durante il funzionamento.
+    \item \textit{Verifica dei valori di DC}. Per K1 e K2 viene confermata una DC del 90\%, sulla base dell'autodiagnostica. Questa comprende un monitoraggio incrociato dei segnali di ingresso e dei risultati intermedi (dal microcontrollore e dall'ASIC), il monitoraggio della tempistica e della logica di esecuzione del programma, e il rilevamento dei guasti statici interni e periferici. Ulteriori prove comprendono un test della CPU nel canale contenente il microcontrollore, in cui vengono testati tutti i comandi utilizzati, e prove di adeguata qualità della memoria ad accesso casuale (RAM) e della memoria di sola lettura (ROM). Nel secondo canale (ASIC) vengono eseguite prove di qualità comparabile a quelle del canale parallelo. Mediante verifica deve essere dimostrato che le misure descritte nella specifica siano state realizzate correttamente.\\
+    Ai relè a contattore K3, K4, K5 e K6 viene assegnata una DC del 99\%. Ciò è appropriato in ragione della prova di plausibilità mediante riscontro dei contatti meccanicamente collegati dei relè a contattore. Le prove di plausibilità già verificate durante la verifica della categoria servono anche in questo punto a dimostrare il corretto funzionamento.
+    Ai pulsanti S1 e S2 viene assegnata una DC del 99\%. La motivazione risiede nel monitoraggio incrociato e in una frequente variazione del segnale. Questa assunzione è confermata dalla verifica. Tale assunzione sarà dimostrata, in un altro punto, mediante una prova su casi di guasto.
+    \item le valvole 2V1, 2V2, 1V3 e 1V4 sono monitorate ciclicamente in modo indiretto dai pressostati 2S1 e 1S3. Poiché le posizioni delle valvole possono essere interrogate per la loro plausibilità in parallelo al ciclo della macchina, un valore del 99\% per la DC è considerato motivato. Anche in questo caso, l'assunzione viene confermata sul prototipo mediante prove di guasto sulle valvole.
+    \item \textit{verifica delle misure contro i CCF}. I requisiti minimi per le misure contro i guasti per causa comune sono soddisfatti, con almeno 65 punti. Ulteriori misure risultano efficaci anche in parti del sistema di comando. Vengono assegnati 15 punti per la realizzazione della misura "separazione fisica tra i percorsi dei segnali". La corretta realizzazione della misura deve essere dimostrata mediante un'analisi della documentazione di sviluppo, quali gli schemi circuitali, e mediante prove sull'hardware. La diversità impiegata per K1 e K2 fornisce un contributo sostanziale ai CCF: le diverse tecnologie di K1 e K2 costituiscono la motivazione per i 20 punti assegnati alla diversità.
+    \item \textit{verifica delle misure contro i guasti sistematici}. L'osservanza dei principi di sicurezza di base e ben collaudati è una misura altamente efficace contro i guasti sistematici. Le attività di verifica della categoria comprendono anche il controllo dell'osservanza di entrambi i tipi di principio di sicurezza. I risultati delle analisi e delle prove eseguite a tale scopo possono pertanto essere utilizzati anche per la valutazione in questa fase.\\
+    Oltre alle prove, viene eseguita durante lo sviluppo un'ispezione della documentazione che descrive i principi di sicurezza di base e ben collaudati applicati e le misure per il controllo e l'evitamento dei guasti sistematici, secondo il punto 6.1.2 del presente rapporto e l'Allegato G della norma. Lo scopo di questa ispezione è valutare se i principi e le misure siano stati adeguatamente considerati durante il processo di sviluppo.\\
+    Un esempio di controllo dei guasti sistematici di sistema è costituito dal fatto che il software legato alla sicurezza monitora l'esecuzione della sequenza del programma per individuare errori. L'efficacia del monitoraggio del processo viene testata mediante guasti iniettati.\\
+    Al fine di dimostrare la capacità della SRP/CS di resistere alle condizioni ambientali specificate, vengono eseguite prove in tutte le condizioni avverse previste e prevedibili, per fattori quali temperatura, umidità e interferenze elettromagnetiche. Ciò costituisce un esempio di misura per l'evitamento dei guasti sistematici. I limiti di temperatura e umidità entro i quali la taglierina a ghigliottina per carta può essere fatta funzionare sono stabiliti nella specifica, la cui verifica documentale ne conferma il rispetto.
+    \item \textit{Verifivca del software}. Lo sviluppo e la validazione del software sono descritti in dettaglio al punto 6.3. A questo punto viene eseguita anche la verifica del software, ossia viene effettuata la prova del corretto funzionamento e anche dei tempi di risposta del software integrato nell'hardware. La prova assume la forma di test funzionali (test a scatola nera) e di test funzionali estesi, in cui, in primo luogo, i segnali di ingresso legati alla sicurezza devono essere elaborati correttamente in segnali di uscita legati alla sicurezza, e, in secondo luogo, vengono eseguiti casi di prova con guasti iniettati al fine di verificare le risposte specificate ai modi di guasto del firmware del microcontrollore K1. In altre parole: si chiarisce se i requisiti della specifica siano stati realizzati correttamente nel software.\\
+    Verifica della valutazione del PL
+    Per la stima del PL è stata applicata la procedura semplificata secondo la EN ISO 13849-1. La sua corretta applicazione è confermata. Vengono verificati il calcolo dell'MTTF\textsubscript{D} secondo il punto 6.2.11 e l'Allegato D, e della copertura diagnostica media DC\textsubscript{avg} secondo l'Allegato E, così come la corretta determinazione del PL a partire dai valori di categoria, MTTF\textsubscript{D} e DC\textsubscript{avg} precedentemente confermati, mediante il diagramma a barre mostrato nella Figura 6.10.
+    \item \textit{Verifica delle informazioni per l'uso}. Le informazioni per l'uso devono essere riesaminate per quanto riguarda il comando bimanuale. Ciò comprende anche la spiegazione della funzione in relazione agli obiettivi di sicurezza da raggiungere. È indifferente il momento in cui le informazioni per l'uso della SRP/CS vengano sottoposte a riesame, anche riguardo ai seguenti punti: descrizione dell'uso previsto; indicazione delle informazioni relative al PL e alla categoria (compreso il riferimento datato alla norma); spiegazione di tutti i modi di funzionamento; descrizione dei mezzi di protezione e delle funzioni di sicurezza con i relativi tempi di risposta, condizioni ambientali per il funzionamento e interfacce esterne; informazioni e dati tecnici su trasporto, installazione sicura, messa in servizio e manutenzione. Anche in questo caso, il risultato del riesame deve essere registrato per iscritto.
+    \item \textit{Validazione della combinazione e dell'integrazione delle SRP/CS}, La funzione di sicurezza descritta è realizzata da una SRP/CS. Poiché tuttavia all'interno di questa SRP/CS sono combinate tecnologie diverse, elettronica e idraulica, dovrebbero essere eseguite anche qui alcune prove necessarie quando le SRP/CS vengono combinate, a meno che non siano già state incluse nella validazione della categoria. Tali prove comprendono il confronto dei dati di interfaccia tra le tecnologie impiegate, e prove funzionali e prove funzionali estese.
+\end{itemize}
+
+\subsection{Esame se tutte le funzioni di sicurezza siano state analizzate}
+\label{sec:07-8-3}
+Le attività V\&V qui illustrate per la SF2 vengono condotte per tutte le funzioni di sicurezza eseguite dalla SRP/CS (da SF1 a SF6). Lo sforzo aggiuntivo risulta tuttavia contenuto, poiché molte funzioni di sicurezza impiegano lo stesso hardware. Le analisi e le prove devono dimostrare che le funzioni di sicurezza siano state realizzate correttamente. Una volta che tutte le funzioni di sicurezza sono state analizzate, la valutazione secondo la EN ISO 13849-1 e -2 è completa

@@ -3,10 +3,6 @@
 %==============================================================
 \chapter{Esempi di circuiti SRP/C}
 \label{cap:08}
-
-Breve introduzione al capitolo: oggetto, obiettivi e collegamento
-con i capitoli precedenti.
-
 Questo report inizia trattando la progettazione di sistemi di controllo sicuri in termini generali. I paragrafi~\ref{sec:05-7}, 6.5 e 7.6 illustrano quindi, con riferimento all'esempio di una ghigliottina per il taglio della carta, come possono essere implementati i metodi per la progettazione di sistemi di controllo sicuri. I metodi per la determinazione del PL sono descritti passo-passo qui e nella norma EN ISO 13849-1; tuttavia, alcuni di questi passaggi, come la derivazione del diagramma a blocchi relativo alla sicurezza dallo schema elettrico, richiedono una certa pratica. Il manuale di SISTEMA~\cite{cookbook1} fornisce indicazioni su come derivare il diagramma a blocchi relativo alla sicurezza e il file SISTEMA dallo schema elettrico.
 
 Tuttavia, a causa della varietà delle possibili funzioni di sicurezza e della loro implementazione, i singoli passaggi non si prestano a una descrizione generica. Per questo motivo, questo capitolo presenterà ora la valutazione di numerosi esempi di circuiti che implementano le funzioni di sicurezza in varie categorie e livelli di prestazione e mediante diverse tecnologie. Negli esempi di circuiti, il concetto di sistema di controllo generalmente comprende solo le parti dei sistemi di controllo relative alla sicurezza. Gli esempi sono limitati agli aspetti essenziali e servono quindi principalmente a illustrare la metodologia. Nella loro selezione è stata data importanza a un ampio spettro di tecnologie e possibili applicazioni. I lettori che hanno familiarità con il report del 1997~\cite{en954-1} sulle Categorie per i sistemi di controllo relativi alla sicurezza secondo la norma EN 954-1 riconosceranno alcuni degli esempi, ai quali è stato aggiunto, ad esempio, il calcolo della probabilità di guasto. Rispetto al Rapporto BGIA 2/2008e~\cite{bgiareport2-2008}, alcuni esempi non più aggiornati sono stati eliminati; è stato tuttavia aggiunto un nuovo esempio. Gli esempi rappresentano un'interpretazione delle Categorie e sono stati compilati dagli autori sulla base di molti anni di esperienza con i sistemi di controllo delle macchine relativi alla sicurezza e del lavoro svolto in comitati di normazione nazionali ed europei. Gli esempi servono a fornire ai progettisti una guida efficace per i loro sviluppi.
@@ -45,9 +41,6 @@ Infine, si rimanda ai "riferimenti più dettagliati", ove disponibili.
 
 Per ciascun tipo di tecnologia, nei successivi punti specifici per tecnologia vengono formulati alcuni commenti di carattere generale, al fine di fornire una migliore comprensione degli esempi e per la realizzazione delle categorie.
 Alcuni degli esempi circuitali rappresentano "sistemi di comando che coinvolgono tecnologie multiple". Questi esempi circuitali "misti" si basano sul concetto, sancito dalla norma, secondo cui una funzione di sicurezza viene sempre realizzata mediante "ricezione", "elaborazione" e "commutazione", indipendentemente dalla tecnologia impiegata."
-
-
-
 
 %--------------------------------------------------------------
 \section{Osservazioni generali di natura tecnologica sui sistemi di controllo di esempio}

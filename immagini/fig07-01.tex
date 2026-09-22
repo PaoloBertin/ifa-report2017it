@@ -1,0 +1,118 @@
+%==============================================================
+%  Figura 7.1 - Attivita' di verifica e validazione (V&V) della
+%  EN ISO 13849-1: estratto del processo iterativo di progettazione
+%  Adattamento in italiano della Figura 7.1 dell'IFA Report 2/2017
+%  (stesso stile delle Figure 5.5 e 6.1, di cui e' la prosecuzione)
+%==============================================================
+\begin{tikzpicture}[
+  font=\normalsize,
+  grigio/.style={fill=black!10, align=center, inner sep=4pt},
+  numcella/.style={draw=black, fill=white, line width=0.8pt,
+                   minimum width=0.7cm, minimum height=0.75cm, inner sep=1pt},
+  corpo/.style={draw=black, fill=black!10, line width=0.8pt, align=center,
+                minimum width=8.5cm, text width=8.2cm, inner sep=4pt},
+  decis/.style={diamond, draw=black, fill=black!10, line width=0.8pt, align=center,
+                inner sep=1pt, aspect=3.4, minimum width=8.5cm},
+  fdline/.style={draw=black, line width=0.9pt},
+  fdar/.style={fdline, -{Triangle[length=6pt,width=6pt]}}
+]
+
+%--------------------------------------------------------------
+% Fase 5: valutazione del PL (due righe)
+%--------------------------------------------------------------
+\node[corpo, minimum height=1.4cm, anchor=north] (fase5a) at (7.75,-2.40)
+  {Valutazione del PL degli SRP/CS in termini di categoria,
+   \textit{MTTF}\textsubscript{D}, \textit{DC}\textsubscript{avg}, CCF};
+\node[corpo, minimum height=0.8cm, anchor=north] (fase5b) at (fase5a.south)
+  {Software e guasti sistematici};
+\node[numcella, inner sep=0pt,
+      fit={([xshift=-0.7cm]fase5a.north west) (fase5b.south west)}] (num5) {5};
+
+%--------------------------------------------------------------
+% Fasi 6, 7 e 8: verifica, validazione e completezza dell'analisi
+%--------------------------------------------------------------
+\node[decis, anchor=north] (dec6) at ([yshift=-0.45cm]fase5b.south)
+  {Verifica:\\[2pt] PL $\geq$ PL\textsubscript{r}?};
+\node[decis, anchor=north] (dec7) at ([yshift=-0.80cm]dec6.south)
+  {Validazione:\\[2pt] requisiti soddisfatti?};
+\node[decis, anchor=north] (dec8) at ([yshift=-0.80cm]dec7.south)
+  {Tutte le SF\\[2pt] analizzate?};
+
+\node[numcella, anchor=east] (num6) at ([xshift=-0.12cm]dec6.west) {6};
+\node[numcella, anchor=east] (num7) at ([xshift=-0.12cm]dec7.west) {7};
+\node[numcella, anchor=east] (num8) at ([xshift=-0.12cm]dec8.west) {8};
+
+%--------------------------------------------------------------
+% Ingresso dalla realizzazione e determinazione del PL
+%--------------------------------------------------------------
+\draw[fdar] (7.75,-1.85) -- (fase5a.north);
+\node[align=center, anchor=south] (ingresso) at (7.75,-1.80)
+  {Dall'implementazione\\ e determinazione del PL\\ (Figura 6.1)};
+
+%--------------------------------------------------------------
+% Percorso principale
+%--------------------------------------------------------------
+\draw[fdar] (fase5b.south) -- (dec6.north);
+\draw[fdar] (dec6.south) -- (dec7.north);
+\draw[fdar] (dec7.south) -- (dec8.north);
+\node[anchor=east] at ([xshift=-0.08cm,yshift=0.40cm]dec7.north) {s\`i};
+\node[anchor=east] at ([xshift=-0.08cm,yshift=0.40cm]dec8.north) {s\`i};
+
+%--------------------------------------------------------------
+% "Per ciascuna SF" con graffa
+%--------------------------------------------------------------
+\coordinate (bx) at ([xshift=-0.35cm]num5.west);
+\coordinate (bgiu) at (bx |- dec7.south);
+\coordinate (balto) at (bx |- fase5a.north);
+\coordinate (bmezzo) at (bx |- dec6.south);
+\draw[fdline, decorate, decoration={brace, amplitude=6pt}] (bgiu) -- (balto);
+\node[grigio, minimum width=1.5cm, minimum height=1.9cm, anchor=east]
+  (perogni) at ([xshift=-0.25cm]bmezzo) {Per\\ ciascuna\\ SF};
+
+%--------------------------------------------------------------
+% Rami "no": ritorno alla riprogettazione e iterazione sulle SF
+%--------------------------------------------------------------
+\coordinate (r6) at (13.20,0 |- dec6.east);
+\draw[fdline] (dec6.east) -- (r6);
+\draw[fdar]   (r6) -- (13.20,-1.85);
+\node[anchor=south east] at ([xshift=-0.05cm]r6) {no};
+
+\coordinate (r7) at (13.55,0 |- dec7.east);
+\draw[fdline] (dec7.east) -- (r7);
+\draw[fdar]   (r7) -- (13.55,-1.85);
+\node[anchor=south east] at ([xshift=-0.05cm]r7) {no};
+
+\coordinate (r8) at (15.50,0 |- dec8.east);
+\draw[fdline] (dec8.east) -- (r8);
+\draw[fdar]   (r8) -- (15.50,-1.85);
+\node[anchor=south east] at ([xshift=-0.05cm]r8) {no};
+
+%--------------------------------------------------------------
+% Blocco "Verifica" (sovrapposto ai rami di ritorno)
+%--------------------------------------------------------------
+\node[draw=black, fill=white, line width=0.8pt, align=center,
+      minimum width=3.6cm, minimum height=1.3cm] (verif) at (14.35,-2.97) {Verifica};
+
+\node[align=center, anchor=south] at (12.35,-1.80)
+  {Alla riprogettazione\\ e nuova\\ determinazione del PL\\ (Figura 6.1)};
+\node[align=center, anchor=south] at (15.60,-1.80)
+  {Iterazione:\\ altre SF\\ (Figura 5.5)};
+
+%--------------------------------------------------------------
+% Uscita verso l'analisi dei rischi
+%--------------------------------------------------------------
+\coordinate (giu) at ([yshift=-0.60cm]dec8.south);
+\node[grigio, minimum width=4.2cm, minimum height=1.3cm]
+  (analisi) at (2.35,0 |- giu) {All'analisi dei rischi\\ (EN ISO 12100)};
+\draw[fdline] (dec8.south) -- (giu);
+\draw[fdar]   (giu) -- (analisi.east);
+\node[anchor=east] at ([xshift=-0.08cm,yshift=-0.30cm]dec8.south) {s\`i};
+
+%--------------------------------------------------------------
+% Cornice
+%--------------------------------------------------------------
+\draw[draw=black, line width=1pt]
+  ([shift={(-0.45,0.45)}]current bounding box.north west) rectangle
+  ([shift={(0.45,-0.45)}]current bounding box.south east);
+
+\end{tikzpicture}

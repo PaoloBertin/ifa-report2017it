@@ -1,0 +1,151 @@
+%==============================================================
+%  Figura 7.2 - Panoramica della procedura di verifica e validazione
+%  secondo la EN ISO 13849-2
+%  Adattamento in italiano della Figura 7.2 dell'IFA Report 2/2017
+%  NB: le interruzioni di riga sono esplicite (niente "text width"),
+%      cosi' l'ingombro dei riquadri non dipende dall'interlinea
+%      del documento che include la figura.
+%==============================================================
+\begin{tikzpicture}[
+  font=\normalsize,
+  bx/.style={draw=black, line width=0.8pt, align=center, inner sep=5pt,
+             minimum width=3.9cm, minimum height=1.2cm},
+  bxsp/.style={bx, line width=1.8pt},
+  ell/.style={draw=black, line width=0.8pt, ellipse, align=center,
+              minimum width=3.4cm, minimum height=1.1cm, inner sep=2pt},
+  dec/.style={diamond, draw=black, line width=0.8pt, align=center,
+              inner sep=1pt, aspect=1.5},
+  grigio/.style={fill=black!10, align=center, inner sep=6pt, minimum width=5.8cm},
+  fdline/.style={draw=black, line width=0.9pt},
+  fdar/.style={fdline, -{Triangle[length=6pt,width=6pt]}},
+  grossa/.style={draw=black, line width=1.8pt},
+  grossar/.style={grossa, -{Triangle[length=7pt,width=7pt]}},
+  trat/.style={draw=black, line width=0.9pt, dashed,
+               -{Triangle[length=6pt,width=6pt]}}
+]
+
+\coordinate (ax) at (10.5,0);
+
+%--------------------------------------------------------------
+% Prima riga: inizio, piano di validazione ed elementi in ingresso
+%--------------------------------------------------------------
+\node[ell] (inizio) at (10.5,-1.30) {Inizio};
+\node[bx]  (piano)  at (10.5,-3.40) {Piano di validazione\\ (punto 7.1.2)};
+\node[bx]  (principi) at (15.10,-3.40) {Principi di\\ validazione\\ (punto 7.1.1)};
+\node[bx]  (consid) at (5.70,-3.40) {Considerazioni\\ progettuali\\ (punto 6)};
+\node[bx]  (elenchi) at (1.70,-3.40) {Elenchi dei guasti\\ (punto 7.1.3\\ e Allegato C)};
+
+%--------------------------------------------------------------
+% Documenti e criteri di esclusione dei guasti
+%--------------------------------------------------------------
+\node[bx, anchor=north] (documenti) at ([yshift=-1.0cm]consid.south)
+  {Documenti\\ (punto 7.1.4)};
+\node[bx, anchor=north] (criteri) at ([yshift=-0.4cm]documenti.south)
+  {Criteri di esclusione\\ dei guasti\\ (Allegato C)};
+
+%--------------------------------------------------------------
+% Analisi: si estende in verticale fino ad accogliere i due ingressi
+%--------------------------------------------------------------
+\coordinate (ed) at ([yshift=0.30cm]documenti.south east);
+\coordinate (ec) at ([yshift=-0.30cm]criteri.north east);
+\coordinate (ac) at ($(ax |- ed)!0.5!(ax |- ec)$);
+\node[bxsp, minimum height=2.4cm] (analisi) at (ac) {Analisi\\ (punto 7.1.5)};
+
+%--------------------------------------------------------------
+% Decisioni, prove e conclusione
+%--------------------------------------------------------------
+\node[dec, anchor=north] (dsuff) at ([yshift=-1.0cm]analisi.south)
+  {L'analisi è\\ sufficiente?};
+\node[bxsp, anchor=north] (prove) at ([xshift=3.50cm,yshift=-1.0cm]dsuff.south)
+  {Prove\\ (punto 7.1.6)};
+\node[dec, anchor=north] (dprove) at ([yshift=-1.0cm]prove.south)
+  {Prove\\ superate?};
+\node[bx, anchor=north] (rapporto) at ([xshift=-3.50cm,yshift=-1.1cm]dprove.south)
+  {Rapporto di validazione\\ (punto 7.1.7)};
+\node[ell, anchor=north] (fine) at ([yshift=-1.0cm]rapporto.south) {Fine};
+
+%--------------------------------------------------------------
+% Percorso principale
+%--------------------------------------------------------------
+\draw[fdar] (inizio.south) -- (piano.north);
+\draw[fdar] (principi.west) -- (piano.east);
+\draw[fdar] (piano.south) -- (analisi.north);
+\draw[fdar] (analisi.south) -- (dsuff.north);
+\draw[fdar] (consid.south) -- (documenti.north);
+\draw[fdar] (prove.south) -- (dprove.north);
+\draw[fdar] (rapporto.south) -- (fine.north);
+
+%--------------------------------------------------------------
+% Elenchi dei guasti verso i criteri di esclusione dei guasti
+%--------------------------------------------------------------
+\coordinate (eg) at (elenchi.south |- criteri.west);
+\draw[grossa]  (elenchi.south) -- (eg);
+\draw[grossar] (eg) -- (criteri.west);
+
+%--------------------------------------------------------------
+% Documenti e criteri verso il piano di validazione e l'analisi
+%--------------------------------------------------------------
+\coordinate (nd) at (7.85,0 |- ed);
+\coordinate (nc) at (8.10,0 |- ec);
+\draw[fdline] (ed) -- (nd);
+\draw[fdline] (ec) -- (nc);
+\fill (nd) circle (2.2pt);
+\fill (nc) circle (2.2pt);
+
+\draw[fdline] (nd) -- (nd |- 0,-3.15);
+\draw[fdar]   (nd |- 0,-3.15) -- (piano.west |- 0,-3.15);
+\draw[fdline] (nc) -- (nc |- 0,-3.65);
+\draw[fdar]   (nc |- 0,-3.65) -- (piano.west |- 0,-3.65);
+
+\draw[fdar] (nd) -- (analisi.west |- nd);
+\draw[fdar] (nc) -- (analisi.west |- nc);
+
+%--------------------------------------------------------------
+% Rami di decisione
+%--------------------------------------------------------------
+\draw[fdline] (dsuff.east) -- (dsuff.east -| prove.north);
+\draw[fdar]   (dsuff.east -| prove.north) -- (prove.north);
+\node[anchor=south west] at ([xshift=0.05cm]dsuff.east) {no};
+
+\coordinate (ritorno) at (16.60,0 |- dprove.east);
+\draw[fdline] (dprove.east) -- (ritorno);
+\draw[fdline] (ritorno) -- (ritorno |- analisi.east);
+\draw[fdar]   (ritorno |- analisi.east) -- (analisi.east);
+\node[anchor=south west] at ([xshift=0.05cm]dprove.east) {no};
+
+\draw[fdar] (dsuff.south) -- (dsuff.south |- rapporto.north);
+\node[anchor=east] at ([xshift=-0.10cm,yshift=-0.60cm]dsuff.south) {s\`i};
+\draw[fdar] (dprove.south) -- (dprove.south |- rapporto.north);
+\node[anchor=east] at ([xshift=-0.10cm,yshift=-0.60cm]dprove.south) {s\`i};
+
+%--------------------------------------------------------------
+% Riquadro degli aspetti da analizzare e provare
+%--------------------------------------------------------------
+\coordinate (gtop) at (4.60,0 |- prove.north);
+\node[grigio, anchor=north] (sf) at ([yshift=-0.35cm]gtop)
+  {Funzioni di sicurezza\\ (punto 7.3)};
+\node[grigio, anchor=north] (pl) at ([yshift=-0.35cm]sf.south)
+  {Performance Level (PL)\\ (punto 7.4)\\[2pt]
+   \begin{tabular}{@{}l@{}}
+     -- Categoria\\
+     -- MTTF\textsubscript{D}\\
+     -- DC\\
+     -- CCF\\
+     -- Guasti sistematici\\
+     -- Software
+   \end{tabular}};
+\node[grigio, anchor=north] (comb) at ([yshift=-0.35cm]pl.south)
+  {Combinazione/Integrazione\\ (punto 7.6)};
+\node[draw=black, line width=0.8pt, fit=(sf)(pl)(comb), inner sep=0.35cm] (gruppo) {};
+
+\draw[trat] (analisi.south west) -- ([xshift=-1.0cm,yshift=0.3cm]gruppo.north east);
+\draw[trat] (prove.west) -- (prove.west -| gruppo.east);
+
+%--------------------------------------------------------------
+% Cornice
+%--------------------------------------------------------------
+\draw[draw=black, line width=1pt]
+  ([shift={(-0.45,0.45)}]current bounding box.north west) rectangle
+  ([shift={(0.45,-0.45)}]current bounding box.south east);
+
+\end{tikzpicture}
