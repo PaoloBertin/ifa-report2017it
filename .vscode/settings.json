@@ -1,0 +1,48 @@
+{
+    "editor.rulers": [128],
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 128,
+    "latex-workshop.latex.tools": [
+        {
+            "name": "lualatexmk",
+            "command": "latexmk",
+            "args": [
+                "-lualatex",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "latexmk (lualatex)",
+            "tools": ["lualatexmk"]
+        }
+    ],
+    "latex-workshop.latex.recipe.default": "latexmk (lualatex)",
+    "latex-workshop.latex.clean.method": "glob",
+    "latex-workshop.latex.clean.subfolder.enabled": true,
+    "latex-workshop.latex.clean.fileTypes": [
+        "*.aux",
+        "*.bbl",
+        "*.blg",
+        "*.idx",
+        "*.ind",
+        "*.lof",
+        "*.lot",
+        "*.out",
+        "*.toc",
+        "*.acn",
+        "*.acr",
+        "*.alg",
+        "*.glg",
+        "*.glo",
+        "*.gls",
+        "*.fls",
+        "*.log",
+        "*.fdb_latexmk",
+        "*.synctex.gz"
+    ]
+}

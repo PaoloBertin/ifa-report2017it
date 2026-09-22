@@ -1,0 +1,84 @@
+%==============================================================
+%  Figura 5.9 - Grafo del rischio per la determinazione del PLr
+%  di ciascuna funzione di sicurezza
+%  Adattamento in italiano della Figura 5.9 dell'IFA Report 2/2017
+%
+%  L'albero si legge da sinistra a destra: dal punto di partenza si
+%  sceglie S (gravita' della lesione), poi F (frequenza e durata
+%  dell'esposizione), poi P (possibilita' di evitare il pericolo).
+%  Gli otto percorsi sfociano nei cinque riquadri del PLr richiesto:
+%  a, b, b, c, c, d, d, e dall'alto verso il basso. Il cuneo grigio
+%  centrale indica che il rischio cresce scendendo nel grafo.
+%
+%  Le quote verticali sono fissate esplicitamente perche' le frecce
+%  dei percorsi devono entrare orizzontalmente nel riquadro corretto:
+%  i riquadri sono alti 2 unita' e contigui (a: 8-10, b: 6-8,
+%  c: 4-6, d: 2-4, e: 0-2), le foglie stanno dentro quegli intervalli.
+%==============================================================
+\begin{tikzpicture}[
+  font=\normalsize,
+  ramo/.style={draw=black, line width=1.2pt},
+  freccia/.style={ramo, -{Triangle[length=7pt,width=7pt]}},
+  etichetta/.style={font=\normalsize, inner sep=2pt},
+  plr/.style={draw=black, line width=1.2pt, fill=white, inner sep=0pt,
+              minimum width=1.8cm, minimum height=2.0cm, font=\large}
+]
+
+% ---- cuneo del rischio (disegnato per primo: le frecce gli passano sopra)
+\fill[black!10] (10.4,10.2) -- (11.2,0.0) -- (9.6,0.0) -- cycle;
+\node[etichetta, align=center, anchor=south] at (10.4,10.35) {Rischio\\basso};
+\node[etichetta, align=center, anchor=north] at (10.4,-0.15) {Rischio\\alto};
+
+% ---- punto di partenza ---------------------------------------------
+\fill[black] (0,5.0) circle (5pt);
+\node[etichetta, align=center, text width=3.2cm, anchor=east]
+     at (-0.35,5.0) {Punto di partenza\\per la stima della\\riduzione del rischio};
+\draw[ramo] (0,5.0) -- (1.2,5.0);
+
+% ---- diramazione S: gravita' della lesione --------------------------
+\draw[ramo] (1.2,7.125) -- (1.2,2.875);
+\draw[freccia] (1.2,7.125) -- (2.7,7.125);
+\draw[freccia] (1.2,2.875) -- (2.7,2.875);
+\node[etichetta, above] at (1.85,7.125) {$S_1$};
+\node[etichetta, above] at (1.85,2.875) {$S_2$};
+
+% ---- diramazione F: frequenza e durata dell'esposizione -------------
+\draw[ramo] (2.7,8.25) -- (2.7,6.0);
+\draw[freccia] (2.7,8.25) -- (4.3,8.25);
+\draw[freccia] (2.7,6.0)  -- (4.3,6.0);
+\node[etichetta, above] at (3.4,8.25) {$F_1$};
+\node[etichetta, above] at (3.4,6.0)  {$F_2$};
+
+\draw[ramo] (2.7,4.0) -- (2.7,1.75);
+\draw[freccia] (2.7,4.0)  -- (4.3,4.0);
+\draw[freccia] (2.7,1.75) -- (4.3,1.75);
+\node[etichetta, above] at (3.4,4.0)  {$F_1$};
+\node[etichetta, above] at (3.4,1.75) {$F_2$};
+
+% ---- diramazione P: possibilita' di evitare il pericolo -------------
+% e percorso fino al riquadro del PLr
+\draw[ramo] (4.3,9.0) -- (4.3,7.5);
+\draw[ramo] (4.3,6.5) -- (4.3,5.5);
+\draw[ramo] (4.3,4.5) -- (4.3,3.5);
+\draw[ramo] (4.3,2.5) -- (4.3,1.0);
+
+\foreach \y/\p in {9.0/1, 7.5/2, 6.5/1, 5.5/2, 4.5/1, 3.5/2, 2.5/1, 1.0/2} {
+  \draw[freccia] (4.3,\y) -- (12.6,\y);
+  \node[etichetta, above] at (5.0,\y) {$P_\p$};
+}
+
+% ---- riquadri del Performance Level richiesto ------------------------
+\node[plr] at (13.5,9.0) {a};
+\node[plr] at (13.5,7.0) {b};
+\node[plr] at (13.5,5.0) {c};
+\node[plr] at (13.5,3.0) {d};
+\node[plr] at (13.5,1.0) {e};
+\node[etichetta, align=center, anchor=south] at (13.5,10.35)
+     {Livello di Prestazione\\richiesto PL\textsubscript{\small r}};
+
+% ---- cornice esterna --------------------------------------------------
+\draw[draw=black, line width=1.2pt]
+  ([shift={(-0.6,0.6)}]current bounding box.north west) rectangle
+  ([shift={(0.6,-0.5)}]current bounding box.south east);
+
+\end{tikzpicture}

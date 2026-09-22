@@ -1,0 +1,252 @@
+%==============================================================
+%  Figura 6.17 - Determinazione del PL mediante il diagramma
+%  a barre / il disco di calcolo PLC
+%  Adattamento in italiano della Figura 6.17 dell'IFA Report 2/2017
+%  (pagina 80 di rep0217e.pdf)
+%
+%  Il diagramma a barre riusa il sistema di riferimento della
+%  Figura 6.10 (immagini/fig06-10.tex): stesse coordinate in punti
+%  PostScript dell'originale, unita' della tikzpicture x=y=0.042cm,
+%  origine nell'angolo in basso a sinistra del riquadro del grafico.
+%  Il riquadro sovrapposto riproduce il disco PLC dell'IFA; i marchi
+%  (IFA, ZVEI, VDMA) sono resi in forma testuale semplificata.
+%==============================================================
+\begin{tikzpicture}[
+  x=0.042cm, y=0.042cm,
+  font=\small,
+  cornice/.style={draw=black, line width=0.9pt},
+  riquadro/.style={draw=black, line width=1.06pt},
+  griglia/.style={draw=black, line width=1.06pt,
+                  dash pattern=on 4.24pt off 2.12pt},
+  tacca/.style={draw=black, line width=1.06pt},
+  separatore/.style={draw=black, line width=0.8pt},
+  contorno/.style={draw=black, line width=0.8pt},
+  puntini/.style={draw=black, line width=0.52pt, line cap=butt,
+                  dash pattern=on 0.53pt off 1.05pt},
+  tratti/.style={draw=black, line width=0.52pt},
+  etichetta/.style={draw=black, fill=black!15, line width=1.06pt,
+                    rounded corners=2.9pt, inner sep=0pt, align=center},
+  evidenza/.style={draw=black!55, fill=white, line width=1.2pt,
+                   rounded corners=3.5pt, inner sep=0pt, align=center},
+  fumetto/.style={draw=black, fill=white, line width=1.1pt,
+                  inner sep=2pt, align=center},
+  passo/.style={circle, fill=black!42, inner sep=0pt, align=center},
+  frecciagrigia/.style={draw=black!42, line width=7pt,
+                        -{Triangle[length=10pt, width=13pt]}},
+  tratteggiata/.style={draw=black, line width=1.7pt,
+                       dash pattern=on 6pt off 4pt,
+                       -{Triangle[length=8pt, width=8pt]}}
+]
+
+\setstretch{1}
+
+% --- riempimenti delle barre ------------------------------------------
+\def\riempipuntini#1#2#3#4{%
+  \begin{scope}
+    \clip (#1,#2) rectangle (#3,#4);
+    \foreach \k in {0,...,20}{%
+      \draw[puntini] (#1,{#4-1.1-2.2155*\k}) -- (#3,{#4-1.1-2.2155*\k});}
+  \end{scope}}
+\def\riempitratti#1#2#3#4{%
+  \begin{scope}
+    \clip (#1,#2) rectangle (#3,#4);
+    \foreach \k in {0,...,34}{%
+      \draw[tratti] (#1,{#2-(#4-#2)+3.13*\k})
+        -- ++({(#3-#1)+(#4-#2)},{(#3-#1)+(#4-#2)});}
+  \end{scope}}
+\def\barrabassa#1#2#3#4{%
+  \fill[white] (#1,#2) rectangle (#3,#4);
+  \riempipuntini{#1}{#2}{#3}{#4}
+  \draw[contorno] (#1,#2) rectangle (#3,#4);}
+\def\barramedia#1#2#3#4{%
+  \fill[white] (#1,#2) rectangle (#3,#4);
+  \riempitratti{#1}{#2}{#3}{#4}
+  \draw[contorno] (#1,#2) rectangle (#3,#4);}
+\def\barraalta#1#2#3#4{%
+  \fill[black] (#1,#2) rectangle (#3,#4);
+  \draw[contorno] (#1,#2) rectangle (#3,#4);}
+
+% --- colonna delle PFHD a sinistra --------------------------------------
+\draw[black!15, line width=6.62pt] (-38.64,211.73) -- (-38.64,0.44);
+
+\node[etichetta, minimum width=1.4423cm, minimum height=1.1726cm]
+  at (-38.81,218.58) {\textit{PFH}$_{\mathrm{D}}$\\(1/h)};
+
+\foreach \yv/\testo in {175.89/{$10^{-4}$}, 140.50/{$10^{-5}$},
+                        105.15/{$3\cdot 10^{-6}$}, 70.05/{$10^{-6}$},
+                        34.87/{$10^{-7}$}, 0/{$10^{-8}$}}{%
+  \draw[tacca] (-23.86,\yv) -- (-2.81,\yv);
+  \node[etichetta, minimum width=1.4423cm, minimum height=0.5586cm]
+    at (-38.81,\yv) {\testo};}
+
+% --- asse dei PL ---------------------------------------------------------
+\node at (-10.4,217.7) {PL};
+\draw[draw=black, line width=1.06pt, -{Triangle[length=11pt,width=6pt]}]
+  (0.03,-41.87) -- (0.03,208.69);
+\foreach \yv/\pl in {158.2/a, 122.8/b, 87.6/c, 52.5/d}
+  \node at (-9.0,\yv) {\pl};
+% il PL raggiunto nell'esempio e' evidenziato
+\node[evidenza, minimum width=0.55cm, minimum height=0.55cm]
+  at (-9.0,17.4) {e};
+
+% --- riquadro del grafico e griglia --------------------------------------
+\draw[riquadro] (0,0) rectangle (342.01,175.89);
+\foreach \yv in {140.50, 105.15, 70.05, 34.87}
+  \draw[griglia] (0.05,\yv) -- (342.03,\yv);
+
+% --- barre ----------------------------------------------------------------
+% Cat. B, DCavg = nessuna
+\barrabassa{13.85}{143.10}{35.23}{160.84}
+\barramedia{13.85}{111.48}{35.23}{143.10}
+% Cat. 1, DCavg = nessuna
+\barraalta{62.57}{74.80}{83.95}{111.08}
+% Cat. 2, DCavg = bassa
+\barrabassa{111.69}{130.62}{133.07}{155.26}
+\barramedia{111.69}{92.81}{133.07}{130.62}
+\barraalta{111.69}{60.92}{133.07}{92.81}
+% Cat. 2, DCavg = media
+\barrabassa{160.52}{120.54}{181.89}{151.25}
+\barramedia{160.52}{76.21}{181.89}{120.54}
+\barraalta{160.52}{48.10}{181.89}{76.21}
+% Cat. 3, DCavg = bassa
+\barrabassa{209.34}{106.01}{230.72}{144.25}
+\barramedia{209.34}{64.80}{230.72}{106.01}
+\barraalta{209.34}{34.98}{230.72}{64.80}
+% Cat. 3, DCavg = media
+\barrabassa{258.11}{79.85}{279.48}{125.46}
+\barramedia{258.11}{50.07}{279.48}{79.85}
+\barraalta{258.11}{22.31}{279.48}{50.07}
+% Cat. 4, DCavg = alta
+\barraalta{306.93}{13.89}{328.31}{34.23}
+
+% --- lettura del risultato: barra Cat. 4 -> asse dei PL --------------------
+\draw[black!42, line width=3.2pt] (317.6,13.0) -- (317.6,-3.0);
+\draw[draw=black!42, line width=4pt, dash pattern=on 13pt off 9pt,
+      -{Triangle[length=9pt, width=11pt]}] (335,34.87) -- (4,34.87);
+
+% --- intestazioni delle colonne ------------------------------------------
+\foreach \xv in {48.79, 97.59, 146.34, 195.12, 243.93, 292.69}
+  \draw[separatore] (\xv,6.96) -- (\xv,-41.88);
+
+\foreach \xc/\cat/\dc in {24.4/B/nessuna, 73.2/1/nessuna, 122.0/2/bassa,
+                          170.7/2/media, 219.5/3/bassa, 268.3/3/media,
+                          317.4/4/alta}{%
+  \node at (\xc,-10.1) {Cat.~\cat};
+  \node[align=center] at (\xc,-31.5)
+    {\textit{DC}$_{\mathrm{avg}}$\,=\\\dc};}
+% la colonna dell'esempio e' evidenziata
+\draw[draw=black!55, line width=1.2pt, rounded corners=3.5pt]
+  (296.5,-40.5) rectangle (338.5,-2.5);
+
+%==========================================================================
+%  Riquadro sovrapposto: il disco di calcolo PLC dell'IFA
+%==========================================================================
+\definecolor{plca}{RGB}{214,0,110}
+\definecolor{plcb}{RGB}{247,168,196}
+\definecolor{plcc}{RGB}{243,146,0}
+\definecolor{plcd}{RGB}{255,242,175}
+\definecolor{plce}{RGB}{214,237,214}
+\definecolor{ifablu}{RGB}{0,86,160}
+\definecolor{vdmablu}{RGB}{0,51,102}
+\definecolor{zveiblu}{RGB}{0,75,141}
+
+\fill[white] (93.7,65.2) rectangle (329.6,239.1);
+\draw[riquadro] (93.7,65.2) rectangle (329.6,239.1);
+
+% --- corpo del disco -------------------------------------------------------
+\fill[black!5] (218,152) circle (67);
+\draw[draw=black!45, line width=0.8pt, dash pattern=on 3pt off 2pt]
+  (218,152) circle (69.5);
+
+% --- finestra dei valori di PFHD ------------------------------------------
+\foreach \k/\etichetta/\valore/\colore in {%
+  0/{Cat.~1}/{3,80}/plcb,
+  1/{Cat.~2, DC bassa}/{2,06}/plcc,
+  2/{Cat.~2, DC media}/{1,21}/plcc,
+  3/{Cat.~3, DC bassa}/{6,94}/plcd,
+  4/{Cat.~3, DC media}/{2,65}/plcd,
+  5/{Cat.~4, DC alta}/{9,54}/plce}{%
+  \node[anchor=east, font=\tiny] at (213,{214.5-4.9*\k}) {\etichetta};
+  \fill[\colore] (214.5,{212.1-4.9*\k}) rectangle (223.5,{216.9-4.9*\k});
+  \draw[draw=black!55, line width=0.3pt]
+    (214.5,{212.1-4.9*\k}) rectangle (223.5,{216.9-4.9*\k});
+  \node[font=\tiny] at (219,{214.5-4.9*\k}) {\valore};}
+% riga selezionata nell'esempio
+\draw[draw=black, line width=0.7pt] (186.5,187.2) rectangle (213.6,192.0);
+
+\node[anchor=west, font=\tiny\bfseries, align=left] at (225,206.5)
+  {probabilità media\\di guasto\\pericoloso\\per ora};
+
+% --- scritte del disco ------------------------------------------------------
+\node[font=\footnotesize] at (222,183.5)
+  {Performance Level Calculator$^{\copyright}$\,--\,PLC};
+\node[font=\tiny] at (222,177)
+  {per informazioni e applicazioni vedere www.dguv.de/ifa/13849};
+\node[font=\footnotesize] at (222,169.5) {per EN ISO 13849-1};
+
+% perno centrale del disco
+\fill[black] (218,152.5) circle (1.6);
+\draw[black, line width=0.7pt] (214.5,152.5) -- (221.5,152.5);
+\draw[black, line width=0.7pt] (218,149) -- (218,156);
+
+% --- marchio IFA -------------------------------------------------------------
+\begin{scope}[shift={(176,141)}]
+  \fill[ifablu] (0,0) circle (3.4);
+  \fill[white] (-3.6,-0.5) rectangle (3.6,1.3);
+\end{scope}
+\node[anchor=west, font=\large\bfseries, text=black!75] at (181,140.5) {IFA};
+\node[anchor=west, font=\tiny, align=left, text=black!75] at (176,133)
+  {Institut für Arbeitsschutz der\\Deutschen Gesetzlichen Unfallversicherung};
+
+% --- legenda dei PL sul disco --------------------------------------------------
+\node[anchor=west, font=\tiny] at (256,163.5) {PL:};
+\foreach \k/\pl/\colore/\esp in {0/a/plca/{-5}, 1/b/plcb/{-6}, 2/c/plcc/{-6},
+                                 3/d/plcd/{-7}, 4/e/plce/{-8}}{%
+  \node[font=\tiny] at (257.5,{156-8.2*\k}) {\pl};
+  \fill[\colore] (261,{153.3-8.2*\k}) rectangle (267.5,{158.7-8.2*\k});
+  \node[anchor=west, font=\tiny] at (270,{156-8.2*\k}) {$\times\,10^{\esp}$};}
+
+% --- marchi ZVEI e VDMA ---------------------------------------------------------
+\node[anchor=west, font=\footnotesize\bfseries, text=zveiblu] at (183,108) {ZVEI:};
+\draw[red!70!black, line width=0.6pt] (183,104.6) -- (200,104.6);
+\node[anchor=west, font=\small\bfseries, text=vdmablu] at (233,108) {VDMA};
+\foreach \r in {4.6,6.2,7.8}
+  \draw[orange, line width=0.9pt] (231,108) ++(120:\r) arc (120:210:\r);
+
+% --- finestra dell'MTTFD --------------------------------------------------------
+\node[font=\footnotesize] at (213,91.5) {\textit{MTTF}$_{\mathrm{D}}$};
+\node[font=\tiny] at (211,85.5) {[anni]};
+\fill[white] (222.5,78.5) rectangle (233.5,84);
+\draw[draw=black!70, line width=0.5pt] (222.5,78.5) rectangle (233.5,84);
+\node[font=\tiny] at (228,81.2) {30};
+
+%==========================================================================
+%  Passi di utilizzo del disco (annotazioni)
+%==========================================================================
+% 1. impostare l'MTTFD di ciascun canale e la barra Cat. 4, DC alta
+\draw[frecciagrigia] (293,214) .. controls (307,200) and (309,175) .. (306,146);
+\node[passo, minimum size=0.94cm, font=\large] at (304.5,195) {1.};
+
+\draw[frecciagrigia, line width=6pt] (243,82) -- (235,81.2);
+\node[passo, minimum size=0.94cm, font=\large] at (252.5,81.2) {1.};
+
+\node[fumetto, font=\large, minimum width=1.2cm] at (281,92) {30};
+
+% 2. lettura del risultato nelle finestre del disco
+\draw[frecciagrigia, line width=6pt] (188,180) -- (199,187);
+\node[passo, minimum size=0.84cm, font=\large] at (182,175.5) {2.};
+
+\node[fumetto, font=\large, minimum height=0.44cm] at (152,226) {Cat.~4, DC alta};
+\draw[black, line width=0.7pt] (196,221.5) -- (189,192.2);
+
+\draw[tratteggiata] (212,188) -- (159,173);
+\node[fumetto, font=\large, minimum width=1.15cm] at (145,173) {9,54};
+\node[font=\large] at (142,161) {$\cdot\,10^{-8}$};
+
+\draw[tratteggiata] (259,123) -- (158,137);
+\node[fumetto, font=\large, minimum width=1.15cm] at (143,137) {PL~e};
+
+% --- cornice esterna --------------------------------------------------------
+\draw[cornice] (-66.19,242.74) rectangle (347.91,-48);
+
+\end{tikzpicture}

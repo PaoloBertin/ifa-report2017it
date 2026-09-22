@@ -1,0 +1,29 @@
+%==============================================================
+%  Figura 6.5 - Architettura designata per la categoria B e la
+%  categoria 1
+%  Adattamento in italiano della Figura 6.5 dell'IFA Report 2/2017
+%==============================================================
+\begin{tikzpicture}[
+  font=\normalsize,
+  blocco/.style={draw=black, fill=black!13, line width=0.8pt, align=center,
+                 minimum width=3.0cm, minimum height=1.9cm},
+  collegamento/.style={draw=black, line width=1.6pt, -{Triangle[length=9pt,width=9pt]}}
+]
+
+\node[blocco] (I) at (0,0)   {\textbf{\large I}\\ Ingresso};
+\node[blocco] (L) at (5.0,0) {\textbf{\large L}\\ Logica};
+\node[blocco] (O) at (10.0,0) {\textbf{\large O}\\ Uscita};
+
+\draw[collegamento] (I) -- (L);
+\draw[collegamento] (L) -- (O);
+
+% legenda
+\draw[collegamento] (-1.1,-1.75) -- (0.6,-1.75);
+\node[anchor=west] at (1.3,-1.75) {Interconnessione};
+
+% cornice
+\draw[line width=1pt]
+  ([shift={(-0.4,0.4)}]current bounding box.north west) rectangle
+  ([shift={(0.4,-0.4)}]current bounding box.south east);
+
+\end{tikzpicture}

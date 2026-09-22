@@ -1,0 +1,41 @@
+%==============================================================
+%  Figura 6.7 - Architettura designata per la categoria 3
+%  Adattamento in italiano della Figura 6.7 dell'IFA Report 2/2017
+%  (stesso stile delle Figure 6.5 e 6.6)
+%==============================================================
+\begin{tikzpicture}[
+  font=\normalsize,
+  blocco/.style={draw=black, fill=black!13, line width=0.8pt, align=center,
+                 minimum width=3.6cm, minimum height=2.0cm},
+  punta/.style={-{Triangle[length=9pt,width=9pt]}},
+  doppia/.style={{Triangle[length=9pt,width=9pt]}-{Triangle[length=9pt,width=9pt]}},
+  collegamento/.style={draw=black, line width=1.6pt, punta},
+  monitoraggio/.style={draw=black, line width=1.6pt, dash pattern=on 6pt off 4pt, doppia},
+  incrociato/.style={draw=black, line width=1.6pt, dotted, doppia}
+]
+
+\foreach \c/\y in {1/0, 2/-3.4} {
+  \node[blocco] (I\c) at (0,\y)   {\textbf{\large I\c}\\ Ingresso};
+  \node[blocco] (L\c) at (5.2,\y) {\textbf{\large L\c}\\ Logica};
+  \node[blocco] (O\c) at (10.4,\y) {\textbf{\large O\c}\\ Uscita};
+  \draw[collegamento] (I\c) -- (L\c);
+  \draw[collegamento] ([yshift=-0.35cm]L\c.east) -- ([yshift=-0.35cm]O\c.west);
+  \draw[monitoraggio] ([yshift=0.4cm]L\c.east) -- ([yshift=0.4cm]O\c.west);
+}
+\draw[incrociato] (L1) -- (L2);
+
+% legenda
+\draw[collegamento] (-1.4,-5.6) -- (0.4,-5.6);
+\node[anchor=west] at (0.8,-5.6) {Interconnessione};
+\draw[monitoraggio] (-1.4,-6.5) -- (0.4,-6.5);
+\node[anchor=west] at (0.8,-6.5) {Monitoraggio (rilevamento dei guasti ragionevolmente praticabile)};
+\draw[incrociato] (-0.5,-7.1) -- (-0.5,-8.5);
+\node[anchor=west, align=left] at (0.8,-7.8)
+  {Monitoraggio incrociato (rilevamento dei guasti\\ ragionevolmente praticabile)};
+
+% cornice
+\draw[line width=1pt]
+  ([shift={(-0.4,0.4)}]current bounding box.north west) rectangle
+  ([shift={(0.4,-0.4)}]current bounding box.south east);
+
+\end{tikzpicture}

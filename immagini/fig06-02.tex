@@ -1,0 +1,38 @@
+%==============================================================
+%  Figura 6.2 - SRP/CS e sottosistemi all'interno del sistema
+%  di comando della macchina
+%  Adattamento in italiano della Figura 6.2 dell'IFA Report 2/2017
+%
+%  Nota: dopo \textsubscript il testo che segue "\\" va racchiuso
+%  tra graffe, altrimenti la "(" viene letta da TikZ come coordinata.
+%==============================================================
+\begin{tikzpicture}[
+  font=\normalsize,
+  puntinato/.style={draw=black, line width=1.2pt, dotted},
+  sottosistema/.style={draw=black, line width=1.4pt, dashed, dash pattern=on 6pt off 4pt,
+                       rounded corners=8pt, align=center, fill=white,
+                       minimum width=3.95cm, minimum height=1.35cm},
+  collegamento/.style={draw=black, line width=2.2pt, {Bar[width=10pt]}-{Bar[width=10pt]}}
+]
+
+% ---- cornice esterna: sistema di comando della macchina -------------
+\draw[line width=1pt] (0,0) rectangle (15,-8.4);
+\node at (7.5,-0.55) {Sistema di comando della macchina (CS)};
+
+% ---- parti non legate alla sicurezza ---------------------------------
+\fill[black!28] (0.6,-1.1) rectangle (14.4,-4.9);
+\draw[puntinato] (0.6,-1.1) rectangle (14.4,-4.9);
+\node[text=white, font=\large\bfseries] at (7.5,-3.0) {Parti non legate alla sicurezza};
+
+% ---- insieme delle SRP/CS ----------------------------------------------
+\draw[puntinato] (0.6,-5.05) rectangle (14.4,-7.95);
+\node at (7.5,-5.55) {SRP/CS complessive, che eseguono la/le funzione/i di sicurezza};
+
+\foreach \n/\x in {1/2.8, 2/7.5, 3/12.2} {
+  \node[sottosistema] (ss\n) at (\x,-6.9)
+    {{SRP/CS\textsubscript{\n}}\\ {(come sottosistema)}};
+}
+\draw[collegamento] (ss1.east) -- (ss2.west);
+\draw[collegamento] (ss2.east) -- (ss3.west);
+
+\end{tikzpicture}

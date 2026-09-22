@@ -1,0 +1,43 @@
+%==============================================================
+%  Figura 6.6 - Architettura designata per la categoria 2
+%  Adattamento in italiano della Figura 6.6 dell'IFA Report 2/2017
+%  (stesso stile della Figura 6.5; TE e OTE con la terminologia
+%  della versione italiana della EN ISO 13849-1)
+%==============================================================
+\begin{tikzpicture}[
+  font=\normalsize,
+  blocco/.style={draw=black, fill=black!13, line width=0.8pt, align=center,
+                 minimum width=4.4cm, minimum height=2.4cm},
+  collegamento/.style={draw=black, line width=1.6pt, -{Triangle[length=9pt,width=9pt]}},
+  monitoraggio/.style={draw=black, line width=1.6pt, dash pattern=on 6pt off 4pt},
+  punta/.style={-{Triangle[length=9pt,width=9pt]}}
+]
+
+\node[blocco] (I) at (0,0)    {\textbf{\large I}\\ Ingresso};
+\node[blocco] (L) at (5.9,0)  {\textbf{\large L}\\ Logica};
+\node[blocco] (O) at (11.8,0)  {\textbf{\large O}\\ Uscita};
+\node[blocco] (TE)  at (5.9,-4.0) {\textbf{\large TE}\\ Apparecchiatura\\ di prova};
+\node[blocco] (OTE) at (11.8,-4.0) {\textbf{\large OTE}\\ Uscita\\ dell'apparecchiatura\\ di prova};
+
+\draw[collegamento] (I) -- (L);
+\draw[collegamento] (L) -- (O);
+\draw[collegamento] (TE) -- (OTE);
+
+% monitoraggio (rilevamento dei guasti ragionevolmente praticabile)
+\draw[monitoraggio] (0,-1.85) -- (11.8,-1.85);
+\draw[monitoraggio, punta] (0,-1.85) -- (I.south);
+\draw[monitoraggio, punta] (11.8,-1.85) -- (O.south);
+\draw[monitoraggio, {Triangle[length=9pt,width=9pt]}-{Triangle[length=9pt,width=9pt]}] (L.south) -- (TE.north);
+
+% legenda
+\draw[collegamento] (-1.5,-6.4) -- (0.3,-6.4);
+\node[anchor=west] at (1.0,-6.4) {Interconnessione};
+\draw[monitoraggio, {Triangle[length=9pt,width=9pt]}-{Triangle[length=9pt,width=9pt]}] (-1.5,-7.4) -- (0.3,-7.4);
+\node[anchor=west, align=left] at (1.0,-7.4) {Monitoraggio (rilevamento dei guasti\\ ragionevolmente praticabile)};
+
+% cornice
+\draw[line width=1pt]
+  ([shift={(-0.4,0.4)}]current bounding box.north west) rectangle
+  ([shift={(0.4,-0.4)}]current bounding box.south east);
+
+\end{tikzpicture}

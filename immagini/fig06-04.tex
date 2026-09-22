@@ -1,0 +1,99 @@
+%==============================================================
+%  Figura 6.4 - Misure contro i guasti sistematici secondo
+%  l'Allegato G della norma
+%  Adattamento in italiano della Figura 6.4 dell'IFA Report 2/2017
+%
+%  Coordinate in "pixel" dell'originale (largo 1350 px), asse y
+%  verso il basso. Le misure sono riquadri a scala: ogni riquadro e'
+%  spostato di 20 px a destra e in basso rispetto al precedente e
+%  viene disegnato sopra di esso, cosi' del precedente restano visibili
+%  solo il bordo superiore e quello sinistro.
+%==============================================================
+\begin{tikzpicture}[
+  x=0.18mm, y=-0.18mm,
+  font=\footnotesize,
+  bordo/.style={draw=black, line width=1.2pt},
+  gradino/.style={draw=black, fill=white, line width=1.2pt},
+  voce/.style={anchor=west, inner sep=0pt, align=left},
+  freccia/.style={draw=black, line width=1.6pt, -{Triangle[length=9pt,width=9pt]}}
+]
+
+% ---- cornice generale -------------------------------------------------
+\draw[line width=0.8pt] (17,104) rectangle (1348,957);
+
+%==============================================================
+% Cause dei guasti sistematici
+%==============================================================
+\draw[bordo] (40,121) rectangle (474,751);
+\draw[bordo] (40,236) -- (474,236);
+\node[align=center, font=\large] at (257,180) {Cause\\ dei guasti sistematici};
+
+\node[anchor=north west, inner sep=0pt, font=\small] at (58,262)
+  {\begin{tabular}{@{}l@{\hspace{3mm}}>{\raggedright\arraybackslash}p{62mm}@{}}
+     $\bullet$ & Prima della messa in servizio, ad es.: \\
+     --        & Difetti di fabbricazione \\
+     --        & Errori in fase di progettazione (scelta errata, dimensionamento errato, software difettoso) \\
+     --        & Errori in fase di integrazione (scelta errata, cablaggio errato)
+   \end{tabular}};
+
+\node[anchor=north west, inner sep=0pt, font=\small] at (58,553)
+  {\begin{tabular}{@{}l@{\hspace{3mm}}>{\raggedright\arraybackslash}p{62mm}@{}}
+     $\bullet$ & Dopo la messa in servizio, ad es.: \\
+     --        & Mancanza/fluttuazione dell'alimentazione \\
+     --        & Influenze ambientali \\
+     --        & Usura, sovraccarico \\
+     --        & Manutenzione errata
+   \end{tabular}};
+
+\draw[freccia] (474,332) -- (583,332);
+\draw[freccia] (474,662) -- (583,662);
+
+%==============================================================
+% Misure per l'evitamento dei guasti
+%==============================================================
+\draw[bordo] (583,153) rectangle (1325,518);
+\node[anchor=west, inner sep=0pt, font=\small] at (598,183) {Misure per l'evitamento dei guasti};
+
+% sinistra / alto / destra / basso / testo
+\foreach \L/\T/\R/\B/\testo in {%
+  595/200/1100/262/{Materiali e metodi di fabbricazione adeguati},
+  615/232/1120/294/{Dimensionamento e geometria corretti},
+  635/264/1140/326/{Scelta, disposizione, montaggio, installazione corretti},
+  655/296/1160/358/{Componenti con caratteristiche operative compatibili},
+  675/327/1180/389/{Resistenza alle condizioni ambientali specificate},
+  695/358/1198/450/{Componenti conformi a una norma appropriata,\\ con modi di guasto definiti},
+  748/421/1250/483/{Prove funzionali},
+  768/452/1270/514/{Gestione del progetto, documentazione},
+  820/483/1322/518/{Prova a scatola nera (black-box)}} {
+  \draw[gradino] (\L,\B) -- (\L,\T) -- (\R,\T) -- (\R,\B);
+  \fill[white] ([xshift=0.6pt]\L,\B) rectangle ([xshift=-0.6pt]\R,{\T+3});
+  \node[voce, anchor=north west] at ({\L+7},{\T+6}) {\testo};
+}
+\node[anchor=west, inner sep=0pt, font=\scriptsize] at (594,470) {INTEGRAZIONE:};
+\node[anchor=west, inner sep=0pt] at (640,505) {In aggiunta:};
+
+%==============================================================
+% Misure per il controllo dei guasti
+%==============================================================
+\draw[bordo] (583,543) rectangle (1325,940);
+\node[anchor=west, inner sep=0pt, font=\small] at (598,567) {Misure per il controllo dei guasti};
+
+\foreach \L/\T/\R/\B/\testo in {%
+  595/585/1100/647/{Principio di diseccitazione},
+  615/617/1120/679/{Progettazione per controllare le influenze di tensione},
+  635/648/1140/710/{Progettazione per controllare le influenze ambientali},
+  655/679/1160/741/{Monitoraggio della sequenza di programma (software)},
+  675/710/1180/772/{Processi di comunicazione dati «sicuri» (sistemi bus)},
+  722/742/1226/804/{Test automatici},
+  742/773/1246/835/{Hardware ridondante/hardware diverso},
+  762/805/1266/867/{Modo di azionamento positivo},
+  782/837/1286/899/{Contatti a guida forzata/apertura positiva},
+  802/868/1306/930/{Modo di guasto orientato},
+  822/900/1325/940/{Sovradimensionamento}} {
+  \draw[gradino] (\L,\B) -- (\L,\T) -- (\R,\T) -- (\R,\B);
+  \fill[white] ([xshift=0.6pt]\L,\B) rectangle ([xshift=-0.6pt]\R,{\T+3});
+  \node[voce, anchor=north west] at ({\L+7},{\T+6}) {\testo};
+}
+\node[anchor=west, inner sep=0pt] at (597,788) {In aggiunta:};
+
+\end{tikzpicture}

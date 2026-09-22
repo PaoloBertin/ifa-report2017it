@@ -1,0 +1,28 @@
+%==============================================================
+%  Figura 5.4 - Le funzioni di sicurezza sono eseguite dagli SRP/CS
+%  Adattamento in italiano della Figura 5.4 dell'IFA Report 2/2017
+%==============================================================
+\begin{tikzpicture}[
+  font=\normalsize,
+  blocco/.style={draw=black, line width=1pt, minimum width=3.4cm, minimum height=1.4cm,
+                 align=center, inner sep=3pt, font=\large},
+  freccia/.style={draw=black, line width=1pt, -{Triangle[length=6pt,width=6pt]}},
+  didasc/.style={font=\normalsize, inner sep=2pt}
+]
+
+\node[blocco] (sensore)   at (2.0,0)  {Sensore};
+\node[blocco] (logica)    at (6.4,0)  {Logica};
+\node[blocco] (attuatore) at (10.8,0) {Attuatore};
+
+\draw[freccia] (sensore.east) -- (logica.west);
+\draw[freccia] (logica.east) -- (attuatore.west);
+
+\node[didasc, below=0.55cm of sensore]   {Rilevamento};
+\node[didasc, below=0.55cm of logica]    {Elaborazione};
+\node[didasc, below=0.55cm of attuatore] {Commutazione};
+
+\draw[draw=black, line width=1pt]
+  ([shift={(-0.7,0.7)}]current bounding box.north west) rectangle
+  ([shift={(0.7,-0.5)}]current bounding box.south east);
+
+\end{tikzpicture}

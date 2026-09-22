@@ -1,0 +1,81 @@
+%==============================================================
+%  CAPITOLO 8
+%==============================================================
+\chapter{Esempi di circuiti SRP/C}
+\label{cap:08}
+
+Breve introduzione al capitolo: oggetto, obiettivi e collegamento
+con i capitoli precedenti.
+
+Questo report inizia trattando la progettazione di sistemi di controllo sicuri in termini generali. I paragrafi~\ref{sec:05-7}, 6.5 e 7.6 illustrano quindi, con riferimento all'esempio di una ghigliottina per il taglio della carta, come possono essere implementati i metodi per la progettazione di sistemi di controllo sicuri. I metodi per la determinazione del PL sono descritti passo-passo qui e nella norma EN ISO 13849-1; tuttavia, alcuni di questi passaggi, come la derivazione del diagramma a blocchi relativo alla sicurezza dallo schema elettrico, richiedono una certa pratica. Il manuale di SISTEMA~\cite{cookbook1} fornisce indicazioni su come derivare il diagramma a blocchi relativo alla sicurezza e il file SISTEMA dallo schema elettrico.
+
+Tuttavia, a causa della varietà delle possibili funzioni di sicurezza e della loro implementazione, i singoli passaggi non si prestano a una descrizione generica. Per questo motivo, questo capitolo presenterà ora la valutazione di numerosi esempi di circuiti che implementano le funzioni di sicurezza in varie categorie e livelli di prestazione e mediante diverse tecnologie. Negli esempi di circuiti, il concetto di sistema di controllo generalmente comprende solo le parti dei sistemi di controllo relative alla sicurezza. Gli esempi sono limitati agli aspetti essenziali e servono quindi principalmente a illustrare la metodologia. Nella loro selezione è stata data importanza a un ampio spettro di tecnologie e possibili applicazioni. I lettori che hanno familiarità con il report del 1997~\cite{en954-1} sulle Categorie per i sistemi di controllo relativi alla sicurezza secondo la norma EN 954-1 riconosceranno alcuni degli esempi, ai quali è stato aggiunto, ad esempio, il calcolo della probabilità di guasto. Rispetto al Rapporto BGIA 2/2008e~\cite{bgiareport2-2008}, alcuni esempi non più aggiornati sono stati eliminati; è stato tuttavia aggiunto un nuovo esempio. Gli esempi rappresentano un'interpretazione delle Categorie e sono stati compilati dagli autori sulla base di molti anni di esperienza con i sistemi di controllo delle macchine relativi alla sicurezza e del lavoro svolto in comitati di normazione nazionali ed europei. Gli esempi servono a fornire ai progettisti una guida efficace per i loro sviluppi.
+
+Poiché gli esempi sono stati creati da autori diversi, esiste inevitabilmente una certa variabilità, ad esempio nella presentazione dei dettagli o nel ragionamento alla base di alcuni dati numerici. Tutti i calcoli per gli esempi di circuito sono stati eseguiti con l'ausilio della versione 2.0 dell'applicazione software SISTEMA (vedere Allegato H), la versione disponibile al momento della produzione di questo rapporto. Ulteriori esempi di circuito, inclusi i file SISTEMA, sono descritti anche nel rapporto IFA 4/2018e, "Controlli di azionamento sicuri con inverter di frequenza"~\cite{werner2019}.
+
+La descrizione di ciascun esempio è strutturata come segue:
+•	Funzione di sicurezza
+•	Descrizione funzionale
+•	Caratteristiche progettuali
+•	Osservazioni
+•	Calcolo della probabilità di guasto
+•	Riferimenti più dettagliati
+Alla voce "funzione di sicurezza" viene indicato il nome della funzione di sicurezza, unitamente agli eventi che la attivano e alle risposte di sicurezza richieste.
+
+La "descrizione funzionale" descrive le funzioni essenziali legate alla sicurezza, sulla base di uno schema concettuale. Viene spiegato il comportamento in caso di guasto, e vengono indicate le misure per il rilevamento dei guasti.
+Le caratteristiche particolari della progettazione dell'esempio in questione, quali l'applicazione di principi di sicurezza ben collaudati e l'impiego di componenti ben collaudati, sono elencate alla voce "caratteristiche progettuali".
+
+Gli schemi circuitali sono schemi concettuali, limitati esclusivamente alla rappresentazione della/e funzioni di sicurezza con i componenti pertinenti necessari a questo particolare scopo. Nell'interesse della chiarezza, sono stati omessi alcuni circuiti aggiuntivi normalmente necessari, ad esempio quelli per garantire la protezione contro la scossa elettrica, per il controllo della sovratensione/sottotensione e della sovrapressione o bassa pressione, per il rilevamento di guasti di isolamento, cortocircuiti e guasti verso terra, ad esempio su linee instradate esternamente, o per garantire la richiesta immunità ai disturbi elettromagnetici. Dettagli circuitali non essenziali per la determinazione dello schema a blocchi legato alla sicurezza sono stati quindi deliberatamente omessi. Tali dettagli comprendono i circuiti di protezione nel sistema elettrico, quali fusibili e diodi, ad esempio sotto forma di diodi di ricircolo (free-wheeling diode). Gli schemi omettono inoltre i diodi di disaccoppiamento nei circuiti in cui, ad esempio, i segnali dei sensori vengono letti in modo ridondante da più unità logiche. Questa disposizione è finalizzata a impedire che, in caso di guasto, un ingresso diventi un'uscita nei sistemi ridondanti, influenzando così il secondo canale. Tutti questi componenti sono essenziali affinché un sistema di comando venga realizzato in conformità a una categoria e a un Performance Level. Conformemente agli elenchi dei guasti della EN ISO 13849-2, questioni quali l'influenza dei cortocircuiti dei conduttori devono naturalmente essere considerate anche in relazione alla funzione di sicurezza interessata e alle condizioni d'uso. Tutti i componenti impiegati devono pertanto essere selezionati tenendo conto della loro idoneità in base alla relativa specifica. Il sovradimensionamento è uno dei principi di sicurezza ben collaudati.
+
+Ulteriori esempi sono elencati nelle osservazioni specifiche per tecnologia relative alla tecnica dei fluidi.
+
+Le caratteristiche progettuali sono indicate soltanto ove siano rilevanti per le funzioni di sicurezza descritte. Si tratta generalmente di una "funzione di arresto legata alla sicurezza, avviata da un mezzo di protezione". Altre funzioni di sicurezza, quali la "prevenzione dell'avviamento inatteso" o una "funzione di ripristino manuale" e la "funzione di avviamento/riavviamento", non sono considerate in tutti gli esempi. Qualora vengano utilizzate apparecchiature ad azionamento manuale (pulsanti) per la realizzazione di tali funzioni di sicurezza, occorre garantire che, laddove la funzione di sicurezza sia realizzata in combinazione con l'elettronica in particolare, essa debba essere avviata dal rilascio (azione di apertura) di un pulsante già premuto.
+
+Ove pertinente per l'esempio in questione, un riferimento particolare ad aspetti specifici di una possibile applicazione è riportato alla voce "Osservazioni".
+
+Alla voce "Calcolo della probabilità di guasto" viene fornita una descrizione del calcolo del PL a partire dai parametri categoria, MTTF\textsubscript{D}, DC\textsubscript{avg} e CCF, sulla base dello schema a blocchi legato alla sicurezza derivato dallo schema concettuale. La categoria viene determinata a partire dalla descrizione funzionale e dalle caratteristiche progettuali.
+
+I valori di MTTF\textsubscript{D} impiegati nei calcoli sono contrassegnati come valori del fabbricante ("[M]" per manufacturer), valori tipici da banche dati ("[D]" per database), oppure valori tratti dalla EN ISO 13849-1 ("[S]" per standard). Conformemente alla norma, la priorità dovrebbe essere data ai dati dei fabbricanti. Per alcuni componenti, al momento della redazione del rapporto non erano disponibili né dati affidabili dei fabbricanti né valori da banche dati. In questo caso è stato impiegato il metodo del conteggio dei componenti per la stima di valori esemplificativi tipici (contrassegnati "[E]" per estimated, stimato). I valori di MTTF\textsubscript{D} riportati in questo capitolo devono pertanto essere considerati, in alcuni casi, più come stime.
+
+La presentazione delle misure ipotizzate per la diagnostica (DC) e contro i guasti per causa comune (CCF) è limitata a informazioni di carattere generale. I valori specifici per questi due criteri dipendono dalla realizzazione, dall'applicazione e dal fabbricante. È pertanto possibile che, per componenti simili, in esempi diversi vengano ipotizzati valori di DC differenti. Anche in questo caso, tutte le ipotesi relative a DC e CCF devono essere riesaminate nelle realizzazioni concrete; i valori ipotizzati non sono vincolanti e sono destinati esclusivamente a scopo illustrativo.
+
+Nella presentazione, l'attenzione è rivolta principalmente alle categorie intese come "resistenza ai guasti", allo schema a blocchi e ai metodi "matematici" per la determinazione del PL. Al contrario, alcune fasi parziali, come l'esclusione di guasto, i principi di sicurezza di base e ben collaudati o le misure contro i guasti sistematici (compreso il software), sono menzionate solo brevemente. Durante la realizzazione, occorre prestare a questo aspetto un'attenzione adeguata, poiché valutazioni errate o una realizzazione inadeguata di tali misure potrebbero comportare un peggioramento della tolleranza ai guasti o della probabilità di guasto. Come ausilio per la comprensione degli esempi circuitali e per la loro realizzazione pratica, l'attenzione del lettore è pertanto richiamata sul Capitolo~\ref{cap:07} e sull'Allegato~\ref{app:C}, nei quali, ad esempio, i principi di sicurezza di base e ben collaudati sono descritti in dettaglio.
+
+Infine, si rimanda ai "riferimenti più dettagliati", ove disponibili.
+
+Per ciascun tipo di tecnologia, nei successivi punti specifici per tecnologia vengono formulati alcuni commenti di carattere generale, al fine di fornire una migliore comprensione degli esempi e per la realizzazione delle categorie.
+Alcuni degli esempi circuitali rappresentano "sistemi di comando che coinvolgono tecnologie multiple". Questi esempi circuitali "misti" si basano sul concetto, sancito dalla norma, secondo cui una funzione di sicurezza viene sempre realizzata mediante "ricezione", "elaborazione" e "commutazione", indipendentemente dalla tecnologia impiegata."
+
+
+
+
+%--------------------------------------------------------------
+\section{Osservazioni generali di natura tecnologica sui sistemi di controllo di esempio}
+\label{sec:08-1}
+
+\subsection{Comandi elettromeccanici}
+\label{subsec:08-1-1}
+
+I comandi elettromeccanici impiegano principalmente componenti elettromeccanici sotto forma di dispositivi di controllo (ad esempio interruttori di posizione, selettori, pulsanti) e apparecchiature di commutazione (relè contattori, relè, contattori). Questi dispositivi hanno posizioni di commutazione definite. Generalmente non cambiano il loro stato di commutazione se non azionati esternamente o elettricamente. Se selezionati correttamente e utilizzati come previsto, sono in gran parte immuni a disturbi, come interferenze elettriche o elettromagnetiche. Sotto questo aspetto differiscono, in alcuni casi considerevolmente, dalle apparecchiature elettroniche. La loro durata e le modalità di guasto possono essere influenzate da un'adeguata selezione, dimensionamento e disposizione. Lo stesso vale per i conduttori impiegati, se opportunamente instradati all'interno e all'esterno dei vani elettrici.
+
+Per le ragioni sopra indicate, i componenti elettromeccanici generalmente soddisfano i “principi di sicurezza di base” e in molti casi devono essere considerati anche “componenti collaudati” per applicazioni di sicurezza. Ciò vale, tuttavia, solo quando vengono rispettati i requisiti della norma IEC 60204-1~\cite{iec60204-1} per le apparecchiature elettriche della macchina/impianto. In alcuni casi, sono possibili esclusioni di guasto, ad esempio su un contattore di comando per quanto riguarda l'attivazione in assenza di tensione di comando, o la mancata apertura di un contatto di interruzione con azione di apertura diretta su un interruttore secondo la norma IEC 60947-5-1~\cite{iec60947-5-1}, Allegato K.
+
+Informazioni dettagliate sulla modellazione dei componenti elettromeccanici sono reperibili nell'Allegato~\ref{app:D}.
+
+
+%--------------------------------------------------------------
+\section{Controlli idraulici}
+\label{sec:08-2}
+
+Negli impianti oleodinamici, la zona delle valvole, ovvero le valvole che controllano movimenti o stati pericolosi, deve essere considerata in particolare una "parte del sistema di controllo rilevante per la sicurezza". I circuiti oleodinamici elencati di seguito costituiscono solo esempi. Di norma, le funzioni di sicurezza richieste possono essere implementate anche mediante logiche di controllo alternative che impiegano tipologie di valvole appropriate, o in alcuni casi anche mediante soluzioni meccaniche aggiuntive come dispositivi di blocco o freni.
+Nei sistemi idraulici (vedere Figura 8.1), in questo contesto vanno considerate anche le misure per la limitazione della pressione nel sistema (1V2) e per la filtrazione del fluido idraulico (1Z2).
+I componenti 1Z1, 1S1 e 1S2 mostrati in Figura 8.1 sono presenti nella maggior parte dei sistemi idraulici e rivestono grande importanza, in particolare per le condizioni del fluido idraulico e di conseguenza per il funzionamento delle valvole.
+Il filtro di sfiato del serbatoio 1Z1, disposto sul serbatoio del fluido, impedisce l'ingresso di impurità esterne. L'indicatore di livello del fluido 1S2 garantisce che il livello del fluido rimanga entro i limiti specificati. L'indicatore di temperatura 1S1 costituisce una misura idonea per la limitazione dell'intervallo di temperatura di esercizio e quindi dell'intervallo di viscosità di esercizio del fluido idraulico. Se necessario, devono essere previsti dispositivi di riscaldamento e/o raffreddamento in combinazione con il controllo della temperatura a circuito chiuso (vedere anche l'Allegato~\ref{app:C} a questo proposito).
+Gli elementi di azionamento e i componenti per la conversione la trasmissione di energia nei sistemi oleodinamici generalmente non rientrano nell'ambito di applicazione della norma.
+
+
+%--------------------------------------------------------------
+\section{Conclusioni del capitolo}
+\label{sec:08-3}
+
+Sintesi dei contenuti e rimandi al capitolo successivo.

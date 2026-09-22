@@ -1,0 +1,58 @@
+# ---------------------------------------------------------------
+# File generati dalla compilazione LaTeX
+# ---------------------------------------------------------------
+
+# Ausiliari di base (uno per ogni .tex incluso)
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+
+# Bibliografia (rigenerata da bibliografia.bib)
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+
+# latexmk
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.synctex(busy)
+
+# XeLaTeX/LuaLaTeX
+*.xdv
+
+# Indici e glossari
+*.idx
+*.ind
+*.ilg
+*.glo
+*.gls
+*.glg
+*.acn
+*.acr
+*.alg
+
+# Varie
+*.nav
+*.snm
+*.vrb
+*.brf
+*.lol
+
+# ---------------------------------------------------------------
+# Documento finale
+# ---------------------------------------------------------------
+# Il PDF è ricostruibile dai sorgenti. Se preferisci versionarlo
+# per distribuirlo senza compilare, commenta la riga seguente.
+*.pdf
+
+# ---------------------------------------------------------------
+# Sistema operativo
+# ---------------------------------------------------------------
+Thumbs.db
+desktop.ini
+.DS_Store

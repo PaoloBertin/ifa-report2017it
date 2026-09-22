@@ -1,0 +1,603 @@
+%==============================================================
+%  CAPITOLO 5
+%==============================================================
+\chapter{Funzioni di sicurezza e il loro contributo alla riduzione del rischio}
+\label{cap:05}
+
+La presente relazione tratta delle funzioni di sicurezza e del loro contributo alla riduzione dei rischi nelle zone pericolose delle macchine. La progettazione di tali funzioni di sicurezza è parte integrante del processo di progettazione di macchine sicure. Questo capitolo inizia quindi illustrando i requisiti della Direttiva Macchine, prima di descrivere la definizione di funzioni di sicurezza e le loro proprietà. Il paragrafo~\ref{sec:05-7} illustra poi l'implementazione con riferimento all'esempio pratico del sistema di controllo di una ghigliottina per il taglio della carta.
+
+%--------------------------------------------------------------
+\section{Requisiti della Direttiva Macchine CE}
+\label{sec:05-1}
+
+La Direttiva Macchine CE~\cite{dir2006-42-ce} è stata recepita nel diritto tedesco dalla Legge tedesca sulla sicurezza dei prodotti (ProdSG) e stabilisce i requisiti essenziali in materia di salute e sicurezza per le macchine. Le disposizioni generali della Direttiva Macchine sono supportate da norme. Particolarmente significativa a questo riguardo è la norma EN ISO 12100~\cite{eniso12100}, Sicurezza delle macchine - Principi generali di progettazione. Al progettista di macchine viene presentato un metodo di progettazione adatto a garantire la sicurezza della macchina. Questo metodo - una strategia per la riduzione del rischio - comprende la progettazione delle parti dei sistemi di controllo relative alla sicurezza1.
+Qualora esista una norma armonizzata specifica per il prodotto (norma di tipo C) per la macchina in fase di progettazione e il riferimento a tale norma sia stato pubblicato nella Gazzetta ufficiale dell'UE~\cite{elencoarmonizzate}, si può presumere che i requisiti essenziali in materia di salute e sicurezza siano soddisfatti. In tali casi, si dice che la norma dia luogo a una "presunzione di conformità", poiché la sua applicazione giustifica la presunzione che la macchina soddisfi i requisiti della Direttiva Macchine CE. La strategia di riduzione del rischio deve tuttavia essere sempre seguita laddove non esista una norma che dia luogo alla presunzione di conformità, laddove esista una norma idonea ma la progettazione se ne discosti, o laddove si applichino aspetti aggiuntivi non contemplati dalla norma di prodotto. Affinché le problematiche non contemplate da una norma di prodotto possano essere identificate, è necessario eseguire sempre i primi due passaggi della strategia di riduzione del rischio descritta di seguito, ovvero definire i limiti della macchina e identificare i pericoli.
+
+\clearpage
+% figura a piena pagina, collocata prima del paragrafo 5.2
+% (non e' un float: resta esattamente in questo punto)
+\begin{center}
+    \captionsetup{hypcap=false}
+    \resizebox{\textwidth}{!}{\input{immagini/fig05-01}}
+    \captionof{figure}{processo iterativo di riduzione del rischio.}
+    \label{fig:05-01}
+\end{center}
+\clearpage
+
+%--------------------------------------------------------------
+\section{Strategia di riduzione del rischio}
+\label{sec:05-2}
+
+La strategia di riduzione del rischio presentata nella norma EN ISO 12100~\cite{eniso12100} è stata adottata nella Figura 1 della norma EN ISO 13849-1 e integrata con gli aspetti dettagliati in quest'ultima (vedere Figura~\ref{fig:05-01}). Si procede innanzitutto con una valutazione del rischio. Un punto importante è l'assunto, durante le fasi successive, che non siano ancora state adottate misure di protezione sulla macchina. In definitiva, l'intero processo di riduzione del rischio serve a determinare il tipo e anche la "qualità" della misura di protezione/salvaguardia da implementare.
+
+Il processo di riduzione del rischio inizia con la definizione dei limiti della macchina. Oltre ai limiti di spazio e di tempo della macchina, occorre prestare particolare attenzione ai suoi limiti di utilizzo. Tali limiti includono l'uso previsto della macchina (ad esempio, i materiali che possono essere lavorati su di essa), comprese tutte le modalità operative e le diverse procedure di intervento. Occorre inoltre considerare un uso improprio ragionevolmente prevedibile della macchina; ciò include la valutazione della possibilità di eludere i dispositivi di sicurezza.
+
+
+
+Vengono quindi identificati i pericoli; in questo processo è necessario considerare tutte le fasi del ciclo di vita della macchina. Oltre alla modalità automatica, si presta particolare attenzione alle modalità operative che richiedono l'intervento manuale, ad esempio per:
+\begin{itemize}
+    \item Impostazione
+    \item Collaudo
+    \item Programmazione/ Insegnamento
+    \item Messa in servizio
+    \item Caricamento dei materiali
+    \item Recupero del prodotto
+    \item Risoluzione dei problemi e eliminazione dei guasti
+    \item Pulizia
+    \item Manutenzione
+\end{itemize}
+Ulteriori dettagli su questa fase del processo sono reperibili nella norma EN ISO 12100~\cite{eniso12100}. Esiste una serie di metodi per l'identificazione sistematica dei pericoli; alcuni esempi sono riportati nella norma ISO/DTR 14121-2~\cite{isotr14121-2}. I possibili pericoli sono inoltre elencati in modo esaustivo nella norma EN ISO 12100~\cite{eniso12100}. La Figura~\ref{fig:05-02} mostra un estratto.
+
+\subsection{Stima del rischio}
+\label{subsec:05-2-1}
+Una volta identificati tutti i potenziali pericoli che la macchina può presentare, è necessario stimare il rischio per ciascun pericolo. Il rischio associato a una particolare situazione pericolosa può essere determinato in base ai seguenti elementi di rischio:
+\begin{enumerate}[label=\alph*), leftmargin=*]
+    \item Gravità del danno
+    \item Probabilità che tale danno si verifichi, in funzione di:
+    \begin{itemize}[label=\textendash, leftmargin=1.4em, topsep=0.2em, itemsep=0em, parsep=0em]
+        \item Esposizione di una o più persone al pericolo
+        \item Verificarsi di un evento pericoloso
+        \item Possibilità tecniche e umane di evitare o limitare il danno
+    \end{itemize}
+\end{enumerate}
+L'obiettivo della procedura successiva è ridurre il rischio a un livello accettabile. A tal fine, la Figura~\ref{fig:05-03} mostra le proporzioni di riduzione del rischio con e senza le parti relative alla sicurezza di un sistema di controllo. Ulteriori informazioni sull'argomento del rischio sono reperibili nel Manuale IFA~\cite{ifahandbuch}.
+\begin{figure}[htbp]
+    \centering
+    \fbox{\includegraphics[width=0.82\textwidth]{img05-02.png}}
+    \caption{Esempi di pericoli (fonte: Istituto tedesco di assicurazione sociale contro gli infortuni per il settore alimentare e della ristorazione).}
+    \label{fig:05-02}
+\end{figure}
+
+\subsection{Valutazione del rischio}
+\label{subsec:05-2-2}
+A seguito della stima del rischio, viene eseguita una valutazione del rischio al fine di determinare se sia necessaria una riduzione del rischio. I criteri per un'adeguata riduzione del rischio sono specificati nella norma EN 12100~\cite{eniso12100}:
+\begin{itemize}
+    \item Sono state prese in considerazione tutte le condizioni operative e tutte le procedure di intervento?
+    \item I pericoli sono stati eliminati mediante adeguate misure di protezione o i rischi sono stati ridotti al livello più basso possibile?
+    \item È stato accertato che le misure adottate non creino nuovi pericoli?
+    \item Gli utilizzatori sono stati sufficientemente informati e avvertiti dei rischi residui?
+    \item È stato accertato che le misure di protezione adottate non compromettano le condizioni di lavoro degli operatori o l'usabilità della macchina?
+    \item Le misure di protezione adottate sono compatibili tra loro?
+    \item Sono state prese in debita considerazione le conseguenze che possono derivare dall'utilizzo, in un contesto non professionale/non industriale, di una macchina progettata per uso professionale/industriale?
+\end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \resizebox{\textwidth}{!}{\input{immagini/fig05-03}}
+    \caption{Stima del rischio e riduzione del rischio.}
+    \label{fig:05-03}
+\end{figure}
+
+\section{Identificazione delle funzioni di sicurezza}
+\label{sec:05-3}
+Qualora la valutazione identifichi un rischio (non ancora) inaccettabile, è necessario prevedere adeguate misure di sicurezza. La priorità deve tuttavia essere data agli sforzi volti a evitare i pericoli (progettazione intrinsecamente sicura) o, quantomeno, a ridurli il più possibile, mediante modifiche progettuali alla macchina. In linea di principio, anche le informazioni per l'uso (incluse le misure organizzative) rappresentano un possibile mezzo di riduzione del rischio. Misure di questo tipo sono tuttavia accettabili solo in casi eccezionali in cui non sia possibile una riduzione del rischio economicamente ragionevole mediante misure di protezione tecniche; nella maggior parte dei casi, tuttavia, saranno necessarie misure di sicurezza. In questo contesto, vengono definite le funzioni di sicurezza eseguite dal SRP/CS (parti dei sistemi di controllo relative alla sicurezza)
+\begin{figure}[htbp]
+    \centering
+    \resizebox{0.8\textwidth}{!}{\input{immagini/fig05-04}}
+    \caption{Le funzioni di sicurezza sono eseguite dagli SRP/CS.}
+    \label{fig:05-04}
+\end{figure}
+Un processo iterativo per la progettazione delle parti dei sistemi di controllo relative alla sicurezza è descritto in~\cite{eniso13849-1}. La Figura~\ref{fig:05-05} mostra la parte pertinente a questa sotto clausola della relazione.
+\begin{figure}[htbp]
+    \centering
+    \resizebox{\textwidth}{!}{\input{immagini/fig05-05}}
+    \caption{Estratto del processo iterativo per la progettazione delle parti dei sistemi di comando legate alla sicurezza (SRP/CS).}
+    \label{fig:05-05}
+\end{figure}
+
+\subsection{Definizione delle funzioni di sicurezza}
+\label{subsec:05-3-1}
+Le funzioni di sicurezza necessarie vengono definite tenendo conto sia dell'applicazione che del pericolo. Ad esempio, se si deve prevedere la proiezione di detriti, una barriera fotoelettrica non sarà una soluzione adeguata e sarà necessario un dispositivo di arresto (protezione). Una funzione di sicurezza è quindi una funzione mediante la quale le misure adottate (incluse quelle relative alla tecnologia di controllo) riducono il rischio presentato da un particolare pericolo a un livello accettabile. In assenza di disposizioni pertinenti in una norma di tipo C, le funzioni di sicurezza sono definite dal progettista della macchina, ad esempio:
+\begin{enumerate} [label=\alph*)]
+    \item arresto controllato del movimento e azionamento del freno di stazionamento in posizione di riposo
+    \item prevenzione di schiacciamenti causati dalla caduta di parti della macchina
+    \item iduzione della potenza del laser di taglio in caso di esposizione diretta dell'occhio
+    \item prevenzione della caduta dell'albero in modalità di impostazione
+    \item allontanamento del robot in caso di ingresso di una persona nella sua zona di pericolo
+    \item prevenzione dell'intrappolamento di persone
+    \item arresto del movimento di chiusura controllato da un azionamento a due mani in caso di intervento di una seconda persona nella zona di pericolo (attivato tramite una barriera fotoelettrica)
+\end{enumerate}
+Vengono spesso impiegate funzioni di sicurezza composite, come nell'esempio del punto~\ref{sec:05-7}. Il movimento viene inizialmente arrestato dal sistema di azionamento elettronico, dopodiché viene azionato un freno di stazionamento meccanico. Le due tabelle seguenti forniscono informazioni sulle possibili funzioni di sicurezza.
+
+La Tabella~\ref{tab:05-1} riassume le funzioni di sicurezza secondo la sotto clausola 5.1 della norma EN ISO 13849-1 e aggiunge esempi di possibili applicazioni. È inclusa anche la “funzione di arresto di emergenza”: sebbene non faccia parte di una protezione, viene utilizzata per l’attuazione di una misura di protezione complementare (vedere la sotto clausola~\ref{sec:05-5}).
+
+La Tabella~\ref{tab:05-2} mostra ulteriori funzioni di sicurezza per i sistemi di azionamento di potenza sicuri secondo la norma IEC 61800-5-2 (PDS/SR, sistemi di azionamento di potenza/relativi alla sicurezza)~\cite{iec61800-5-2}. L’ambito di applicazione di questa norma comprende le funzioni di sicurezza frequentemente impiegate per la prevenzione dell’avvio imprevisto (arresto sicuro della coppia, STO), per l’arresto sicuro SS1 e SS2 e per la velocità limitata in sicurezza (SLS).
+
+Le funzioni di sicurezza per la tecnologia di azionamento pneumatico sono descritte nella norma tecnica VDMA 24584~\cite{vdma24584}.
+
+
+\begingroup
+\definecolor{tabblue}{RGB}{31,73,125}
+\fontsize{9}{11}\selectfont
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.2}
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{|p{5.8cm}|p{\dimexpr\textwidth-5.8cm-4\tabcolsep-4\arrayrulewidth\relax}|}
+    \caption{Funzioni di sicurezza descritte in EN ISO 13849-1.}
+    \label{tab:05-1} \\
+    \hline
+    \rowcolor{tabblue}
+    \textcolor{white}{\textbf{Funzione di sicurezza}} & \textcolor{white}{\textbf{Esempio applicativo}} \\
+    \hline
+    \endfirsthead
+    \hline
+    \rowcolor{tabblue}
+    \textcolor{white}{\textbf{Funzione di sicurezza}} & \textcolor{white}{\textbf{Esempio applicativo}} \\
+    \hline
+    \endhead
+    \hline
+    \endfoot
+    Funzione di arresto legata alla sicurezza, avviata da un dispositivo di protezione &
+    Risposta all'intervento di un dispositivo di protezione con STO, SS1 o SS2 (Tabella~\ref{tab:05-2}) \\
+    \hline
+    \rowcolor{black!8}
+    Funzione di ripristino manuale &
+    Confermare quando le aree dietro il dispositivo di protezione vengono liberate \\
+    \hline
+    Funzione di avvio/riavvio &
+    Ammissibile solo con protezioni ad incastro con funzione di avviamento secondo la norma EN ISO 12100 \\
+    \hline
+    \rowcolor{black!8}
+    Funzione di controllo locale &
+    Controllo dei movimenti delle macchine da una postazione all'interno della zona di pericolo \\
+    \hline
+    Funzione di silenziamento &
+    Disattivazione temporanea dei dispositivi di sicurezza, ad esempio durante il trasporto dei materiali \\
+    \hline
+    \rowcolor{black!8}
+    Apparecchiatura a funzionamento continuo (interruttore a impulsi) &
+    Movimenti della macchina controllati da una posizione all'interno della zona di pericolo, ad esempio durante la fase di impostazione \\
+    \hline
+    Funzione di abilitazione &
+    Movimenti della macchina controllati da una posizione all'interno della zona di pericolo, ad esempio durante la fase di impostazione \\
+    \hline
+    \rowcolor{black!8}
+    Prevenzione dell'avvio imprevisto &
+    Intervento manuale dell'operatore nelle zone di pericolo \\
+    \hline
+    Fuga e salvataggio di persone intrappolate &
+    Separazione dei rulli \\
+    \hline
+    \rowcolor{black!8}
+    Funzione di isolamento e dissipazione dell'energia &
+    Apertura di una valvola idraulica per lo scarico della pressione \\
+    \hline
+    Modalità di controllo e selezione della modalità operativa &
+    Attivazione delle funzioni di sicurezza tramite un selettore di modalità operativa \\
+    \hline
+    \rowcolor{black!8}
+    Funzione di arresto di emergenza &
+    Risposta all'azionamento di un dispositivo di arresto di emergenza con STO o SS1 (Tabella~\ref{tab:05-2}) \\
+    \hline
+\end{longtable}
+\endgroup
+
+\begingroup
+\definecolor{tabblue}{RGB}{31,73,125}
+\fontsize{9}{11}\selectfont
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.2}
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{|p{1.8cm}|p{4.2cm}|p{\dimexpr\textwidth-6cm-6\tabcolsep-5\arrayrulewidth\relax}|}
+    % La didascalia breve (fra parentesi quadre) e' quella che finisce
+    % nell'elenco delle tabelle: va tenuta priva di \cite, perche' li'
+    % la citazione verrebbe eseguita nel frontespizio.
+    \caption[Funzioni di sicurezza descritte nella norma IEC 61800-5-2 (edizione 2016)]{Funzioni di sicurezza descritte nella norma IEC 61800-5-2 (edizione 2016)~\cite{iec61800-5-2}.}
+    \label{tab:05-2} \\
+    \hline
+    \rowcolor{tabblue}
+    \textcolor{white}{\textbf{Sigla}} & \textcolor{white}{\textbf{Denominazione}} & \textcolor{white}{\textbf{Funzione}} \\
+    \hline
+    \endfirsthead
+    \hline
+    \rowcolor{tabblue}
+    \textcolor{white}{\textbf{Sigla}} & \textcolor{white}{\textbf{Denominazione}} & \textcolor{white}{\textbf{Funzione}} \\
+    \hline
+    \endhead
+    \hline
+    \endfoot
+    \rowcolor{black!8}
+    STO & Coppia disinserita in sicurezza &
+    Il motore non riceve energia in grado di generare un movimento rotatorio; arresto di categoria 0 secondo la norma EN 60204-1 \\
+    \hline
+    SS1-r \newline SS1-t & Arresto sicuro 1 &
+    Motore in decelerazione; monitoraggio della rampa di decelerazione e STO al raggiungimento dell'arresto (SS1-r), oppure STO allo scadere di un tempo prestabilito (SS1-t); arresto di categoria 1 secondo la norma EN 60204-1 \\
+    \hline
+    \rowcolor{black!8}
+    SS2-r \newline SS2-t & Arresto sicuro 2 &
+    Motore in decelerazione; monitoraggio della rampa di decelerazione e SOS al raggiungimento dell'arresto (SS2-r), oppure SOS allo scadere di un tempo prestabilito (SS2-t); arresto di categoria 2 secondo la norma EN 60204-1 \\
+    \hline
+    SOS & Arresto operativo sicuro &
+    Il motore è fermo e si oppone alle forze esterne \\
+    \hline
+    \rowcolor{black!8}
+    SLA & Accelerazione limitata in sicurezza &
+    Viene impedito il superamento di un valore limite di accelerazione e/o decelerazione \\
+    \hline
+    SLS & Velocità limitata in sicurezza &
+    Viene impedito il superamento del valore limite di velocità \\
+    \hline
+    \rowcolor{black!8}
+    SLT & Coppia limitata in sicurezza &
+    Viene impedito il superamento di un valore limite di coppia/forza \\
+    \hline
+    SLP & Posizione limitata in sicurezza &
+    Viene impedito il superamento di un valore limite di posizione \\
+    \hline
+    \rowcolor{black!8}
+    SLI & Incremento limitato in sicurezza &
+    Il motore viene spostato di una distanza incrementale prestabilita, al termine della quale si arresta \\
+    \hline
+    SDI & Direzione sicura &
+    Si impedisce che il motore ruoti nella direzione non desiderata \\
+    \hline
+    \rowcolor{black!8}
+    SMT & Temperatura sicura del motore &
+    Viene impedito il superamento di un valore limite di temperatura del motore \\
+    \hline
+    SBC & Comando sicuro del freno &
+    Azionamento sicuro di un freno esterno \\
+    \hline
+    \rowcolor{black!8}
+    SCA & Camma sicura &
+    Viene generato un segnale di uscita sicuro finché la posizione del motore rimane entro un intervallo prestabilito \\
+    \hline
+    SSM & Monitoraggio sicuro della velocità &
+    Viene generato un segnale di uscita sicuro finché la velocità del motore rimane al di sotto di un valore prestabilito \\
+    \hline
+    \rowcolor{black!8}
+    SAR & Intervallo di accelerazione sicuro &
+    L'accelerazione del motore viene mantenuta entro valori limite prestabiliti \\
+    \hline
+    SSR & Intervallo di velocità sicuro &
+    La velocità del motore viene mantenuta entro valori limite prestabiliti \\
+    \hline
+    \rowcolor{black!8}
+    STR & Intervallo di coppia sicuro &
+    La coppia del motore (la forza, nel caso di motori lineari) viene mantenuta entro valori limite prestabiliti \\
+    \hline
+\end{longtable}
+\endgroup
+
+Il modo in cui una funzione di sicurezza viene eseguita può assumere forme molto diverse. Per questo motivo, in fase di selezione occorre considerare determinate caratteristiche e specificarle caso per caso.
+
+Tra queste:
+\begin{itemize}
+    \item utilizzo nelle diverse modalità operative (ad es. modalità automatica, modalità di predisposizione/setup, ricerca guasti) 
+    \item utilizzo di diverse funzioni di sicurezza a seconda che l'alimentazione elettrica sia presente o sia venuta a mancare (vedere anche il paragrafo 4.3 di~\cite{werner2019}) 
+    \item risposta/e all'intervento della funzione di sicurezza 
+    \item risposta/e alla rilevazione di un guasto nella funzione di sicurezza 
+    \item tempo di risposta 
+    \item frequenza di attuazione 
+    \item priorità, nei casi in cui più funzioni di sicurezza possano essere attive simultaneamente
+    \item specifica dei parametri legati alla sicurezza, quali la velocità massima ammissibile
+    \item performance Level richiesto PL\textsubscript{\small r}
+\end{itemize}
+
+Informazioni dettagliate sulla definizione delle funzioni di sicurezza sono disponibili nel SISTEMA Cookbook 6, "Definizione delle funzioni di sicurezza: cosa è importante?"~\cite{cookbook6}.
+
+% \texorpdfstring serve perche' questo titolo finisce anche nei segnalibri
+% del PDF, che accettano solo testo semplice: il primo argomento e' la resa
+% tipografica, il secondo quella per il segnalibro.
+\subsection{Esempi di definizione di funzioni di sicurezza con influenza sul successivo calcolo del \texorpdfstring{PFH\textsubscript{\small D}}{PFHD}}
+\label{subsec:05-3-2}
+Nei capitoli successivi verrà illustrato come calcolare la probabilità media di un guasto pericoloso per ora (PFH\textsubscript{D}) per una funzione di sicurezza. Le basi per questo calcolo vengono tuttavia poste in questa fase, con la definizione della funzione di sicurezza. Per sua natura, l'implementazione tecnica di una funzione di sicurezza determina il tipo e la scala dei componenti necessari. La definizione della funzione di sicurezza ha quindi un'influenza considerevole sulla determinazione dell'affidabilità relativa alla sicurezza. Questo verrà spiegato negli esempi seguenti.
+
+\textit{Esempio 1}:\\
+\textit{Funzione di sicurezza "Arresto all'apertura del cancello di protezione"} \\
+Quando il cancello di protezione viene aperto, l'operatore della macchina ha accesso a una zona di pericolo in cui cinque azionamenti controllano i movimenti delle parti della macchina. L'apertura del cancello di protezione provoca l'arresto immediato di tutti e cinque gli azionamenti.
+Quando si calcola successivamente il PFH\textsubscript{D} (Physical Functional Hierarchy Diagram), diagramma funzionale di sicurezza della funzione di sicurezza, vengono quindi sommati i valori PFH\textsubscript{D} dei seguenti blocchi:
+	
+\begin{itemize}
+    \item monitoraggio della posizione del cancello di protezione, inclusi i componenti meccanici;
+    \item logica;
+    \item azionamento da 1 a 5;
+\end{itemize}
+Il calcolo potrebbe produrre un PFH\textsubscript{\small D} non più adeguato all'applicazione, anche se solo gli azionamenti 1 e 3 avviano movimenti pericolosi nella posizione istantanea dell'operatore e i restanti azionamenti vengono arrestati esclusivamente "funzionalmente". In questo caso, si raccomanda di considerare solo i movimenti che effettivamente presentano un pericolo ai fini della funzione di sicurezza e di riformulare la funzione di sicurezza tenendo conto degli azionamenti critici per la sicurezza dell'operatore. Il diagramma funzionale associato è mostrato nella Figura~\ref{fig:05-06}.
+
+Se più di un azionamento è coinvolto nei movimenti pericolosi nella zona di pericolo in esame, i pericoli sono considerati sovrapposti. Se il numero di azionamenti da considerare è troppo elevato, la somma dei valori PFH\textsubscript{D} dei singoli azionamenti può nuovamente risultare in un PFH\textsubscript{D} totale troppo elevato per il PL richiesto dalla funzione di sicurezza. La norma rivista prevede la considerazione dei pericoli sovrapposti. Di conseguenza, i pericoli considerati nella funzione di sicurezza in questione possono, in determinate circostanze, essere ridotti a pericoli discreti, ovvero i movimenti pericolosi della macchina possono essere ridotti ai movimenti di parti discrete della macchina. La possibilità di ciò in un dato caso deve essere determinata durante la valutazione del rischio. A tal proposito, l'Allegato J della presente relazione e~\cite{apfeld2010} forniscono un supporto.
+
+% figura ancorata qui: deve restare fra l'Esempio 1 e l'Esempio 2.
+% Non e' un float (niente \begin{figure}), quindi LaTeX non puo'
+% spostarla; \captionof fornisce la didascalia numerata.
+% La minipage tiene insieme disegno e didascalia: una figura non
+% fluttuante puo' spezzarsi a fine pagina, e senza di essa la
+% didascalia finirebbe orfana sulla pagina successiva.
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \centering
+        \captionsetup{hypcap=false}
+        \resizebox{0.92\textwidth}{!}{\input{immagini/fig05-06}}
+        \captionof{figure}{Arresto degli azionamenti 1 e 3 all'apertura del cancello di protezione.}
+        \label{fig:05-06}
+    \end{minipage}
+\end{center}
+
+\textit{Esempio 2}:\\
+\textit{Funzione di sicurezza "Arresto del movimento all'apertura di un cancello di protezione"} \\
+Un movimento pericoloso è protetto da una recinzione con cinque cancelli di protezione. L'apertura di uno qualsiasi dei cancelli arresta il movimento. Poiché una persona aprirà sempre e solo un cancello di protezione alla volta, ciascun cancello costituisce una funzione di sicurezza a sé stante, da SF1 a SF5, composta dai seguenti blocchi:
+\begin{itemize}
+    \item monitoraggio della posizione del cancello di protezione x (x = 1, 2, ... 5), inclusi i componenti meccanici;
+    \item logica;
+\end{itemize}
+La Figura~\ref{fig:05-07} mostra lo schema funzionale e i blocchi della funzione di sicurezza SF3
+
+% figura ancorata qui: deve restare fra l'Esempio 2 e l'Esempio 3.
+% Non e' un float (niente \begin{figure}), quindi LaTeX non puo'
+% spostarla; \captionof fornisce la didascalia numerata.
+% La minipage tiene insieme disegno e didascalia: una figura non
+% fluttuante puo' spezzarsi a fine pagina, e senza di essa la
+% didascalia finirebbe orfana sulla pagina successiva.
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \centering
+        \captionsetup{hypcap=false}
+        \resizebox{0.92\textwidth}{!}{\input{immagini/fig05-07}}
+        \captionof{figure}{Arresto dell'azionamento all'apertura del cancello di protezione 3.}
+        \label{fig:05-07}
+    \end{minipage}
+\end{center}
+
+\textit{Esempio 3}:\\
+\textit{Funzione di sicurezza 'Fermata di tutti gli azionamenti quando il dispositivo di arresto di emergenza viene azionato'}\\ 
+Sono installati venti dispositivi di arresto di emergenza su una macchina di grandi dimensioni; quando azionati, essi arrestano tutti i 50 azionamenti nel modo più rapido possibile. Quali componenti devono essere considerati in questo caso durante l'implementazione della funzione di sicurezza? Non è possibile prevedere quale dei dispositivi di arresto di emergenza verrà azionato per attivare la funzione di sicurezza. Poiché l'utilizzatore aziona sempre un solo dispositivo di arresto di emergenza per volta, vengono definite le funzioni di sicurezza da SF1 a SF20. La posizione della persona esposta al pericolo nel momento in cui viene attivato l'arresto di emergenza non è nota. Indipendentemente da dove si trovi questa persona, tuttavia, non tutti i 50 azionamenti rappresentano un pericolo. Il caso peggiore dovrebbe pertanto essere considerato rappresentativo di tutte le situazioni ipotizzabili. Il caso peggiore viene determinato dal PFH\textsubscript{D} peggiore, e dipende quindi in parte dal numero di azionamenti nella catena di sicurezza che generano movimenti pericolosi nella posizione meno favorevole, e dai rispettivi valori individuali di PFH\textsubscript{D}\@. Il diagramma a blocchi associato è mostrato nella Figura~\ref{fig:05-08}. I valori PFH\textsubscript{D} dei seguenti blocchi devono pertanto essere presi in considerazione durante il successivo calcolo del PFH\textsubscript{D} della funzione di sicurezza:
+\begin{itemize}
+	\item dispositivo di arresto di emergenza 03
+	\item logica
+	\item azionamento 21
+	\item azionamento 35
+	\item azionamento 47
+\end{itemize}
+
+% La minipage tiene insieme disegno e didascalia: una figura non
+% fluttuante puo' spezzarsi a fine pagina, e senza di essa la
+% didascalia finirebbe orfana sulla pagina successiva.
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \centering
+        \captionsetup{hypcap=false}
+        \resizebox{0.92\textwidth}{!}{\input{immagini/fig05-08}}
+        \captionof{figure}{Arresto di emergenza dell'intera macchina, caso peggiore.}
+        \label{fig:05-08}
+    \end{minipage}
+\end{center}
+
+Gli esempi mostrano il vantaggio di un 'approccio locale' per la definizione di una funzione di sicurezza, in cui vengono considerati:
+
+\begin{itemize}
+	\item in quale posizione si trovano le persone nel momento considerato per l'analisi?
+	\item quali movimenti rappresentano pericoli nella posizione della/e persona/e?
+    \item quali dispositivi di protezione attivano la funzione di sicurezza nel momento considerato per l'analisi?
+\end{itemize}
+
+\section{Determinazione del livello di Prestazione Richiesto \texorpdfstring{PL\textsubscript{\small r}}{PLr}}
+\label{sec:05-4}
+Per ogni funzione di sicurezza implementata\footnote{Il suffisso "r" (required, richiesto) indica che il Performance Level in questo caso è quello richiesto per la funzione di sicurezza (valore desiderato). La validazione, in una fase successiva, esamina se il PL raggiunto dal sistema di comando reale (valore effettivo) è maggiore o uguale al PL richiesto. In questo contesto, "maggiore di" significa: PL = e > PL = d > PL = c > PL = b > PL = a}  è necessario specificare un livello di prestazione richiesto PL\textsubscript{r} - in termini tecnici, il valore desiderato. I requisiti derivano dalla necessaria riduzione del rischio. Durante la definizione della riduzione del rischio, occorre considerare anche la probabilità e la gravità dell'incidente, che potrebbero non essere note.
+
+La norma ISO/TR 14121-2~\cite{isotr14121-2} descrive i metodi per determinare la scala richiesta per la riduzione del rischio. La norma EN ISO 13849-1 utilizza uno di questi metodi, quello del grafico del rischio.
+
+\subsection{Grafo del rischio}
+\label{subsec:05-4-1}
+Il diagramma nell'Allegato A della norma conduce direttamente al Livello di Prestazione PL\textsubscript{\small r} richiesto ed è spiegato di seguito (vedere Figura~
+ef{fig:05-09}). Ulteriori esempi di determinazione del PL\textsubscript{\small r} sono reperibili nell'Allegato~\ref{app:A}.
+
+% La minipage tiene insieme disegno e didascalia: una figura non
+% fluttuante puo' spezzarsi a fine pagina, e senza di essa la
+% didascalia finirebbe orfana sulla pagina successiva.
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \centering
+        \captionsetup{hypcap=false}
+        \resizebox{0.92\textwidth}{!}{\input{immagini/fig05-09}}
+        \captionof{figure}{Grafo del rischio per la determinazione del PL\textsubscript{\small r} di ciascuna funzione di sicurezza.}
+        \label{fig:05-09}
+    \end{minipage}
+\end{center}
+
+Dal punto di partenza, vengono valutati i seguenti parametri di rischio\footnote{La probabilità di accadimento di un evento pericoloso viene analizzata congiuntamente al parametro di rischio P.}:
+\begin{itemize}
+    \item S - gravità della lesione
+    \item F - frequenza e/o durata dell'esposizione al pericolo
+    \item P - possibilità di evitare il pericolo o di limitare il danno
+\end{itemize}
+Il grafico del rischio conduce quindi al PL\textsubscript{\small r} necessario. Questa analisi deve essere eseguita per ciascuna funzione di sicurezza e senza considerare la riduzione del rischio che ne consegue. Qualora siano presenti altre misure tecniche implementate indipendentemente dal sistema di comando, come una protezione meccanica o ulteriori funzioni di sicurezza, se ne può presumere l'efficacia ai fini della determinazione del PL\textsubscript{\small r} richiesto. In tal caso, il PL\textsubscript{\small r} richiesto può essere ridotto di un livello.
+\textit{Gravità della lesione S1 e S2}
+In generale, la gravità della lesione (parametro S) in una zona pericolosa risulta variare ampiamente. Tuttavia, ai fini dei requisiti per il sistema di comando, è rilevante solo la seguente distinzione:
+\begin{itemize}
+    \item S1 - lieve (lesione normalmente reversibile)
+    \item S2 - grave (lesione normalmente irreversibile o morte)
+\end{itemize}
+Per determinare la scelta tra S1 e S2 occorre tenere conto delle normali conseguenze degli infortuni e dei normali processi di guarigione.
+Frequenza e/o esposizione al pericolo F1 e F2 (parametro F)
+La frequenza e/o l'esposizione al pericolo vengono valutate come:
+\begin{itemize}
+    \item F1 - da rara a poco frequente, e/o tempo di esposizione breve
+    \item F2 - grave (lesione normalmente irreversibile o morte)
+\end{itemize}
+
+Si tiene quindi conto sia del numero di interventi nella zona pericolosa in un determinato periodo, sia della durata della presenza al suo interno. La norma facilita la decisione stabilendo che, laddove gli interventi dell'operatore si verifichino più spesso di una volta ogni 15 minuti, deve essere scelto F2. In tutti gli altri casi, la scelta corretta è F1, a condizione che la durata dell'esposizione al pericolo non superi 1/20 del tempo di funzionamento totale della macchina. Durante la valutazione, occorre considerare un valore medio per la durata dell'esposizione al pericolo in relazione al tempo complessivo di utilizzo della macchina.
+
+Per una pressa per lavorazione dei metalli caricata manualmente, il cui operatore deve intervenire ciclicamente tra gli stampi della pressa, F2 è chiaramente la scelta appropriata. Al contrario, per un centro di lavorazione che viene predisposto una sola volta all'anno e successivamente funziona in modo automatico, verrà senza dubbio scelto F1. Per la valutazione della frequenza e della durata dell'esposizione al pericolo, i casi in cui è esposta la stessa persona o persone diverse devono essere trattati allo stesso modo.
+
+\textit{P - possibilità di evitare il pericolo P1 e P2 (parametro P)}
+A questo punto, occorre valutare se il riconoscimento e l'elusione di una situazione pericolosa siano:
+
+\begin{itemize}
+    \item P1 - possibili in determinate condizioni
+    \item P2 - appena possibili
+\end{itemize}
+
+Gli aspetti rilevanti per la definizione di questo parametro includono le caratteristiche fisiche della macchina, la qualifica dell'operatore e la sua possibile reazione. Se, ad esempio, la macchina deve essere predisposta mentre è in funzione a velocità limitata, il parametro P1 sarà la scelta corretta in presenza di bassi valori di accelerazione durante la predisposizione: con l'emergere lento dei pericoli e a condizione che vi sia sufficiente libertà di movimento, l'operatore sarà in grado di allontanarsi dalla zona pericolosa. Al contrario, deve essere scelto P2 quando è possibile raggiungere rapidamente velocità più elevate e l'operatore non ha alcuna reale possibilità di evitare un infortunio. Durante questa valutazione, si deve tenere conto solo della limitazione del pericolo mediante mezzi fisicamente possibili, e non della limitazione ottenuta tramite componenti di comando, poiché questi ultimi potrebbero guastarsi in caso di guasto. Ad esempio, dei rulli che si muovono in direzione della mano dell'operatore non possono intrappolarla in condizioni prive di guasti. In caso di guasto del sistema di comando, tuttavia, la direzione di rotazione potrebbe invertirsi e, nelle condizioni più sfavorevoli, la mano verrebbe trascinata all'interno.
+
+Un ulteriore fattore che influenza la determinazione del PL\textsubscript{r} è la probabilità del verificarsi di un evento pericoloso (\cite{eniso12100}, 5.5.2.3.2). In questo contesto possono essere fattori determinanti il comportamento umano e il guasto tecnico. Entrambi sono difficili da stimare numericamente. La norma indica, tuttavia, i seguenti criteri esemplificativi:
+
+\begin{itemize}
+    \item Affidabilità dei dati
+    \item Storico degli infortuni su macchine comparabili
+\end{itemize}
+
+La probabilità del verificarsi di un evento pericoloso viene analizzata congiuntamente al parametro di rischio P. Laddove esistano fattori che consentano di ritenere "bassa" la probabilità del verificarsi di un evento pericoloso, il PL\textsubscript{r} può essere ridotto di un livello; non deve tuttavia scendere al di sotto di PL a.
+
+Quale motivazione può ora essere addotta per una classificazione "bassa"? La considerazione dei dati di affidabilità si riferisce (tra gli altri aspetti) al sistema di comando legato al processo (cioè non legato alla sicurezza). Il costruttore della macchina deve pertanto valutare, a questo scopo, se per la propria macchina si possa presumere anche un'elevata affidabilità dei componenti (elevato MTTF, in questo caso senza "D"). Quanto è quindi elevata, ad esempio, la probabilità che un PLC standard per il comando funzionale di una macchina avvii in modo errato un'attivazione inaspettata di un azionamento? Come devono essere valutati i componenti nuovi che presentano buoni valori di MTTF ma con i quali non è ancora stata acquisita esperienza pratica? Le condizioni di impiego dei PLC e dei componenti associati (sensori, inverter di frequenza, alimentatori, ecc.) sono comparabili con le applicazioni consuete? Quali sono le caratteristiche della rete di alimentazione? Potrebbero verificarsi interferenze elettromagnetiche elevate nel luogo di utilizzo previsto per la macchina? Quali sono le temperature prevalenti? Ecc. Fattori come questi possono aumentare la probabilità di guasto, anche qualora non vengano violati i limiti specificati dei componenti utilizzati. Esiste inoltre la possibilità di errori nel software, che ovviamente possono a loro volta dare origine a eventi pericolosi.
+
+Laddove l'incidenza e la gravità degli infortuni su macchine comparabili, con rischi identici, medesimo concetto operativo e di sicurezza e dispositivi di protezione identici, siano note e vengano considerate basse, anche la probabilità del verificarsi di un evento pericoloso può essere classificata come bassa.
+
+Il PL\textsubscript{\small r} ridotto in base a queste considerazioni non deve in nessun caso essere inferiore a quello delle macchine prese come riferimento per il confronto, poiché da una bassa incidenza e gravità degli infortuni non consegue che il livello di sicurezza fornito dalle funzioni di sicurezza implementate sia superiore a quello richiesto. Non è possibile prevedere se una riduzione del livello esistente comporterebbe un aumento inaccettabile dell'incidenza e della gravità degli infortuni.
+
+Il capitolo~\ref{cap:06} descrive la successiva progettazione delle funzioni di sicurezza.
+
+\section{Misure di protezione complementari}
+\label{sec:05-5}
+I requisiti per le misure di protezione complementari sono contenuti nella norma EN ISO 12100~\cite{eniso12100}, sotto-clausola 6.3.5. Per quanto riguarda le problematiche relative alla tecnologia di controllo trattate nella presente relazione, tali misure di protezione complementari includono in particolare:
+
+\begin{itemize}
+    \item misure per l'arresto in condizioni di emergenza
+    \item inversione dei movimenti
+    \item sezionamento e disspipazione dell'energia
+\end{itemize}
+
+Secondo la definizione, queste non costituiscono misure di protezione tecniche la cui implementazione richiederebbe un determinato Performance Level. Tali misure di protezione complementari dovrebbero tuttavia intervenire quando le misure di protezione tecniche (protezioni e/o dispositivi di protezione) hanno fallito o sono state elusive. Proprio in questi casi, ci si aspetta ad esempio che una funzione di arresto di emergenza sia effettivamente utilizzabile. Devono pertanto essere osservati i requisiti posti dalla IEC 60204-1~\cite{iec60204-1} riguardo ai circuiti di comando e alle funzioni di comando delle macchine. Il paragrafo 9.4, "Funzioni di comando in caso di guasto", richiede un livello adeguato di prestazione di sicurezza, che deve essere definito mediante la valutazione del rischio della macchina. In definitiva, quindi, i requisiti della EN ISO 13849 si applicano anche a queste misure di protezione complementari. Le misure di protezione complementari non devono in nessun caso influenzare la funzione e lo standard dei dispositivi di protezione.
+
+\section{Trattamento dei macchinari obsoleti}
+\label{sec:05-6}
+In questo contesto, per macchinari obsoleti si intendono le macchine immesse sul mercato prima dell'entrata in vigore della Direttiva Macchine. A queste macchine non si applicano i requisiti della direttiva. Tuttavia, la sua applicazione potrebbe rendersi necessaria qualora i macchinari obsoleti vengano ampliati, modificati, modernizzati, ecc. In tali casi, occorre valutare se si sia verificata una modifica essenziale. In tal caso, i requisiti della Direttiva Macchine CE si applicano ai macchinari 'vecchi', ovvero obsoleti, allo stesso modo dei macchinari nuovi. Tali requisiti includono l'applicazione della norma EN ISO 13849. Un documento interpretativo redatto dal Ministero federale tedesco del lavoro e degli affari sociali (BMAS) aiuta a determinare se si sia verificata una modifica essenziale~\cite{modifichesostanziali}.
+
+\section{Riduzione del rischio di una ghigliottina per il taglio della carta con ridondanza diversificata nel controllo logico (Categoria 4 - PL e)}
+\label{sec:05-7}
+L'esempio riportato in questo paragrafo illustra l'applicazione della EN ISO 13849-1 su una taglierina per carta. Verranno considerati in dettaglio solo alcuni aspetti, e non l'intero processo.
+\begin{figure}[htbp]
+    \centering
+    \fbox{\includegraphics[width=0.75\textwidth]{img05-10.png}}
+    \caption{Taglierina/ghigliottina per carta con comando bimanuale (THC) e attrezzatura di protezione elettrosensibile (ESPE -- AOPD).}
+    \label{fig:05-10}
+\end{figure}
+
+Le taglierine per carta (vedi Figura~\ref{fig:05-10}) vengono utilizzate per tagliare pile di fogli di carta o materiali simili per mezzo di una lama. Il prodotto da tagliare viene generalmente posizionato sotto la lama manualmente. Immediatamente prima dell'esecuzione del taglio, una barra premi-pila viene abbassata con elevata forza sulla pila per tenerla ferma durante il taglio. La lama e la barra premi-pila sono azionate idraulicamente.
+
+\subsection{Definizione dei limiti della macchina}
+\label{subsec:05-7-1}
+
+\textit{Limiti di spazio}
+Poiché le taglierine per carta vengono caricate manualmente, è necessario uno spazio sufficiente per la movimentazione del prodotto da tagliare, per il successivo trasporto e stoccaggio della pila di carta tagliata, e per lo smaltimento degli scarti di carta, nonché uno spazio sufficiente per il movimento dell'operatore.
+
+\textit{Limiti di tempo}
+A seconda dell'applicazione, la macchina può essere utilizzata per un periodo di circa 20 anni. L'usura dei componenti può allungare il tempo necessario all'arresto di un movimento. La conseguente violazione della corsa di arresto deve pertanto essere rilevata e deve comportare l'arresto della macchina.
+
+\textit{Limiti di utilizzo}
+L'uso previsto della macchina è quello di tagliare pile di fogli di carta o materiali simili. La macchina viene caricata manualmente da una singola persona. A seconda del luogo di installazione e della larghezza della macchina, tuttavia, non può essere esclusa la presenza di altre persone nelle vicinanze.
+
+Sono implementate le seguenti modalità operative:
+\begin{enumerate}
+    \item presatura
+    \item taglio manuale (taglio singolo)
+    \item sequenza automatica di tagli (processo automatico successivo al primo taglio manuale)
+    \item cambio lama
+\end{enumerate}
+
+Nelle prime tre modalità operative è possibile il movimento della sola barra premi-pila, al fine di indicare la linea di taglio. A tale scopo, l'operatore aziona un pedale ed è in grado, contemporaneamente, di modificare la posizione della pila di carta con le mani all'interno della zona pericolosa.
+
+\subsection{Identificazione dei pericoli}
+\label{subsec:05-7-2}
+I seguenti pericoli meccanici sono significativi per una taglierina per carta:
+\begin{itemize}
+    \item G1 - schiacciamento da parte della barra premi-pila
+    \item G2 - taglio da parte della lama durante il processo di taglio
+    \item G3 - taglio da parte della lama in posizione di riposo
+\end{itemize}
+
+\textit{Stima del rischio}
+La forza dinamica di pressione della barra premi-pila (pericolo G1) è sufficientemente elevata da causare non solo lesioni da schiacciamento reversibili, ma anche fratture ossee. Per il pericolo G2, si deve presumere l'amputazione degli arti. Durante il posizionamento manuale della pila di carta, il pericolo G3 può causare lesioni alle mani o agli avambracci a contatto con la lama ferma. Queste lesioni sono tuttavia generalmente reversibili.
+
+Il livello di esposizione al pericolo degli operatori è molto elevato, poiché essi intervengono manualmente in modo regolare (ciclico) nella zona pericolosa nel corso del normale lavoro.
+
+Le velocità di discesa della barra premi-pila e della lama (pericoli G1 e G2) sono molto elevate, con la conseguenza che l'operatore non dispone praticamente di alcun mezzo per evitare il pericolo. Quando la lama è ferma (pericolo G3), l'operatore è in grado di evitare o limitare il danno.
+
+La probabilità del verificarsi di un evento pericoloso a seguito di un guasto tecnico non è nota. L'incidenza e la gravità su macchine comparabili sono tuttavia basse; i dispositivi di protezione qui implementati risultano quindi evidentemente adeguati.
+
+Qualora l'analisi del rischio per una funzione di sicurezza fornisse un PL\textsubscript{r} superiore a quello effettivamente implementato sulle macchine comparabili, il PL\textsubscript{\small r} potrebbe in linea di principio essere ridotto di un livello.
+
+Tuttavia, poiché sulle taglierine per carta comparabili le funzioni di sicurezza vengono realizzate con il PL più elevato, in questo caso non sarà possibile alcuna riduzione del PL\textsubscript{\small r} (vedi paragrafo~\ref{subsec:05-7-4}).
+
+\textit{Valutazione del rischio}
+Considerando tutte le condizioni operative e tutte le possibilità di intervento dell'operatore, si riscontra la necessità di una riduzione del rischio.
+
+\textit{Progettazione intrinsecamente sicura}
+Non è possibile ridurre la forza dinamica di pressione della barra premi-pila e l'energia della lama, poiché ciò comprometterebbe la funzionalità della macchina. Non è inoltre possibile una disposizione e progettazione della macchina tale da impedire all'operatore di accedere con le mani alla zona pericolosa, poiché è proprio in quel punto che l'operatore deve allineare la pila di carta.
+
+Possono tuttavia essere adottate le seguenti misure:
+\begin{enumerate}
+    \item schermatura di tutti i punti di accesso alla zona pericolosa, ad eccezione del lato operatore.
+    \item eliminazione di spigoli e angoli taglienti.
+    \item garanzia di una posizione di lavoro adeguata e dell'accessibilità dei comandi.
+    \item progettazione ergonomica della macchina.
+    \item eliminazione dei pericoli elettrici.
+    \item eliminazione dei pericoli presentati dall'impianto idraulico.
+    \item i componenti meccanici per la guida della lama e della barra premi pila sono collegati in modo tale che, nella posizione di riposo superiore, la lama sia schermata dalla barra premi pila
+\end{enumerate}
+
+\subsection{Funzioni di sicurezza richieste}
+\label{subsec:05-7-3}
+Tenendo conto di tutte le modalità operative e di tutti gli interventi manuali, sono richieste le seguenti funzioni di sicurezza:
+\begin{itemize}
+    \item SF1 - STO (Safe Torque Off), per evitare l'avviamento inatteso;
+    \item SF2 - Posizionamento controllato delle mani dell'operatore al di fuori della zona pericolosa durante un movimento pericoloso;
+    \item SF3 - Rilevamento dell'intervento di altre persone nella zona pericolosa mediante ESPE (attrezzatura di protezione elettrosensibile), ad es. una barriera fotoelettrica, e interruzione immediata dell'operazione di taglio;
+    \item SF4 - Arresto automatico di tutti i movimenti dopo ogni singolo taglio o al termine della sequenza di taglio automatica;
+    \item SF5 - Riduzione della forza dinamica di pressione della barra di serraggio durante la funzione "indicazione del taglio;
+    \item SF6 - Ritorno automatico della barra di serraggio e della lama alle rispettive posizioni iniziali in seguito all'interruzione di un'operazione di taglio;
+\end{itemize}
+
+Nota: Il principio dei pericoli sovrapposti potrebbe essere applicato alle parti della macchina costituite dalla lama e dalla barra di serraggio (vedere il sottopunto~\ref{subsec:05-3-2}). In questo caso, le funzioni SF1, SF3, SF4 e SF6 verrebbero suddivise in modo tale da definire funzioni di sicurezza dedicate separatamente per la lama e per la barra di serraggio. Nel caso in esame, tuttavia, questa suddivisione non viene effettuata, poiché, a causa del basso numero di componenti presenti in SF1-SF6, il PFH\textsubscript{D} richiesto può comunque essere raggiunto raggruppando tali funzioni di sicurezza.
+
+\textit{Caratteristiche delle funzioni di sicurezza}
+Il taglio deve essere interrotto immediatamente qualora la barriera fotoelettrica venga oltrepassata. La funzione di sicurezza SF3 ha pertanto priorità rispetto a SF2. Per SF5, deve essere specificata la forza massima consentita per la barra di serraggio durante la funzione "indicazione del taglio" (vedere~\cite{en1010-3}).
+
+\subsection{Determinazione del livello di prestazione richiesto \texorpdfstring{PL\textsubscript{r}}{PLr}}
+\label{subsec:05-7-4}
+Il PL\textsubscript{r} deve essere determinato per ciascuna funzione di sicurezza. Analizzando le situazioni in cui vengono utilizzate le singole funzioni di sicurezza, si osserva che la valutazione dei parametri di rischio S, F e P risulta simile per le funzioni di sicurezza da SF1 a SF6:
+	\begin{itemize}
+    \item S2 - lesione grave, generalmente irreversibile;
+    \item F2 - presenza continua nella zona di pericolo; la frequenza è pertanto superiore a una volta ogni 15 minuti;
+    \item P2 - la possibilità di sottrarsi alla situazione pericolosa è praticamente nulla;
+\end{itemize}
+
+In conformità al grafico di rischio della Figura~\ref{fig:05-09}, questa valutazione determina un Performance Level richiesto PL\textsubscript{r} pari a e. L'incidenza e la gravità degli infortuni su macchine comparabili sono basse. Le funzioni di sicurezza qui considerate per queste macchine sono già state realizzate con PL e, come specificato in~\cite{en1010-1}. Il risultato dell'analisi del rischio è quindi confermato dall'esperienza operativa; una possibile riduzione del PL\textsubscript{r} non è giustificata. La Figura~\ref{fig:05-11} mostra la documentazione e il grafico di rischio nell'applicazione software SISTEMA per la funzione di sicurezza SF1.
+
+Per il pericolo G3, "Taglio da parte della lama in stato di riposo", è stata ottenuta una riduzione del rischio adeguata mediante l'accoppiamento meccanico della lama e della barra di pressione. Non è richiesta una funzione di sicurezza.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\textwidth]{img05-11.png}
+    \caption{Documentazione e grafico di rischio per la SF1.}
+    \label{fig:05-11}
+\end{figure}
+
+\subsection{Misure di protezione complementari}
+\label{subsec:05-7-5}
+Sono necessarie le seguenti misure:
+\begin{enumerate}
+    \item Arresto di emergenza. Nel sistema di comando della macchina sono già disponibili funzioni di sicurezza idonee con PL e, utilizzate per l'arresto di emergenza. A condizione che il dispositivo di arresto di emergenza disponga di un circuito a due canali, anche l'arresto in caso di emergenza soddisfa quindi il PL e.
+    \item La liberazione di una persona intrappolata richiede un movimento di ritorno della lama e della barra di pressione; ciò è ottenuto mediante forza elastica.
+\end{enumerate}
+
+

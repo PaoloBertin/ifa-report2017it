@@ -1,0 +1,225 @@
+%==============================================================
+%  CAPITOLO 4
+%==============================================================
+\chapter{Rapporto e standard: una panoramica}
+\label{cap:04}
+
+Questo capitolo rimanda ai capitoli successivi e agli allegati di questa relazione relativi alla norma. Allo stesso tempo, fornisce una panoramica del processo iterativo per la progettazione delle parti relative alla sicurezza dei sistemi di controllo, basandosi sulla Figura 4.1, che corrisponde alla Figura 3 della norma. Le modifiche tra la seconda e la terza edizione della norma, e il suo sviluppo futuro, sono discusse alla fine del capitolo.
+
+%--------------------------------------------------------------
+\section{Identificazione delle funzioni di sicurezza e delle loro proprietà}
+\label{sec:04-1}
+
+Il processo di progettazione e valutazione inizia con un concetto consolidato, ovvero la definizione di una o più funzioni di sicurezza (FS). La procedura è illustrata nella Figura 4.1 dai blocchi da 1 a 3 ed è descritta in modo più dettagliato nel Capitolo~\ref{cap:05}. La domanda a cui si deve rispondere è: in che modo le parti del sistema di controllo relative alla sicurezza contribuiscono a ridurre il rischio di un pericolo su una macchina?
+
+In primo luogo, una macchina deve essere costruita in modo tale da non presentare più alcun pericolo durante l'uso (sicurezza intrinseca). Il secondo passo consiste quindi nel ridurre il rischio di qualsiasi pericolo che possa ancora presentarsi. Ciò può essere ottenuto mediante misure di protezione, che spesso comprendono una combinazione di dispositivi di protezione e controllo di sicurezza.
+
+Affinché tali misure di protezione raggiungano una qualità definita in relazione al rischio, un passaggio essenziale è la valutazione del rischio, come richiesto dalla Direttiva Macchine e descritto nella norma EN ISO 12100~\cite{eniso12100}. I dispositivi di protezione sono considerati, ai sensi della norma EN ISO 13849-1 (dispositivi di sicurezza), insieme al controllo di sicurezza, come la parte relativa alla sicurezza di un sistema di controllo. Insieme, svolgono una funzione di sicurezza; possono ad esempio impedire l'avvio imprevisto quando un operatore entra in una zona di pericolo. Poiché una macchina può facilmente avere diverse funzioni di sicurezza (ad esempio per le modalità automatiche e di impostazione), è importante valutare attentamente ogni singolo pericolo e la relativa funzione di sicurezza.
+
+La funzione di sicurezza può essere assunta da parti del sistema di controllo della macchina o da componenti richiesti in aggiunta ad esso. In entrambi i casi, queste parti sono componenti di sicurezza dei sistemi di controllo. Sebbene lo stesso hardware possa essere coinvolto nell'esecuzione di diverse funzioni di sicurezza, la qualità richiesta della riduzione del rischio per ciascuna funzione di sicurezza può variare. Nella norma, la qualità della riduzione del rischio è definita dal termine "Livello di Prestazione" (PL). Il risultato della valutazione del rischio determina il livello del valore PL richiesto per la funzione di sicurezza. Questa specifica per la progettazione del sistema di controllo è descritta come "Livello di Prestazione richiesto", PL\textsubscript{\small r}. Come si ottiene il PL?
+Il rischio di un pericolo su una macchina può essere ridotto non solo dal sistema di controllo, ma anche, ad esempio, da una protezione, come un cancello di protezione, o da dispositivi di protezione individuale, come gli occhiali di sicurezza. Una volta stabilito il ruolo delle misure di protezione fornite dal sistema di controllo, il livello di prestazione richiesto (PL\textsubscript{\small r}) viene determinato in modo rapido e diretto con l'ausilio di un semplice albero decisionale, il "grafico del rischio". La lesione associata è irreversibile (ad esempio, morte, perdita di arti) o reversibile (ad esempio, lesioni da schiacciamento, che possono guarire)? L'operatore è presente nella zona di pericolo frequentemente e per lunghi periodi (ad esempio, più frequentemente di una volta ogni quindici minuti) o raramente e per brevi periodi? L'operatore è ancora in grado di evitare un incidente (ad esempio, grazie a movimenti lenti della macchina)?
+Queste tre domande determinano il PL\textsubscript{\small r}. Ulteriori dettagli sono disponibili nella sotto clausola~\ref{sec:05-4}, esempi nell'Allegato~\ref{app:A}.
+
+%--------------------------------------------------------------
+\section{Progettazione e implementazione tecnica delle funzioni di sicurezza}
+\label{sec:04-2}
+Una volta definiti i requisiti relativi alle parti dei sistemi di controllo che riguardano la sicurezza, questi vengono prima progettati e poi implementati. Infine, viene effettuata una verifica per accertare se la riduzione del rischio richiesta, ovvero il valore PL\textsubscript{\small r} target (blocco 6 nella Figura 4.1), possa essere raggiunta mediante l'implementazione pianificata (blocchi 4 e 5 nella Figura 4.1) con il valore PL effettivo.
+
+Le fasi dei blocchi 4 e 5 sono descritte in dettaglio nel Capitolo~\ref{cap:06}. Seguendo la tradizione dei precedenti rapporti sui sistemi di controllo, anche il Capitolo~\ref{cap:08} di questo rapporto contiene un gran numero di esempi di circuiti per tutte le tecnologie di controllo e per ciascuna Categoria. Inoltre, le descrizioni generali contenute nei Capitoli~\ref{cap:05}, \ref{cap:06} e~\ref{cap:07} sono accompagnate da una descrizione completa di un esempio di circuito (una ghigliottina per il taglio della carta). Ciò fornisce allo sviluppatore una spiegazione illustrativa dei metodi e dei parametri descritti di seguito.
+
+Le componenti di sicurezza dei sistemi di controllo possono esercitare il loro effetto di riduzione del rischio solo se la funzione di sicurezza è stata definita correttamente fin dall'inizio. Durante la successiva implementazione, vengono applicati criteri di qualità quali la qualità dei componenti impiegati (durata di vita), la loro interazione (dimensionamento), l'efficacia della diagnostica (ad esempio, autodiagnosi) e la tolleranza ai guasti della struttura. Questi parametri determinano la probabilità media di un guasto pericoloso per ora (PFH\textsubscript{D}) e quindi il livello di sicurezza (PL) raggiunto. La norma EN ISO 13849-1 lascia a discrezione dell'utente i metodi con cui viene calcolato il PL. Pertanto, è possibile utilizzare anche il metodo di modellazione di Markov, molto complesso, nel rispetto dei parametri sopra indicati. La norma, tuttavia, descrive una procedura molto semplificata, ovvero l'utilizzo di architetture designate con l'applicazione di un diagramma a barre (vedere Figura 6.10), in cui la modellazione del PL è già inclusa.
+Gli esperti interessati alla derivazione del diagramma a barre possono trovarla nell'Allegato G.
+Le Categorie continuano a essere la base su cui viene determinato il PL. La loro definizione rimane sostanzialmente invariata rispetto alla prima edizione della norma; a partire dalla seconda edizione, tuttavia, sono stati introdotti requisiti aggiuntivi relativi alla qualità dei componenti e all'efficacia della diagnostica. Per le Categorie 2, 3 e 4 sono inoltre richieste misure adeguate contro il guasto di causa comune (Tabella~\ref{tab:04-1}).
+
+\begin{table}[ht]
+    \centering
+    \footnotesize
+    \setlength{\tabcolsep}{4pt}
+    \caption{Caratteristiche deterministiche e probabilistiche delle categorie; le aggiunte probabilistiche introdotte a partire dalla seconda edizione della norma sono evidenziate in grigio.}
+    \label{tab:04-1}
+    \begin{tabularx}{\textwidth}{|p{6cm}|*{5}{C|}}
+        \hline
+        \multirow{2}{*}{\textbf{Funzionalità}} & \multicolumn{5}{c|}{\textbf{Categoria}} \\
+        \cline{2-6}
+        & \textbf{B} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} \\
+        \hline
+        Progettazione conformemente alle norme pertinenti; resistenza alle influenze previste & X & X & X & X & X \\
+        \hline
+        Principi di sicurezza base & X & X & X & X & X \\
+        \hline
+        Principi di sicurezza ben collaudati & & X & X & X & X \\
+        \hline
+        Componenti ben collaudati & & X & & & \\
+        \hline
+        \rowcolor{black!10}
+        Tempo medio guasto pericoloso -- MTTF\textsubscript{D} & Da basso a medio & Alto & Da basso a alto & Da basso a alto & Alto \\
+        \hline
+        Rilevazione dei guasti (test) & & & X & X & X \\
+        \hline
+        Tolleranza al guasto singolo & & & & X & X \\
+        \hline
+        Considerazione accumulo guasti & & & & & \\
+        \hline
+        \rowcolor{black!10}
+        Copertura diagnostica media -- DC\textsubscript{avg} & Nessuno & Nessuno & Da basso a medio & Da basso a medio & Alto \\
+        \hline
+        Caratterizzata principalmente da & \multicolumn{2}{c|}{Selezione dei componenti} & \multicolumn{3}{c|}{Struttura} \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+La Tabella 6.2 fornisce una sintesi delle Categorie. Un aspetto essenziale, quando si utilizza il metodo di calcolo semplificato proposto, è la rappresentazione delle Categorie come diagrammi a blocchi logici, denominati "architetture designate".
+Poiché le Categorie richiedono l'analisi dei guasti (evitamento e controllo dei guasti), aspetti aggiuntivi riguardano l'affidabilità dei singoli componenti, i loro modi di guasto e il rilevamento dei guasti mediante misure diagnostiche automatiche. Le liste dei guasti e i principi di sicurezza fungono qui da base (vedi Allegato~\ref{app:C}). Oltre alla tradizionale FMEA (analisi dei modi di guasto e dei loro effetti), la EN ISO 13849-1 offre metodi di calcolo semplificati, come il metodo del conteggio dei componenti (parts count method). Ulteriori approfondimenti su questo argomento sono riportati nell'Allegato~\ref{app:B}.
+
+Una delle domande più frequenti riguardo alla probabilità di guasto riguarda il reperimento di dati di guasto affidabili per i componenti legati alla sicurezza, ovvero i valori di MTTF\textsubscript{D} (tempo medio al guasto pericoloso). A tale scopo, la fonte da privilegiare rispetto a tutte le altre è il costruttore dei componenti, ossia la sua scheda tecnica. Molti costruttori di componenti forniscono già questo tipo di dati. Anche laddove i dati del costruttore non siano disponibili, tuttavia, valori tipici di esempio possono essere ricavati da banche dati consolidate (come SN 29500 o IEC/TR 62380). La norma e l'Allegato~\ref{app:D} del presente report elencano inoltre una serie di valori realistici ricavati dal campo, e forniscono indicazioni sulla modellazione nello schema a blocchi legato alla sicurezza.
+
+L'efficacia della diagnostica, espressa dal valore DC\textsubscript{avg} (copertura diagnostica media), può essere determinata secondo il seguente principio semplice: per ciascun blocco vengono raccolte le misure di test che lo sorvegliano.
+
+Per ciascuna di queste misure di test, si determina uno dei quattro valori tipici di DC a partire da una tabella riportata nella norma. Da questi valori si può calcolare il parametro DC\textsubscript{avg} mediante una formula di media che appare complessa ma è in realtà semplice. Ulteriori informazioni sono disponibili al paragrafo~\ref{subsec:06-2-14} e nell'Allegato E.
+
+L'ultimo parametro, quello del CCF (guasto di causa comune, paragrafo 6.2.15), è altrettanto facile da calcolare: per questo parametro si presume che una causa, come contaminazione, sovratemperatura o cortocircuito, possa in determinate circostanze dare origine a più guasti che possono ad esempio disabilitare simultaneamente entrambi i canali di controllo. Per il controllo di questa fonte di pericolo, per i sistemi di Categoria 2, 3 e 4 occorre dimostrare che sono state adottate misure adeguate contro il CCF. Ciò si ottiene mediante un sistema a punti riferito a otto contromisure tipiche, per lo più di natura tecnica, con il quale è necessario raggiungere almeno 65 dei 100 punti disponibili (per i dettagli, vedi Allegato F).
+
+Ai guasti hardware casuali, che possono essere controllati mediante una buona struttura e una bassa probabilità di guasto, si affianca il vasto ambito dei guasti sistematici - ossia guasti insiti nel sistema fin dalla sua progettazione, come errori di dimensionamento, guasti software o errori logici - contro i quali occorre garantire protezione mediante misure di evitamento e controllo dei guasti. I guasti software costituiscono una parte rilevante di questi guasti. Fin dalla sua seconda edizione, la norma include i requisiti relativi al software legato alla sicurezza; alcuni aspetti specifici di questi requisiti erano tuttavia già noti da tempo dalle norme pertinenti. Le misure effettive sono graduate in funzione del PL richiesto. Ulteriori informazioni sono disponibili al paragrafo~\ref{subsec:06-1-2} per i guasti sistematici e al paragrafo 6.3 per il software.
+
+\section{Verifica e validazione del sistema di comando per ciascuna funzione di sicurezza}
+\label{sec:04-3}
+Se la progettazione ha già raggiunto una fase avanzata nel momento in cui viene determinato il PL raggiunto, si pone la questione se tale PL sia sufficiente per ciascuna funzione di sicurezza eseguita dal sistema di comando. A tale scopo, il PL viene confrontato con il PL\textsubscript{\small r} richiesto (vedi Blocco 6, Figura 4.1). Se il PL raggiunto per una funzione di sicurezza è inferiore al PL\textsubscript{\small r} richiesto, sono necessari miglioramenti progettuali di entità maggiore o minore (come l'impiego di componenti alternativi con un MTTF\textsubscript{D} superiore), fino a raggiungere infine un PL adeguato. Superato questo ostacolo, è necessaria una serie di fasi di validazione. A questo punto entra in gioco la Parte 2 della EN ISO 13849. Questo processo di validazione assicura in modo sistematico che tutti i requisiti funzionali e prestazionali posti alle parti dei sistemi di comando legate alla sicurezza siano stati soddisfatti (vedi Blocco 7, Figura 4.1). Ulteriori dettagli sono riportati nel Capitolo~\ref{cap:07}.
+
+\section{Modifiche derivanti dalla terza edizione della norma pubblicata nel 2015}
+\label{sec:04-4}
+Con l'Emendamento 1, dalla seconda edizione è stata prodotta la terza edizione della norma. I passaggi modificati servono principalmente a migliorare la comprensibilità e l'applicazione. Una panoramica dettagliata incentrata sulle modifiche è stata pubblicata dall'IFA nel 2015~\cite{hauke2015}. Le modifiche essenziali comprendono la considerazione, in fase di specifica del Performance Level richiesto (PL\textsubscript{\small r}), della probabilità di accadimento di un evento pericoloso; un nuovo metodo semplificato per la determinazione del PL della parte di uscita della parte del sistema di comando legata alla sicurezza (SRP/CS); e una proposta per la gestione dei requisiti relativi al SRESW (software embedded legato alla sicurezza) quando vengono utilizzati componenti standard. La Tabella~\ref{tab:04-2} mostra in quali paragrafi della norma e del presente report sono state apportate le principali modifiche.
+
+Gli schemi circuitali degli esempi riportati nel Capitolo~\ref{cap:08} del report sono stati completamente aggiornati rispetto alle versioni del 2008, sulla base delle suddette modifiche alla norma.
+
+\section{Sviluppi futuri della EN ISO 13849-1}
+\label{sec:04-5}
+La terza edizione della EN ISO 13849-1 sostituisce l'edizione precedente senza un periodo di transizione specifico. Poiché le modifiche - come descritto nel paragrafo precedente - riguardano essenzialmente integrazioni, aggiornamenti e miglioramenti, il passaggio dalla seconda alla terza edizione della norma non è tuttavia generalmente critico. Come già avviene da tempo, l'IFA sostiene questo processo con guide applicative liberamente disponibili. Queste guide si presentano sia sotto forma di riferimenti esplicativi con esempi, sia come il programma software gratuito "SISTEMA" (l'acronimo sta per "Safety Integrity Software Tool for the Evaluation of Machine Applications"), che supporta il calcolo e la documentazione del PL\textsubscript{\small r} e del PL (vedi Allegato H). La serie dei ricettari SISTEMA (SISTEMA cookbooks), costantemente ampliata, è dedicata a temi specifici rilevanti nell'applicazione della norma. Questi riguardano non solo SISTEMA stesso (le librerie SISTEMA, l'uso delle librerie di rete, "l'esecuzione di più istanze di SISTEMA in parallelo"), ma anche l'intero processo di progettazione secondo la norma ("Definizione delle funzioni di sicurezza", "Dallo schema elettrico al Performance Level", "Quando le architetture designate non corrispondono"). Infine, tra le risorse rientra il "Performance Level Calculator"~\cite{schaefer2015plc} sviluppato dall'IFA. Questo presenta il diagramma a barre sotto forma di disco rotante, mediante il quale è possibile determinare in modo semplice e preciso, in qualsiasi momento, il PFH\textsubscript{D} e il PL. Tutte le ulteriori risorse e riferimenti - come le informazioni sulle norme di prova e sui principi~\cite{dguvtest} di DGUV Test, il sistema di prova e certificazione dell'Assicurazione Sociale Tedesca contro gli Infortuni - sono disponibili sul sito web dell'IFA: www.dguv.de/ifa/13849.
+
+Nel corso dei lavori sulla terza edizione della EN ISO 13849-1, sono stati individuati diversi pacchetti di lavoro rilevanti che esulavano dall'ambito di un semplice emendamento. Tra questi, ad esempio, una revisione approfondita dei requisiti relativi al software, al fine di migliorarne l'idoneità all'applicazione pratica, nonché una precisazione coerente di quando il termine "SRP/CS" si riferisca all'intero sistema di comando che esegue una funzione di sicurezza, e quando invece a un sottosistema che esegue solo una parte della funzione di sicurezza. Affinché queste proposte potessero essere attuate nel lungo termine, il comitato responsabile della norma ha deciso già nel 2016, subito dopo la pubblicazione della terza edizione, di avviare i lavori per una revisione della norma. L'IFA sosterrà questa attività, come ha fatto efficacemente in passato, affinché i risultati attesi (eventualmente sotto forma di una quarta edizione della norma) siano nuovamente preparati per l'applicazione pratica, come descritto sopra.
+
+\newpage
+\begingroup
+\definecolor{tabblue}{RGB}{31,73,125}
+\fontsize{9}{11}\selectfont
+\setlength{\tabcolsep}{4pt}
+\captionsetup{hypcap=false}
+\renewcommand{\arraystretch}{1.0}
+\captionof{table}{Modifiche introdotte nella terza edizione della norma e al presente rapporto.}
+\label{tab:04-2}
+\begin{tabularx}{\textwidth}{|p{2.6cm}|p{7.8cm}|p{1.3cm}X|}
+    \hline
+    \rowcolor{tabblue}
+    \textcolor{white}{\textbf{Sezione della norma}} & \textcolor{white}{\textbf{Modifica}} & \multicolumn{2}{c|}{\textcolor{white}{\textbf{Sezione del rapporto}}} \\
+    \hline
+    \textbf{1} \newline Introduzione &
+    Sostituzione della Tabella 1, ``Applicazione raccomandata di IEC 62061 e ISO 13849-1'', con un riferimento a ISO/TR 23849 &
+    3 & Norme generiche relative alla sicurezza funzionale \\
+    \hline
+    \rowcolor{black!8}
+    \textbf{2} \newline Ambito &
+    La norma si applica agli SRP/CS in modalità ad alta richiesta e continua &
+    3 & Norme generiche relative alla sicurezza funzionale \\
+    \hline
+    \textbf{3} \newline Termini, definizioni, simboli e abbreviazioni &
+    Abbreviazione PFH\textsubscript{D} per la probabilità media di un guasto pericoloso per ora
+    \par\vspace{3pt}
+    MTTF\textsubscript{D}, B\textsubscript{10D}, T\textsubscript{10D} e λ\textsubscript{D} con il suffisso ``D'' in maiuscolo &
+    &
+    In tutto il documento
+    \par\vspace{3pt}
+    In tutto il documento \\
+    \hline
+    \rowcolor{black!8}
+    \textbf{4} \newline Considerazioni di progettazione (e Allegato K) &
+    Aggiornamento dei riferimenti alla ISO 12100:2010
+    \par\vspace{3pt}
+    Combinazione con sottosistemi conformi ad altre norme sulla sicurezza funzionale
+    \par\vspace{3pt}
+    Limite di MTTF\textsubscript{D} per la Categoria 4 aumentato a 2.500 anni
+    \par\vspace{3pt}
+    Frequenza di prova e MTTF\textsubscript{D} del canale di test nella Categoria 2
+    \par\vspace{3pt}
+    Determinazione alternativa del PFH\textsubscript{D} per la parte di uscita dell'SRP/CS secondo la Sezione 4.5.5 della norma
+    \par\vspace{3pt}
+    Requisiti per l'SRESW quando si utilizzano componenti standard &
+    5
+    \par\vspace{3pt}
+    6.4
+    \par\vspace{3pt}
+    6.2.13
+    \par\vspace{3pt}
+    6.2.5 \newline 6.2.14
+    \par\vspace{3pt}
+    6.2.17
+    \par\vspace{3pt}
+    6.3.10 &
+    Funzioni di sicurezza
+    \par\vspace{3pt}
+    Combinazione di SRP/CS
+    \par\vspace{3pt}
+    FMEA rispetto al metodo del conteggio dei componenti
+    \par\vspace{3pt}
+    Categoria 2 e \newline Copertura diagnostica
+    \par\vspace{3pt}
+    Determinazione del PL per la parte di uscita dell'SRP/CS
+    \par\vspace{3pt}
+    Requisiti per il software dei componenti standard \\
+    \hline
+    \textbf{5} \newline Funzioni di sicurezza &
+    Considerazione della perdita di alimentazione con possibile funzione di sicurezza separata &
+    5 & Funzioni di sicurezza \\
+    \hline
+    \rowcolor{black!8}
+    \textbf{6.2} \newline Categorie &
+    Avviso del pericolo come alternativa all'avvio di uno stato sicuro nella Categoria 2 fino a un PL\textsubscript{\small r} di c &
+    6.2.5 \newline 6.2.14 & Categoria 2 e \newline Copertura diagnostica \\
+    \hline
+    \textbf{6.3} \newline Combinazione &
+    Combinazione di SRP/CS: aggiunta del PFH\textsubscript{D} come metodo preferito &
+    6.4 & Combinazione di SRP/CS \\
+    \hline
+    \rowcolor{black!8}
+    \textbf{Allegato A,} \newline Determinazione del PL\textsubscript{\small r} &
+    Enfasi sul carattere informativo
+    \par\vspace{3pt}
+    Distinzione tra F1 e F2
+    \par\vspace{3pt}
+    Probabilità di accadimento di un evento pericoloso
+    \par\vspace{3pt}
+    Pericoli sovrapposti &
+    5
+    \par\vspace{3pt}
+    5.4.1
+    \par\vspace{3pt}
+    5.4.1
+    \par\vspace{3pt}
+    5.3.2 &
+    Funzioni di sicurezza, Allegato A, esempi
+    \par\vspace{3pt}
+    Grafico del rischio
+    \par\vspace{3pt}
+    Grafico del rischio
+    \par\vspace{3pt}
+    Esempi in cui la definizione della funzione di sicurezza influenza il calcolo successivo del PFH\textsubscript{D} \\
+    \hline
+    \textbf{Allegato C,} \newline MTTF\textsubscript{D} &
+    Modifica di alcuni valori tipici nel metodo della buona pratica ingegneristica &
+    & Allegato D, MTTF\textsubscript{D} \\
+    \hline
+    \rowcolor{black!8}
+    \textbf{Allegato E,} \newline DC &
+    Eliminazione di due misure di DC
+    \par\vspace{3pt}
+    Descrizione più dettagliata di ``rilevazione del guasto tramite il processo'' &
+    & Allegato E, DC \\
+    \hline
+    \textbf{Allegato I,} \newline Esempi &
+    Aggiornamento &
+    & Non pertinente \\
+    \hline
+\end{tabularx}
+
+\endgroup
+
+
+

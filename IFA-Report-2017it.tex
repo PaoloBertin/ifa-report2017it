@@ -1,0 +1,233 @@
+%==============================================================
+%  IFA Report 2017 - FILE PRINCIPALE
+%  Compilazione consigliata:  latexmk -lualatex main.tex
+%==============================================================
+\documentclass[12pt,a4paper,twoside,openright,fleqn]{book}
+
+%--------------------------------------------------------------
+% Lingua e codifica (LuaLaTeX: gestione Unicode/font nativa)
+%--------------------------------------------------------------
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{italian}
+
+%--------------------------------------------------------------
+% Geometria della pagina
+%--------------------------------------------------------------
+\usepackage[
+  a4paper,
+  inner=2.0cm, outer=2.0cm,
+  top=2.5cm,  bottom=2.5cm,
+  headheight=16pt
+]{geometry}
+
+%--------------------------------------------------------------
+% Pacchetti di base
+%--------------------------------------------------------------
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, calc, fit, decorations.pathreplacing}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{tabularx}
+\usepackage{caption}
+\captionsetup{singlelinecheck=false, justification=raggedright}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\usepackage{amsmath}
+% Equazioni numerate in modo continuo in tutto il report, (1), (2), ...,
+% come nell'originale (e non per capitolo come di default nella classe book)
+\counterwithout{equation}{chapter}
+% Con l'opzione di classe "fleqn" le equazioni sono allineate a sinistra;
+% rientro nullo, cosi' partono dal margine come il testo
+\setlength{\mathindent}{0pt}
+\usepackage{unicode-math}
+
+%--------------------------------------------------------------
+% Font del documento (Libertinus: testo e matematica abbinati)
+%--------------------------------------------------------------
+\setmainfont{Libertinus Serif}
+\setsansfont{Libertinus Sans}
+\setmonofont{Libertinus Mono}[Scale=MatchLowercase]
+\setmathfont{Libertinus Math}
+
+\usepackage{siunitx}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{emptypage}
+\usepackage[dvipsnames]{xcolor}
+
+%--------------------------------------------------------------
+% Riquadri numerati ("Box" nell'originale): titolo sopra il riquadro,
+% fondo grigio, divisibili tra pagine. Uso:
+%   \begin{riquadro}[label=box:06-1]{Titolo}  ...  \end{riquadro}
+%--------------------------------------------------------------
+\usepackage[most]{tcolorbox}
+\usepackage{needspace}
+% \needspace evita che il titolo resti da solo in fondo alla pagina
+\newtcolorbox[auto counter, number within=chapter]{riquadro}[2][]{%
+  breakable, enhanced, sharp corners,
+  colback=black!8, colframe=black!65, boxrule=0.6pt,
+  left=6pt, right=6pt, top=6pt, bottom=6pt,
+  before={\par\needspace{6\baselineskip}\noindent{\small\textbf{Riquadro~\thetcbcounter:}\enskip #2}\par\nopagebreak\vspace{2pt}},
+  fontupper=\small\setstretch{1.1},
+  #1}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{parskip}
+\setlength{\parskip}{0.5em}
+% Elenchi compatti: niente spazio extra tra le voci
+\setlist{itemsep=0pt, parsep=0pt, topsep=0.3em}
+
+\graphicspath{{immagini/}}
+
+%--------------------------------------------------------------
+% Bibliografia: capitolo numerato (nell'originale e' il capitolo 9)
+% e presente nell'indice. "nottoc" evita che tocbibind aggiunga
+% all'indice l'indice stesso.
+%--------------------------------------------------------------
+\usepackage[numbib,nottoc]{tocbibind}
+% NB: il titolo del capitolo (\bibname) va reimpostato dopo
+% \begin{document}, perche' polyglossia carica le diciture italiane
+% all'avvio del documento e sovrascriverebbe una modifica fatta qui.
+
+%--------------------------------------------------------------
+% Formato dei titoli dei capitoli (numero e titolo sulla stessa riga)
+%--------------------------------------------------------------
+\usepackage{titlesec}
+% Etichetta del capitolo: solo il numero nel corpo, "Allegato X" in appendice
+\newcommand{\etichettacapitolo}{\thechapter}
+\titleformat{\chapter}[hang]
+  {\normalfont\fontsize{16pt}{19pt}\selectfont\bfseries}
+  {\etichettacapitolo}
+  {1em}
+  {}
+\titlespacing*{\chapter}{0pt}{-1.62cm}{20pt}
+
+% Titoli di sezione della stessa dimensione delle sottosezioni (\large = 14,4pt)
+\titleformat*{\section}{\normalfont\large\bfseries}
+
+%--------------------------------------------------------------
+% Voci di capitolo nell'indice: prefisso e larghezza del numero
+% configurabili (servono per la dicitura "Allegato X" in appendice).
+% Ricalca la definizione della classe book, con \tocchapprefix in piu'.
+%--------------------------------------------------------------
+\newcommand{\tocchapprefix}{}
+\newlength{\tocchapnumwidth}
+\setlength{\tocchapnumwidth}{1.5em}
+\makeatletter
+\renewcommand*\l@chapter[2]{%
+  \ifnum \c@tocdepth >\m@ne
+    \addpenalty{-\@highpenalty}%
+    \vskip 1.0em \@plus\p@
+    \setlength\@tempdima{\tocchapnumwidth}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode \bfseries
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      \renewcommand\numberline[1]{\hb@xt@\@tempdima{\tocchapprefix ##1\hfil}}%
+      #1\nobreak\hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+      \penalty\@highpenalty
+    \endgroup
+  \fi}
+\makeatother
+
+%--------------------------------------------------------------
+% Intestazioni e piè di pagina
+%--------------------------------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\nouppercase{\leftmark}}
+\fancyhead[RO]{\nouppercase{\rightmark}}
+\fancyfoot[LE,RO]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+%--------------------------------------------------------------
+% Collegamenti ipertestuali (caricare per ultimo)
+%--------------------------------------------------------------
+\usepackage[
+  hidelinks,
+  pdfusetitle,
+  bookmarksnumbered
+]{hyperref}
+
+%--------------------------------------------------------------
+% Metadati
+%--------------------------------------------------------------
+\title{IFA Report 2/2017it \\[1em] \textbf{Sicurezza funzionale dei comandi delle macchine} \\[1em] Applicazione della EN ISO 13849}
+\author{IFA}
+\date{Luglio 2019 \\[1.5em] Traduzione in italiano v 1.0}
+
+%==============================================================
+\begin{document}
+%==============================================================
+
+%--------------------------------------------------------------
+% Parti iniziali
+%--------------------------------------------------------------
+% Il \nocite{*} deve restare QUI, come primissima cosa dopo
+% \begin{document} e prima di \listoffigures/\listoftables: con lo stile
+% "unsrt" BibTeX numera le voci nell'ordine in cui incontra le citazioni,
+% quindi questa riga fissa la numerazione sull'ordine di bibliografia.bib
+% (che e' quello del report originale inglese). Attenzione: una \cite
+% dentro una \caption viene eseguita anche dagli elenchi di figure e
+% tabelle, che stanno qui nel frontespizio; se il \nocite venisse dopo,
+% quella voce si prenderebbe il numero 1 e sfaserebbe tutte le altre.
+\nocite{*}
+
+\frontmatter
+
+% Titolo del capitolo di bibliografia (vedi nota nel preambolo)
+\renewcommand{\bibname}{Riferimenti}
+
+\maketitle
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+%--------------------------------------------------------------
+% Corpo del testo
+%--------------------------------------------------------------
+\mainmatter
+
+\include{capitoli/prefazione}
+\include{capitoli/introduzione}
+\include{capitoli/cap03}
+\include{capitoli/cap04}
+\include{capitoli/cap05}
+\include{capitoli/cap06}
+\include{capitoli/cap07}
+\include{capitoli/cap08}
+\include{capitoli/cap09}
+
+%--------------------------------------------------------------
+% Allegati
+%--------------------------------------------------------------
+% Stessa dicitura anche nell'indice: i comandi vengono scritti nel file .toc
+% prima delle appendici, cosi' valgono solo dalla lettera A in poi
+\addtocontents{toc}{\protect\setlength{\protect\tocchapnumwidth}{6em}}
+\addtocontents{toc}{\protect\renewcommand{\protect\tocchapprefix}{Allegato~}}
+\cleardoublepage
+
+\appendix
+\renewcommand{\chaptername}{Allegato}
+\renewcommand{\etichettacapitolo}{\chaptername~\thechapter}
+
+\include{allegati/allegatoA}
+\include{allegati/allegatoB}
+\include{allegati/allegatoC}
+\include{allegati/allegatoD}
+
+%--------------------------------------------------------------
+% Parti finali
+%--------------------------------------------------------------
+\backmatter
+
+%==============================================================
+\end{document}
+%==============================================================

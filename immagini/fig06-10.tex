@@ -1,0 +1,147 @@
+%==============================================================
+%  Figura 6.10 - Diagramma a barre per la determinazione
+%  semplificata del PL
+%  Adattamento in italiano della Figura 6.10 dell'IFA Report 2/2017
+%
+%  Le coordinate sono state ricavate dalla grafica vettoriale
+%  dell'originale (pagina 61 di rep0217e.pdf) e sono espresse nei
+%  punti PostScript di quel disegno; l'unita' della tikzpicture
+%  (x=y=0.042cm) riporta il tutto alle proporzioni originali.
+%
+%  Sistema di riferimento: l'origine e' l'angolo in basso a sinistra
+%  del riquadro del grafico; l'asse y e' rivolto verso l'alto.
+%  Le sei linee orizzontali (da 10^-4 a 10^-8) sono equidistanti,
+%  cioe' la scala delle PFHD e' logaritmica a tratti: ogni banda
+%  corrisponde a un Performance Level (a ... e).
+%==============================================================
+\begin{tikzpicture}[
+  x=0.042cm, y=0.042cm,
+  font=\small,
+  cornice/.style={draw=black, line width=0.9pt},
+  riquadro/.style={draw=black, line width=1.06pt},
+  griglia/.style={draw=black, line width=1.06pt,
+                  dash pattern=on 4.24pt off 2.12pt},
+  tacca/.style={draw=black, line width=1.06pt},
+  separatore/.style={draw=black, line width=0.8pt},
+  contorno/.style={draw=black, line width=0.8pt},
+  puntini/.style={draw=black, line width=0.52pt, line cap=butt,
+                  dash pattern=on 0.53pt off 1.05pt},
+  tratti/.style={draw=black, line width=0.52pt},
+  etichetta/.style={draw=black, fill=black!15, line width=1.06pt,
+                    rounded corners=2.9pt, inner sep=0pt, align=center}
+]
+
+\setstretch{1}
+
+% --- riempimenti delle barre ------------------------------------------
+% MTTFD basso: fondo bianco a puntini (righe orizzontali tratteggiate)
+\def\riempipuntini#1#2#3#4{%
+  \begin{scope}
+    \clip (#1,#2) rectangle (#3,#4);
+    \foreach \k in {0,...,20}{%
+      \draw[puntini] (#1,{#4-1.1-2.2155*\k}) -- (#3,{#4-1.1-2.2155*\k});}
+  \end{scope}}
+% MTTFD medio: fondo bianco con tratteggio a 45 gradi
+\def\riempitratti#1#2#3#4{%
+  \begin{scope}
+    \clip (#1,#2) rectangle (#3,#4);
+    \foreach \k in {0,...,34}{%
+      \draw[tratti] (#1,{#2-(#4-#2)+3.13*\k})
+        -- ++({(#3-#1)+(#4-#2)},{(#3-#1)+(#4-#2)});}
+  \end{scope}}
+\def\barrabassa#1#2#3#4{%
+  \fill[white] (#1,#2) rectangle (#3,#4);
+  \riempipuntini{#1}{#2}{#3}{#4}
+  \draw[contorno] (#1,#2) rectangle (#3,#4);}
+\def\barramedia#1#2#3#4{%
+  \fill[white] (#1,#2) rectangle (#3,#4);
+  \riempitratti{#1}{#2}{#3}{#4}
+  \draw[contorno] (#1,#2) rectangle (#3,#4);}
+\def\barraalta#1#2#3#4{%
+  \fill[black] (#1,#2) rectangle (#3,#4);
+  \draw[contorno] (#1,#2) rectangle (#3,#4);}
+
+% --- colonna delle PFHD a sinistra --------------------------------------
+\draw[black!15, line width=6.62pt] (-38.64,211.73) -- (-38.64,0.44);
+
+\node[etichetta, minimum width=1.4423cm, minimum height=1.1726cm]
+  at (-38.81,218.58) {\textit{PFH}$_{\mathrm{D}}$\\(1/h)};
+
+% tacche + etichette dei valori (le sei linee orizzontali del grafico)
+\foreach \yv/\testo in {175.89/{$10^{-4}$}, 140.50/{$10^{-5}$},
+                        105.15/{$3\cdot 10^{-6}$}, 70.05/{$10^{-6}$},
+                        34.87/{$10^{-7}$}, 0/{$10^{-8}$}}{%
+  \draw[tacca] (-23.86,\yv) -- (-2.81,\yv);
+  \node[etichetta, minimum width=1.4423cm, minimum height=0.5586cm]
+    at (-38.81,\yv) {\testo};}
+
+% --- asse dei PL ---------------------------------------------------------
+\node at (-10.4,217.7) {PL};
+\draw[draw=black, line width=1.06pt, -{Triangle[length=11pt,width=6pt]}]
+  (0.03,-41.87) -- (0.03,208.69);
+\foreach \yv/\pl in {158.2/a, 122.8/b, 87.6/c, 52.5/d, 17.4/e}
+  \node at (-9.0,\yv) {\pl};
+
+% --- riquadro del grafico e griglia --------------------------------------
+\draw[riquadro] (0,0) rectangle (342.01,175.89);
+\foreach \yv in {140.50, 105.15, 70.05, 34.87}
+  \draw[griglia] (0.05,\yv) -- (342.03,\yv);
+
+% --- barre ----------------------------------------------------------------
+% Cat. B, DCavg = nessuna
+\barrabassa{13.85}{143.10}{35.23}{160.84}
+\barramedia{13.85}{111.48}{35.23}{143.10}
+% Cat. 1, DCavg = nessuna
+\barraalta{62.57}{74.80}{83.95}{111.08}
+% Cat. 2, DCavg = bassa
+\barrabassa{111.69}{130.62}{133.07}{155.26}
+\barramedia{111.69}{92.81}{133.07}{130.62}
+\barraalta{111.69}{60.92}{133.07}{92.81}
+% Cat. 2, DCavg = media
+\barrabassa{160.52}{120.54}{181.89}{151.25}
+\barramedia{160.52}{76.21}{181.89}{120.54}
+\barraalta{160.52}{48.10}{181.89}{76.21}
+% Cat. 3, DCavg = bassa
+\barrabassa{209.34}{106.01}{230.72}{144.25}
+\barramedia{209.34}{64.80}{230.72}{106.01}
+\barraalta{209.34}{34.98}{230.72}{64.80}
+% Cat. 3, DCavg = media
+\barrabassa{258.11}{79.85}{279.48}{125.46}
+\barramedia{258.11}{50.07}{279.48}{79.85}
+\barraalta{258.11}{22.31}{279.48}{50.07}
+% Cat. 4, DCavg = alta
+\barraalta{306.93}{13.89}{328.31}{34.23}
+
+% --- intestazioni delle colonne ------------------------------------------
+\foreach \xv in {48.79, 97.59, 146.34, 195.12, 243.93, 292.69}
+  \draw[separatore] (\xv,6.96) -- (\xv,-41.88);
+
+\foreach \xc/\cat/\dc in {24.4/B/nessuna, 73.2/1/nessuna, 122.0/2/bassa,
+                          170.7/2/media, 219.5/3/bassa, 268.3/3/media,
+                          317.4/4/alta}{%
+  \node at (\xc,-10.1) {Cat.~\cat};
+  \node[align=center] at (\xc,-31.5)
+    {\textit{DC}$_{\mathrm{avg}}$\,=\\\dc};}
+
+% --- legenda ---------------------------------------------------------------
+\node[anchor=west] at (-49.32,-75.32) {\bfseries Legenda};
+\node[anchor=west] at (-49.32,-97.07) {\textit{PFH}$_{\mathrm{D}}$};
+\node[anchor=west] at (-11.52,-97.07)
+  {Probabilità media di guasto pericoloso per ora};
+\node[anchor=west] at (-49.32,-117.04) {PL};
+\node[anchor=west] at (-11.52,-117.04) {Performance Level};
+
+\barrabassa{-49.36}{-151.30}{-27.91}{-129.85}
+\node[anchor=west] at (-11.52,-140.58)
+  {\textit{MTTF}$_{\mathrm{D}}$ di ciascun canale = basso};
+\barramedia{-49.36}{-176.77}{-27.91}{-155.33}
+\node[anchor=west] at (-11.52,-166.05)
+  {\textit{MTTF}$_{\mathrm{D}}$ di ciascun canale = medio};
+\barraalta{-49.36}{-202.25}{-27.91}{-180.81}
+\node[anchor=west] at (-11.52,-191.53)
+  {\textit{MTTF}$_{\mathrm{D}}$ di ciascun canale = alto};
+
+% --- cornice esterna --------------------------------------------------------
+\draw[cornice] (-66.19,242.74) rectangle (347.91,-216.25);
+
+\end{tikzpicture}
