@@ -5,12 +5,16 @@
 \label{cap:03}
 
 Oltre alla norma EN ISO 13849, di cui si discute in questo rapporto, esistono norme generiche alternative di rilevanza nel campo della sicurezza funzionale. Come mostrato nella Figura~\ref{fig:03-01}, queste norme sono quelle della serie IEC 61508~\cite{iec61508} e la relativa norma di settore IEC 62061~\cite{iec62061} per l'industria meccanica. Entrambe sono limitate nel loro ambito ai sistemi elettrici, elettronici ed elettronici programmabili.
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.8\textwidth]{img03-01.png}
-    \caption{Campo di applicazione delle norme generiche che disciplinano la sicurezza funzionale; SRP/CS: parte di un sistema di comando legata alla sicurezza; SRECS: sistema di comando elettrico legato alla sicurezza; SIS: sistema strumentato di sicurezza; sistema E/E/PE: sistema elettrico/elettronico/elettronico programmabile.}
-    \label{fig:03-01}
-\end{figure}
+% La minipage tiene insieme disegno e didascalia (figura non fluttuante)
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \centering
+        \captionsetup{hypcap=false}
+        \resizebox{0.92\textwidth}{!}{\input{immagini/fig03-01}}
+        \captionof{figure}{Campo di applicazione delle norme generiche che disciplinano la sicurezza funzionale; SRP/CS: parte di un sistema di comando legata alla sicurezza; SRECS: sistema di comando elettrico legato alla sicurezza; SIS: sistema strumentato di sicurezza; sistema E/E/PE: sistema elettrico/elettronico/elettronico programmabile.}
+        \label{fig:03-01}
+    \end{minipage}
+\end{center}
 
 Un sistema di classificazione che prevede i “Livelli di Integrità di Sicurezza” (SIL) è definito nelle norme IEC 61508 e IEC 62061. I SIL fungono da indicatori del livello di affidabilità in relazione alla sicurezza. I valori associati rappresentano misure di guasto obiettivo, ciascuna comprendente un decennio. La norma IEC 61508 distingue due diverse applicazioni delle funzioni di sicurezza:
 \begin{itemize}
@@ -18,12 +22,16 @@ Un sistema di classificazione che prevede i “Livelli di Integrità di Sicurezz
     \item funzioni di sicurezza in modalità ad alta richiesta o continua
 \end{itemize}
 In modalità a bassa richiesta, la dimensione per la sicurezza è la probabilità media di un guasto pericoloso di una funzione di sicurezza nel momento della richiesta: PFDavg. In modalità ad alta richiesta o continua, la probabilità media di un guasto pericoloso per ora PFH\textsubscript{D} è valutata dalla norma IEC 62061 (per ulteriori informazioni, fare riferimento anche a~\cite{boemer2014}). Con alcune eccezioni, solo la seconda definizione è rilevante nel settore dei macchinari e quindi nella norma IEC 62061. La nuova edizione della norma EN ISO 13849-1 ha adottato anche questa definizione della modalità operativa e limita di conseguenza l'ambito di applicazione della norma. I sistemi SIL 4 con rischi più elevati non sono noti nel settore dei macchinari e non sono quindi considerati nella norma IEC 62061.
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.8\textwidth]{img03-02.png}
-    \caption{Questo sito web fornisce i link a tutti gli strumenti pratici riguardanti la sicurezza dei comandi delle macchine}
-    \label{fig:03-02}
-\end{figure}
+% La minipage tiene insieme disegno e didascalia (figura non fluttuante)
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \centering
+        \captionsetup{hypcap=false}
+        \resizebox{0.92\textwidth}{!}{\input{immagini/fig03-02}}
+        \captionof{figure}{Questo sito web fornisce i link a tutti gli strumenti pratici riguardanti la sicurezza dei comandi delle macchine}
+        \label{fig:03-02}
+    \end{minipage}
+\end{center}
 L'approccio essenziale delle norme che regolano la sicurezza funzionale (IEC 61508 e IEC 62061) sviluppate dalla Commissione Elettrotecnica Internazionale (IEC), ovvero quello di definire le probabilità di guasto come parametro caratteristico senza l'inclusione specifica delle architetture, appare inizialmente più universale. L'approccio della norma EN ISO 13849-1, tuttavia, offre agli utenti la possibilità di sviluppare e valutare funzioni di sicurezza, da un sensore a un attuatore (ad esempio una valvola), nell'ambito di un'unica norma, anche se le funzioni possono coinvolgere tecnologie diverse. La Parte 1 della norma EN ISO 13849 è accompagnata da una Parte 2 intitolata "Validazione".
 
 La presente edizione, pubblicata nel 2012, prende in considerazione anche l'attuale.
@@ -53,9 +61,13 @@ La tabella precedente presente in forma identica nelle introduzioni di EN ISO 13
 Già nel 2011 la IEC propose la fusione dei due standard per formare uno standard ISO/IEC, e avviò i lavori nel 2012. I risultati di un'indagine internazionale condotta durante i lavori sulla norma ISO/IEC 17305 mostrarono chiaramente che gli standard 13849 erano predominanti nell'applicazione tra i produttori di macchine e gli utenti finali. Come mostrato nella Figura~\ref{fig:03-03}, la norma EN ISO 13849-1 era utilizzata dal 90\%, ovvero dalla grande maggioranza delle 715 persone intervistate. Lo sviluppo del previsto standard ISO/IEC 17305 fu oggetto di accese discussioni tra gli esperti. Le lunghe discussioni avevano portato il progetto ad accumulare almeno due anni di ritardo rispetto alla tabella di marcia originale. Il gruppo di lavoro era già consapevole dell'essenziale necessità di considerare la compatibilità con le norme EN ISO 13849-1 e IEC 62061. 
 
 L'applicazione diretta del nuovo standard e il mantenimento dei metodi esistenti erano obiettivi espliciti. Non è possibile rispondere alla domanda se un nuovo standard avrebbe raggiunto questi obiettivi e se sarebbe stato in grado di sostituire gli standard esistenti. Nell'ottobre 2015, l'ISO/TC 199 ha deciso di abbandonare i lavori su uno standard comune e di sospendere le attività del gruppo di lavoro. Tuttavia, non appena i lavori si sono ufficialmente interrotti, è apparso chiaro che la questione non sarebbe stata risolta. Pertanto, si dovranno formulare raccomandazioni se e, in caso affermativo, come, un futuro progetto comune sulla sicurezza funzionale potrebbe essere condotto congiuntamente dai due organismi di normazione. Entrambi gli standard saranno rivisti a breve nell'ambito della "manutenzione ordinaria". I risultati del lavoro svolto finora sulla norma ISO/IEC 17305 saranno recepiti in entrambi gli standard.
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.8\textwidth]{img03-03.png}
-    \caption{Norme utilizzate dai fabbricanti di macchine e dagli utilizzatori finali, secondo quanto emerso da un'indagine condotta nel 2012/2013 da ISO e IEC in vista della fusione della EN ISO 13849-1 e della IEC 62061.}
-    \label{fig:03-03}
-\end{figure}
+% La minipage tiene insieme disegno e didascalia (figura non fluttuante)
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \centering
+        \captionsetup{hypcap=false}
+        \resizebox{0.92\textwidth}{!}{\input{immagini/fig03-03}}
+        \captionof{figure}{Norme utilizzate dai fabbricanti di macchine e dagli utilizzatori finali, secondo quanto emerso da un'indagine condotta nel 2012/2013 da ISO e IEC in vista della fusione della EN ISO 13849-1 e della IEC 62061.}
+        \label{fig:03-03}
+    \end{minipage}
+\end{center}

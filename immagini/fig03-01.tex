@@ -1,0 +1,81 @@
+%==============================================================
+%  Figura 3.1 - Campo di applicazione delle norme generiche che
+%  disciplinano la sicurezza funzionale
+%  Adattamento in italiano della Figura 3.1 dell'IFA Report 2/2017
+%==============================================================
+\begin{tikzpicture}[
+  font=\normalsize,
+  ellisse/.style={ellipse, draw=black, line width=0.8pt, align=center,
+                  text width=3.8cm, minimum width=5.4cm, minimum height=2.8cm,
+                  font=\large},
+  norma/.style={draw=black, line width=0.8pt, align=center, font=\large,
+                minimum width=4.4cm, minimum height=1.9cm},
+  testo/.style={align=left, anchor=north west, inner sep=0pt},
+  chiara/.style={fill=black!8},
+  scura/.style={fill=black!30},
+  frecciona/.style={draw=black, line width=5pt,
+                    -{Triangle[length=10pt,width=15pt]}}
+]
+
+%--------------------------------------------------------------
+% Settori di applicazione
+%--------------------------------------------------------------
+\node[ellisse, chiara] (macchine) at (4.7,8.0) {Settore\\ macchine};
+\node[ellisse, scura]  (processo) at (11.6,8.0) {Settore\\ di processo};
+
+%--------------------------------------------------------------
+% Tecnologie coperte dalla EN ISO 13849 (colonna di sinistra)
+%--------------------------------------------------------------
+\node[testo, text width=4.1cm] (tecnologie) at (0.1,6.35)
+  {SRP/CS che impiegano\\
+   \textbullet\ sistemi elettrici/\\
+   \hspace*{0.3cm}elettronici/elettronici\\
+   \hspace*{0.3cm}programmabili\\
+   \textbullet\ sistemi idraulici\\
+   \textbullet\ sistemi pneumatici\\
+   \textbullet\ sistemi meccanici};
+
+%--------------------------------------------------------------
+% Norme di settore (riga intermedia)
+%--------------------------------------------------------------
+\node[norma, chiara] (i62061) at (7.7,4.8) {IEC 62061};
+\node[norma, scura]  (i61511) at (12.6,4.8) {IEC 61511};
+
+\node[anchor=south east] at ([yshift=0.12cm]i62061.north east) {SRECS};
+\node[anchor=south east] at ([yshift=0.12cm]i61511.north east) {SIS};
+\node[anchor=west] at ([xshift=0.3cm]i61511.south east) {\ldots};
+
+%--------------------------------------------------------------
+% Norme di base (riga inferiore)
+%--------------------------------------------------------------
+% La riga inferiore resta sotto l'elenco delle tecnologie
+\coordinate (base) at ([yshift=-0.55cm]tecnologie.south);
+\node[norma, chiara, anchor=north] (i13849) at (3.7,0 |- base) {EN ISO 13849};
+\node[norma, scura, anchor=north]  (i61508) at (9.4,0 |- base) {IEC 61508};
+
+%--------------------------------------------------------------
+% Sistemi coperti dalla IEC 61508 (colonna di destra)
+%--------------------------------------------------------------
+\node[testo, text width=4.6cm] (eepe) at (14.6,3.35)
+  {Sistema E/E/PE sotto\\
+   forma di\\
+   \textbullet\ sistemi elettrici/\\
+   \hspace*{0.3cm}elettronici/elettronici\\
+   \hspace*{0.3cm}programmabili};
+
+%--------------------------------------------------------------
+% Frecce: dalle norme ai rispettivi settori di applicazione
+%--------------------------------------------------------------
+\coordinate (piedefreccia) at (4.7,0 |- i13849.north);
+\draw[frecciona] ([yshift=0.3cm]piedefreccia) -- (4.7,6.30);
+\draw[frecciona] (6.75,4.00) -- (5.87,6.45);
+\draw[frecciona] (11.65,4.00) -- (10.77,6.45);
+
+%--------------------------------------------------------------
+% Cornice
+%--------------------------------------------------------------
+\draw[draw=black, line width=1pt]
+  ([shift={(-0.45,0.45)}]current bounding box.north west) rectangle
+  ([shift={(0.45,-0.45)}]current bounding box.south east);
+
+\end{tikzpicture}
