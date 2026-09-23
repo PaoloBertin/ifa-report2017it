@@ -6,6 +6,17 @@
 
 Questo capitolo rimanda ai capitoli successivi e agli allegati di questa relazione relativi alla norma. Allo stesso tempo, fornisce una panoramica del processo iterativo per la progettazione delle parti relative alla sicurezza dei sistemi di controllo, basandosi sulla Figura 4.1, che corrisponde alla Figura 3 della norma. Le modifiche tra la seconda e la terza edizione della norma, e il suo sviluppo futuro, sono discusse alla fine del capitolo.
 
+% La minipage tiene insieme disegno e didascalia (figura non fluttuante)
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \centering
+        \captionsetup{hypcap=false}
+        \resizebox{!}{0.72\textheight}{\input{immagini/fig04-01}}
+        \captionof{figure}{Processo iterativo per la progettazione delle parti dei sistemi di comando legate alla sicurezza: SF = funzione di sicurezza; PL = livello di prestazione; PL\textsubscript{r} = livello di prestazione richiesto; SRP/CS = parte di un sistema di comando legata alla sicurezza; \textit{MTTF}\textsubscript{D} = tempo medio al guasto pericoloso; \textit{DC}\textsubscript{avg} = copertura diagnostica media; CCF = guasto di causa comune.}
+        \label{fig:04-01}
+    \end{minipage}
+\end{center}
+
 %--------------------------------------------------------------
 \section{Identificazione delle funzioni di sicurezza e delle loro proprietà}
 \label{sec:04-1}
@@ -17,6 +28,7 @@ In primo luogo, una macchina deve essere costruita in modo tale da non presentar
 Affinché tali misure di protezione raggiungano una qualità definita in relazione al rischio, un passaggio essenziale è la valutazione del rischio, come richiesto dalla Direttiva Macchine e descritto nella norma EN ISO 12100~\cite{eniso12100}. I dispositivi di protezione sono considerati, ai sensi della norma EN ISO 13849-1 (dispositivi di sicurezza), insieme al controllo di sicurezza, come la parte relativa alla sicurezza di un sistema di controllo. Insieme, svolgono una funzione di sicurezza; possono ad esempio impedire l'avvio imprevisto quando un operatore entra in una zona di pericolo. Poiché una macchina può facilmente avere diverse funzioni di sicurezza (ad esempio per le modalità automatiche e di impostazione), è importante valutare attentamente ogni singolo pericolo e la relativa funzione di sicurezza.
 
 La funzione di sicurezza può essere assunta da parti del sistema di controllo della macchina o da componenti richiesti in aggiunta ad esso. In entrambi i casi, queste parti sono componenti di sicurezza dei sistemi di controllo. Sebbene lo stesso hardware possa essere coinvolto nell'esecuzione di diverse funzioni di sicurezza, la qualità richiesta della riduzione del rischio per ciascuna funzione di sicurezza può variare. Nella norma, la qualità della riduzione del rischio è definita dal termine "Livello di Prestazione" (PL). Il risultato della valutazione del rischio determina il livello del valore PL richiesto per la funzione di sicurezza. Questa specifica per la progettazione del sistema di controllo è descritta come "Livello di Prestazione richiesto", PL\textsubscript{\small r}. Come si ottiene il PL?
+
 Il rischio di un pericolo su una macchina può essere ridotto non solo dal sistema di controllo, ma anche, ad esempio, da una protezione, come un cancello di protezione, o da dispositivi di protezione individuale, come gli occhiali di sicurezza. Una volta stabilito il ruolo delle misure di protezione fornite dal sistema di controllo, il livello di prestazione richiesto (PL\textsubscript{\small r}) viene determinato in modo rapido e diretto con l'ausilio di un semplice albero decisionale, il "grafico del rischio". La lesione associata è irreversibile (ad esempio, morte, perdita di arti) o reversibile (ad esempio, lesioni da schiacciamento, che possono guarire)? L'operatore è presente nella zona di pericolo frequentemente e per lunghi periodi (ad esempio, più frequentemente di una volta ogni quindici minuti) o raramente e per brevi periodi? L'operatore è ancora in grado di evitare un incidente (ad esempio, grazie a movimenti lenti della macchina)?
 Queste tre domande determinano il PL\textsubscript{\small r}. Ulteriori dettagli sono disponibili nella sotto clausola~\ref{sec:05-4}, esempi nell'Allegato~\ref{app:A}.
 
@@ -29,6 +41,7 @@ Le fasi dei blocchi 4 e 5 sono descritte in dettaglio nel Capitolo~\ref{cap:06}.
 
 Le componenti di sicurezza dei sistemi di controllo possono esercitare il loro effetto di riduzione del rischio solo se la funzione di sicurezza è stata definita correttamente fin dall'inizio. Durante la successiva implementazione, vengono applicati criteri di qualità quali la qualità dei componenti impiegati (durata di vita), la loro interazione (dimensionamento), l'efficacia della diagnostica (ad esempio, autodiagnosi) e la tolleranza ai guasti della struttura. Questi parametri determinano la probabilità media di un guasto pericoloso per ora (PFH\textsubscript{D}) e quindi il livello di sicurezza (PL) raggiunto. La norma EN ISO 13849-1 lascia a discrezione dell'utente i metodi con cui viene calcolato il PL. Pertanto, è possibile utilizzare anche il metodo di modellazione di Markov, molto complesso, nel rispetto dei parametri sopra indicati. La norma, tuttavia, descrive una procedura molto semplificata, ovvero l'utilizzo di architetture designate con l'applicazione di un diagramma a barre (vedere Figura 6.10), in cui la modellazione del PL è già inclusa.
 Gli esperti interessati alla derivazione del diagramma a barre possono trovarla nell'Allegato G.
+
 Le Categorie continuano a essere la base su cui viene determinato il PL. La loro definizione rimane sostanzialmente invariata rispetto alla prima edizione della norma; a partire dalla seconda edizione, tuttavia, sono stati introdotti requisiti aggiuntivi relativi alla qualità dei componenti e all'efficacia della diagnostica. Per le Categorie 2, 3 e 4 sono inoltre richieste misure adeguate contro il guasto di causa comune (Tabella~\ref{tab:04-1}).
 
 \begin{table}[ht]
@@ -69,6 +82,7 @@ Le Categorie continuano a essere la base su cui viene determinato il PL. La loro
 \end{table}
 
 La Tabella 6.2 fornisce una sintesi delle Categorie. Un aspetto essenziale, quando si utilizza il metodo di calcolo semplificato proposto, è la rappresentazione delle Categorie come diagrammi a blocchi logici, denominati "architetture designate".
+
 Poiché le Categorie richiedono l'analisi dei guasti (evitamento e controllo dei guasti), aspetti aggiuntivi riguardano l'affidabilità dei singoli componenti, i loro modi di guasto e il rilevamento dei guasti mediante misure diagnostiche automatiche. Le liste dei guasti e i principi di sicurezza fungono qui da base (vedi Allegato~\ref{app:C}). Oltre alla tradizionale FMEA (analisi dei modi di guasto e dei loro effetti), la EN ISO 13849-1 offre metodi di calcolo semplificati, come il metodo del conteggio dei componenti (parts count method). Ulteriori approfondimenti su questo argomento sono riportati nell'Allegato~\ref{app:B}.
 
 Una delle domande più frequenti riguardo alla probabilità di guasto riguarda il reperimento di dati di guasto affidabili per i componenti legati alla sicurezza, ovvero i valori di MTTF\textsubscript{D} (tempo medio al guasto pericoloso). A tale scopo, la fonte da privilegiare rispetto a tutte le altre è il costruttore dei componenti, ossia la sua scheda tecnica. Molti costruttori di componenti forniscono già questo tipo di dati. Anche laddove i dati del costruttore non siano disponibili, tuttavia, valori tipici di esempio possono essere ricavati da banche dati consolidate (come SN 29500 o IEC/TR 62380). La norma e l'Allegato~\ref{app:D} del presente report elencano inoltre una serie di valori realistici ricavati dal campo, e forniscono indicazioni sulla modellazione nello schema a blocchi legato alla sicurezza.

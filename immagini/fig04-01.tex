@@ -1,0 +1,116 @@
+%==============================================================
+%  Figura 4.1 - Processo iterativo per la progettazione delle
+%  parti dei sistemi di comando legate alla sicurezza (SRP/CS)
+%  Adattamento in italiano della Figura 4.1 dell'IFA Report 2/2017
+%  (e' il processo completo di cui le Figure 5.5, 6.1 e 7.1 sono
+%  estratti: stesso stile e stessa terminologia)
+%
+%  I riquadri sono piu' larghi che nell'originale perche' il testo
+%  italiano e' piu' lungo di quello inglese.
+%==============================================================
+\begin{tikzpicture}[
+  font=\normalsize,
+  grigio/.style={fill=black!10, align=center, inner sep=4pt},
+  numcella/.style={draw=black, fill=white, line width=0.8pt,
+                   minimum width=0.7cm, minimum height=0.75cm, inner sep=1pt},
+  corpo/.style={draw=black, fill=black!10, line width=0.8pt, align=center,
+                minimum width=10.2cm, text width=9.8cm, minimum height=0.75cm,
+                inner sep=3pt},
+  decis/.style={diamond, draw=black, fill=black!10, line width=0.8pt,
+                align=center, inner sep=1pt, aspect=4.0, minimum width=10.0cm},
+  fdline/.style={draw=black, line width=0.9pt},
+  fdar/.style={fdline, -{Triangle[length=6pt,width=6pt]}}
+]
+
+%--------------------------------------------------------------
+% Ingresso e uscita verso l'analisi dei rischi
+%--------------------------------------------------------------
+\node[grigio, minimum width=4.45cm, minimum height=1.3cm, anchor=east]
+  (entrata) at (4.0,-0.65) {Dall'analisi dei rischi\\ (EN ISO 12100)};
+\node[grigio, minimum width=4.45cm, minimum height=1.3cm, anchor=east]
+  (uscita) at (4.0,-20.60) {All'analisi dei rischi\\ (EN ISO 12100)};
+
+%--------------------------------------------------------------
+% Fasi da 1 a 4
+%--------------------------------------------------------------
+\foreach \n/\y/\testo in {%
+  1/-2.01/{Identificazione delle funzioni di sicurezza (SF)},
+  2/-3.27/{Specifica delle caratteristiche di ciascuna SF},
+  3/-4.52/{Determinazione del PL richiesto (PL\textsubscript{r})},
+  4/-6.31/{Realizzazione delle SF, identificazione degli SRP/CS}}{
+  \node[numcella, anchor=west] (num\n) at (3.3,\y) {\n};
+  \node[corpo, anchor=west] (fase\n) at (4.0,\y) {\testo};
+}
+
+%--------------------------------------------------------------
+% Fase 5: valutazione del PL, su due riquadri
+%--------------------------------------------------------------
+\node[corpo, minimum height=1.30cm, anchor=west] (fase5a) at (4.0,-7.94)
+  {Valutazione del PL degli SRP/CS in termini di categoria,
+   \textit{MTTF}\textsubscript{D}, \textit{DC}\textsubscript{avg}, CCF};
+\node[corpo, anchor=west] (fase5b) at (4.0,-9.025) {Software e guasti sistematici};
+\node[numcella, minimum height=2.11cm, anchor=west] (num5) at (3.3,-8.345) {5};
+
+%--------------------------------------------------------------
+% Fasi 6, 7 e 8: verifica, validazione e completezza dell'analisi
+%--------------------------------------------------------------
+\node[decis] (dec6) at (9.1,-11.43) {Verifica:\\[2pt] PL $\geq$ PL\textsubscript{r}?};
+\node[decis] (dec7) at (9.1,-14.82) {Validazione:\\[2pt] requisiti soddisfatti?};
+\node[decis] (dec8) at (9.1,-18.25) {Tutte le SF\\[2pt] analizzate?};
+
+\node[numcella, anchor=west] at (3.3,-11.43) {6};
+\node[numcella, anchor=west] at (3.3,-14.82) {7};
+\node[numcella, anchor=west] at (3.3,-18.25) {8};
+
+%--------------------------------------------------------------
+% Percorso principale
+%--------------------------------------------------------------
+\draw[fdar] (4.0,-0.65) -- (9.1,-0.65) -- (9.1,-1.635);
+\draw[fdar] (9.1,-2.385) -- (9.1,-2.895);
+\draw[fdar] (9.1,-3.645) -- (9.1,-4.145);
+\draw[fdar] (9.1,-4.895) -- (9.1,-5.22);
+\draw[fdline] (9.1,-5.37) circle (0.15);
+\draw[fdar] (9.1,-5.52) -- (9.1,-5.935);
+\draw[fdar] (9.1,-6.685) -- (9.1,-7.29);
+\draw[fdar] (9.1,-9.40) -- (9.1,-10.18);
+\draw[fdar] (9.1,-12.68) -- (9.1,-13.57);
+\draw[fdar] (9.1,-16.07) -- (9.1,-17.00);
+\draw[fdline] (9.1,-19.50) -- (9.1,-20.60);
+\draw[fdar] (9.1,-20.60) -- (4.0,-20.60);
+
+\node[anchor=east] at (9.00,-13.12) {s\`i};
+\node[anchor=east] at (9.00,-16.53) {s\`i};
+\node[anchor=east] at (9.00,-20.05) {s\`i};
+
+%--------------------------------------------------------------
+% "Per ciascuna SF" con graffa
+%--------------------------------------------------------------
+\node[grigio, minimum width=1.5cm, minimum height=1.9cm] (perogni) at (1.20,-10.21)
+  {Per\\ ciascuna\\ SF};
+\draw[fdline, decorate, decoration={brace, amplitude=6pt}] (2.80,-16.35) -- (2.80,-3.98);
+
+%--------------------------------------------------------------
+% Rami "no": ritorno alla realizzazione (6 e 7) e alla SF
+% successiva (8)
+%--------------------------------------------------------------
+\draw[fdar] (dec6.east) -- (15.30,-11.43);
+\draw[fdar] (dec7.east) -- (15.30,-14.82);
+\draw[fdline] (15.30,-14.82) -- (15.30,-5.37);
+\draw[fdar] (15.30,-5.37) -- (9.25,-5.37);
+
+\draw[fdar] (dec8.east) -- (16.20,-18.25);
+\draw[fdline] (16.20,-18.25) -- (16.20,-3.27);
+\draw[fdar] (16.20,-3.27) -- (14.20,-3.27);
+
+\node[anchor=south west] at (14.25,-11.40) {no};
+\node[anchor=south west] at (14.25,-14.79) {no};
+\node[anchor=south west] at (14.25,-18.22) {no};
+
+%--------------------------------------------------------------
+% Cornice
+%--------------------------------------------------------------
+\draw[draw=black, line width=1pt]
+  ([shift={(-0.45,0.45)}]current bounding box.north west) rectangle
+  ([shift={(0.45,-0.45)}]current bounding box.south east);
+
+\end{tikzpicture}
