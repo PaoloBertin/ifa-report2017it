@@ -1,0 +1,185 @@
+%==============================================================
+%  Figura 8.1 - Campo di applicazione della EN ISO 13849 per i
+%  sistemi idraulici
+%  Adattamento in italiano della Figura 8.1 dell'IFA Report 2/2017
+%
+%  I simboli dei componenti riproducono quelli dell'originale
+%  (ISO 1219): le coordinate sono ricavate dal disegno di partenza
+%  (1 cm = 70 px, origine nell'angolo in alto a sinistra della
+%  zona tratteggiata).
+%
+%  NOTA: nel disegno compare il simbolo matematico $\sim$: come
+%  nelle Figure 3.2 e 3.3 non vanno usati cambi di corpo del font
+%  (font=\large & c.), che farebbero fallire la composizione.
+%==============================================================
+\begin{tikzpicture}[
+  font=\normalsize,
+  linea/.style={draw=black, line width=0.9pt},
+  simbolo/.style={draw=black, line width=0.9pt},
+  freccia/.style={simbolo, -{Latex[length=5pt,width=4pt]}},
+  zona/.style={draw=black, line width=0.9pt, dash pattern=on 7pt off 5pt},
+  pilota/.style={draw=black, line width=0.7pt, dash pattern=on 3pt off 3pt},
+  testo/.style={align=center, inner sep=1pt},
+  nodo/.style={circle, fill=black, inner sep=0pt, minimum size=4pt}
+]
+
+%--------------------------------------------------------------
+% Zone tratteggiate: in alto i componenti che realizzano la
+% funzione di sicurezza, in basso conversione e trasmissione
+% dell'energia
+%--------------------------------------------------------------
+\draw[zona] (0,0) rectangle (13.21,-12.50);
+\draw[zona] (0,-4.64) -- (13.21,-4.64);
+\draw[zona] (0,-7.71) -- (13.21,-7.71);
+
+\node[testo, text width=5.6cm] at (6.71,-2.20)
+  {Componenti che realizzano\\ la funzione di sicurezza,\\ ad es. valvole};
+\node[testo, text width=4.4cm] at (10.60,-8.35)
+  {Conversione di energia\\ Trasmissione di energia};
+
+%--------------------------------------------------------------
+% Cilindro 1A (elemento di azionamento): camicia, pistone e stelo
+% a doppia linea, blocco di attacco con le due bocche
+%--------------------------------------------------------------
+\draw[simbolo] (5.73,1.36) rectangle (7.43,2.29);
+\draw[simbolo] (5.90,1.36) -- (5.90,2.29);
+\draw[simbolo] (6.26,1.36) -- (6.26,2.29);
+\draw[simbolo, fill=white] (6.26,1.74) rectangle (7.97,1.90);
+\draw[linea] (5.76,1.36) -- (5.76,0.67) -- (6.39,0.67) -- (6.39,0);
+\draw[linea] (7.39,1.36) -- (7.39,0.67) -- (6.74,0.67) -- (6.74,0);
+
+\node[anchor=east] at (5.55,2.11) {1A};
+\node[anchor=east] at (5.55,1.36) {Elementi di azionamento};
+
+%--------------------------------------------------------------
+% Linee di collegamento
+%--------------------------------------------------------------
+% aspirazione dal serbatoio e mandata della pompa verso le valvole
+\draw[linea] (4.03,-12.50) -- (4.03,-11.31);
+\draw[linea] (4.03,-10.21) -- (4.03,-9.47);
+\draw[linea] (4.03,-8.77) -- (4.03,-4.64);
+% diramazione verso la valvola limitatrice 1V2 e scarico al serbatoio
+\draw[linea] (4.03,-6.25) -- (6.48,-6.25) -- (6.48,-12.50);
+\node[nodo] at (4.03,-6.25) {};
+% ritorno attraverso il filtro 1Z2
+\draw[linea] (8.23,-4.64) -- (8.23,-5.69);
+\draw[linea] (8.23,-6.74) -- (8.23,-12.50);
+
+%--------------------------------------------------------------
+% 1V2: valvola limitatrice di pressione con molla regolabile e
+% pilotaggio
+%--------------------------------------------------------------
+\draw[simbolo] (5.16,-5.87) rectangle (5.91,-6.61);
+\draw[freccia] (5.16,-6.43) -- (5.88,-6.43);
+% molla verticale sopra la valvola
+\draw[simbolo] (5.38,-5.87) -- (5.56,-5.80) -- (5.16,-5.71) -- (5.56,-5.62)
+              -- (5.16,-5.53) -- (5.32,-5.43);
+% freccia di regolazione
+\draw[freccia] (4.98,-5.73) -- (5.80,-5.53);
+% pilotaggio
+\draw[pilota] (5.16,-6.25) -- (4.79,-6.63) -- (4.79,-6.96) -- (5.34,-6.96)
+             -- (5.34,-6.61);
+\node[anchor=east] at (4.98,-5.96) {1V2};
+
+%--------------------------------------------------------------
+% 1Z2: filtro sulla linea di ritorno con valvola di by-pass e
+% indicatore di intasamento
+%--------------------------------------------------------------
+\draw[simbolo] (6.90,-5.31) rectangle (8.97,-7.14);
+\node[nodo] at (8.23,-5.46) {};
+\node[nodo] at (8.23,-6.97) {};
+% simbolo del filtro
+\draw[simbolo] (8.23,-5.69) -- (8.76,-6.21) -- (8.23,-6.74) -- (7.71,-6.21) -- cycle;
+\draw[pilota] (7.71,-6.21) -- (8.76,-6.21);
+% by-pass con valvola di non ritorno e molla
+\draw[linea] (8.23,-5.46) -- (7.29,-5.46) -- (7.29,-5.89);
+\draw[simbolo] (7.18,-6.10) -- (7.29,-5.90) -- (7.40,-6.10);
+\draw[simbolo] (7.29,-6.00) circle (0.10);
+\draw[simbolo] (7.29,-6.11) -- (7.47,-6.17) -- (7.10,-6.24) -- (7.47,-6.31)
+              -- (7.10,-6.38) -- (7.47,-6.45) -- (7.29,-6.52);
+\draw[linea] (7.29,-6.52) -- (7.29,-6.97) -- (8.23,-6.97);
+% indicatore di intasamento
+\draw[linea] (8.23,-5.46) -- (9.36,-5.46);
+\draw[simbolo] (9.36,-5.17) rectangle (10.29,-5.74);
+\draw[freccia] (9.76,-5.62) -- (9.47,-5.33);
+\draw[simbolo] (10.05,-5.46) circle (0.14);
+\draw[simbolo] (9.95,-5.36) -- (10.15,-5.56);
+\draw[simbolo] (9.95,-5.56) -- (10.15,-5.36);
+\node[anchor=south west] at (6.93,-5.24) {1Z2};
+
+%--------------------------------------------------------------
+% 1V1: valvola di non ritorno con molla
+%--------------------------------------------------------------
+\draw[simbolo] (4.03,-8.77) -- (4.21,-8.83) -- (3.83,-8.91) -- (4.21,-8.99)
+              -- (3.83,-9.07) -- (4.21,-9.14) -- (4.03,-9.20);
+\draw[simbolo] (4.03,-9.33) circle (0.09);
+\draw[simbolo] (3.90,-9.30) -- (4.03,-9.47) -- (4.16,-9.30);
+\node[anchor=east] at (3.72,-8.95) {1V1};
+
+%--------------------------------------------------------------
+% 1M e 1P: motore elettrico, giunto e pompa
+%--------------------------------------------------------------
+\draw[simbolo] (1.60,-10.76) circle (0.55);
+\node[testo] at (1.62,-10.55) {M};
+\node[testo] at (1.57,-10.92) {3\,$\sim$};
+\node[anchor=east] at (0.97,-10.76) {1M};
+
+% albero a doppia linea con giunto
+\draw[simbolo] (2.14,-10.67) -- (2.74,-10.67);
+\draw[simbolo] (2.14,-10.86) -- (2.74,-10.86);
+\draw[simbolo] (2.74,-10.57) -- (2.74,-10.97);
+\draw[simbolo] (2.90,-10.57) -- (2.90,-10.97);
+\draw[simbolo] (2.90,-10.67) -- (3.47,-10.67);
+\draw[simbolo] (2.90,-10.86) -- (3.47,-10.86);
+
+\draw[simbolo] (4.03,-10.76) circle (0.55);
+\fill[black] (4.03,-10.23) -- (3.83,-10.53) -- (4.21,-10.53) -- cycle;
+\draw[freccia] ([shift={(-32:0.86)}]4.03,-10.76) arc (-32:28:0.86);
+\node[anchor=west] at (5.03,-10.76) {1P};
+
+%--------------------------------------------------------------
+% 1S1, 1S2 e 1Z1: accessori del serbatoio
+%--------------------------------------------------------------
+% termometro
+\draw[simbolo] (9.96,-11.19) circle (0.40);
+\draw[simbolo] (9.96,-10.90) -- (9.96,-11.40);
+\fill[black] (9.96,-11.43) circle (0.06);
+\draw[linea] (9.96,-11.59) -- (9.96,-12.07);
+\node[anchor=south] at (9.96,-10.75) {1S1};
+% indicatore di livello
+\draw[simbolo] (11.07,-11.19) circle (0.40);
+\draw[simbolo] (10.71,-11.21) -- (11.43,-11.21);
+\fill[black] (10.96,-11.04) -- (11.19,-11.04) -- (11.07,-11.19) -- cycle;
+\draw[linea] (11.07,-11.59) -- (11.07,-12.07);
+\node[anchor=south] at (11.07,-10.75) {1S2};
+% filtro di sfiato del serbatoio
+\draw[simbolo] (12.40,-10.58) -- (12.92,-11.10) -- (12.40,-11.62)
+              -- (11.88,-11.10) -- cycle;
+\draw[pilota] (11.88,-11.10) -- (12.92,-11.10);
+\draw[linea] (12.40,-11.62) -- (12.40,-12.07);
+\draw[simbolo] (12.31,-10.40) -- (12.49,-10.40) -- (12.40,-10.57) -- cycle;
+\draw[linea] (12.40,-10.40) -- (12.40,-10.19);
+\draw[simbolo] (12.31,-10.19) -- (12.49,-10.19) -- (12.40,-10.03) -- cycle;
+\node[anchor=east] at (12.24,-10.10) {1Z1};
+
+%--------------------------------------------------------------
+% Graffe e campi di applicazione
+%--------------------------------------------------------------
+\draw[linea, decorate, decoration={brace, amplitude=8pt}]
+  (14.29,-4.50) -- (14.29,-0.36);
+\node[testo, text width=5.2cm, anchor=west] at (14.95,-2.43)
+  {Campo di applicazione della\\ parte del sistema di comando\\ legata alla sicurezza};
+
+\draw[linea, decorate, decoration={brace, amplitude=8pt}]
+  (14.29,-12.50) -- (14.29,-5.07);
+\node[testo, text width=5.2cm, anchor=west] at (14.95,-8.79)
+  {Possibile rilevanza per il\\ rispetto dei principi di\\ sicurezza di base e collaudati};
+
+%--------------------------------------------------------------
+% Cornice
+%--------------------------------------------------------------
+\draw[draw=black, line width=1pt]
+  ([shift={(-0.45,0.45)}]current bounding box.north west) rectangle
+  ([shift={(0.45,-0.45)}]current bounding box.south east);
+
+\end{tikzpicture}

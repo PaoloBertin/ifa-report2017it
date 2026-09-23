@@ -1,0 +1,151 @@
+%==============================================================
+%  Figura 8.2 - Campo di applicazione della EN ISO 13849 per i
+%  sistemi pneumatici
+%  Adattamento in italiano della Figura 8.2 dell'IFA Report 2/2017
+%  (stesso stile della Figura 8.1)
+%
+%  I simboli dei componenti riproducono quelli dell'originale
+%  (ISO 1219): le coordinate sono ricavate dal disegno di partenza
+%  (1 cm = 70 px, origine nell'angolo in alto a sinistra della
+%  zona tratteggiata). Nessun cambio di corpo del font: vedere la
+%  nota nella Figura 8.1.
+%==============================================================
+\begin{tikzpicture}[
+  font=\normalsize,
+  linea/.style={draw=black, line width=0.9pt},
+  simbolo/.style={draw=black, line width=0.9pt},
+  freccia/.style={simbolo, -{Latex[length=5pt,width=4pt]}},
+  doppia/.style={simbolo, {Latex[length=5pt,width=4pt]}-{Latex[length=5pt,width=4pt]}},
+  zona/.style={draw=black, line width=0.9pt, dash pattern=on 7pt off 5pt},
+  pilota/.style={draw=black, line width=0.7pt, dash pattern=on 3pt off 3pt},
+  testo/.style={align=center, inner sep=1pt},
+  nodo/.style={circle, fill=black, inner sep=0pt, minimum size=4pt}
+]
+
+%--------------------------------------------------------------
+% Zone tratteggiate: componenti della funzione di sicurezza,
+% componenti contro le fluttuazioni dell'energia, unita' di
+% manutenzione
+%--------------------------------------------------------------
+\draw[zona] (0,0) rectangle (11.09,-16.71);
+\draw[zona] (0,-5.89) -- (11.09,-5.89);
+\draw[zona] (0,-9.60) -- (11.09,-9.60);
+\draw[zona] (1.87,-10.86) rectangle (10.54,-14.83);
+
+\node[testo, text width=5.6cm] at (5.51,-2.86)
+  {Componenti che realizzano\\ la funzione di sicurezza,\\ ad es. valvole};
+\node[testo, text width=5.6cm] at (5.51,-7.83)
+  {Componenti per la prevenzione\\ dei rischi in caso di\\ fluttuazioni dell'energia};
+\node[anchor=east] at (1.72,-10.98) {0Z};
+\node[anchor=east] at (10.90,-16.00) {\textquotedblleft Unit\`a di manutenzione\textquotedblright};
+
+%--------------------------------------------------------------
+% Cilindro 1A (elemento di azionamento): camicia, pistone e stelo
+% a doppia linea, blocco di attacco con le due bocche
+%--------------------------------------------------------------
+\draw[simbolo] (4.44,2.17) rectangle (6.57,3.33);
+\draw[simbolo] (4.67,2.17) -- (4.67,3.33);
+\draw[simbolo] (5.14,2.17) -- (5.14,3.33);
+\draw[simbolo, fill=white] (5.14,2.61) rectangle (7.29,2.86);
+\draw[linea] (4.50,2.17) -- (4.50,1.31) -- (5.29,1.31) -- (5.29,0);
+\draw[linea] (6.50,2.17) -- (6.50,1.31) -- (5.71,1.31) -- (5.71,0);
+
+\node[anchor=east] at (4.30,3.31) {1A};
+\node[anchor=east] at (4.30,2.14) {Elementi di azionamento};
+
+%--------------------------------------------------------------
+% Linea di alimentazione pneumatica (interrotta dal filtro 0Z10 e
+% dalla valvola 0V10)
+%--------------------------------------------------------------
+\draw[linea] (0.50,-9.60) -- (0.50,-13.43) -- (6.29,-13.43);
+\draw[linea] (7.60,-13.43) -- (8.57,-13.43);
+\draw[linea] (9.54,-13.43) -- (11.29,-13.43);
+% sorgente di aria compressa
+\draw[simbolo] (11.29,-13.43) -- (11.69,-13.20) -- (11.69,-13.66) -- cycle;
+
+%--------------------------------------------------------------
+% 0Z11: manometro
+%--------------------------------------------------------------
+\draw[simbolo] (2.96,-12.49) circle (0.46);
+\draw[freccia] (3.15,-12.70) -- (2.74,-12.30);
+\draw[linea] (2.96,-12.95) -- (2.96,-13.43);
+\node[nodo] at (2.96,-13.43) {};
+\node[anchor=south] at (2.96,-11.86) {0Z11};
+
+%--------------------------------------------------------------
+% 0V11: regolatore di pressione con molla regolabile, sfiato
+% secondario e pilotaggio
+%--------------------------------------------------------------
+\draw[simbolo] (4.33,-12.73) rectangle (5.27,-13.66);
+\draw[doppia] (4.37,-13.43) -- (5.23,-13.43);
+% molla verticale sopra la valvola
+\draw[simbolo] (5.07,-12.73) -- (5.50,-12.64) -- (4.93,-12.54) -- (5.50,-12.44)
+              -- (4.93,-12.34) -- (5.50,-12.24) -- (5.11,-12.16);
+% freccia di regolazione
+\draw[freccia] (5.53,-12.56) -- (4.46,-12.30);
+% sfiato secondario
+\draw[simbolo] (5.27,-12.86) -- (5.50,-12.98) -- (5.27,-13.10);
+% pilotaggio
+\draw[pilota] (4.33,-13.49) -- (4.11,-13.66) -- (4.11,-14.13) -- (5.04,-14.13)
+             -- (5.04,-13.66);
+\node[anchor=south] at (4.83,-11.86) {0V11};
+
+%--------------------------------------------------------------
+% 0Z10: filtro con separatore d'acqua e indicatore di intasamento
+%--------------------------------------------------------------
+\draw[simbolo] (6.93,-12.79) -- (7.60,-13.43) -- (6.93,-14.09) -- (6.29,-13.43) -- cycle;
+\draw[pilota] (6.93,-12.79) -- (6.93,-13.66);
+\draw[simbolo] (6.54,-13.66) -- (7.33,-13.66) -- (6.93,-13.96) -- cycle;
+\draw[linea] (6.93,-14.09) -- (6.93,-15.29);
+% indicatore di intasamento
+\draw[simbolo] (6.34,-12.06) rectangle (7.53,-12.77);
+\draw[freccia] (6.88,-12.60) -- (6.49,-12.21);
+\draw[simbolo] (7.19,-12.39) circle (0.16);
+\draw[simbolo] (7.08,-12.28) -- (7.30,-12.50);
+\draw[simbolo] (7.08,-12.50) -- (7.30,-12.28);
+\node[anchor=south] at (6.93,-11.86) {0Z10};
+
+%--------------------------------------------------------------
+% 0V10: valvola di intercettazione manuale 3/2 con scarico
+%--------------------------------------------------------------
+\draw[simbolo] (8.57,-12.24) rectangle (9.54,-14.14);
+\draw[simbolo] (8.57,-13.20) -- (9.54,-13.20);
+% posizione di passaggio (porta chiusa a destra)
+\draw[doppia] (8.61,-12.50) -- (9.49,-12.50);
+\draw[simbolo] (9.24,-12.89) -- (9.24,-13.03);
+\draw[simbolo] (9.24,-12.96) -- (9.54,-12.96);
+% posizione di scarico (porta chiusa sulla linea)
+\draw[doppia] (8.60,-13.43) -- (9.54,-13.89);
+\draw[simbolo] (9.24,-13.36) -- (9.24,-13.51);
+\draw[simbolo] (9.24,-13.43) -- (9.54,-13.43);
+\draw[linea] (9.54,-13.89) -- (9.97,-13.89);
+\draw[simbolo] (9.97,-13.79) -- (9.97,-14.00) -- (10.19,-13.89) -- cycle;
+% azionamento manuale
+\draw[linea] (9.24,-12.24) -- (9.24,-11.31);
+\draw[linea] (9.00,-12.24) -- (9.00,-11.91) -- (9.11,-11.79) -- (9.00,-11.67)
+            -- (9.00,-11.31);
+\draw[simbolo] (8.89,-11.79) -- (8.97,-11.79);
+\draw[simbolo] (8.89,-11.31) -- (9.34,-11.31);
+\node[anchor=north] at (9.06,-14.26) {0V10};
+
+%--------------------------------------------------------------
+% Graffe e campi di applicazione
+%--------------------------------------------------------------
+\draw[linea, decorate, decoration={brace, amplitude=8pt}]
+  (13.11,-5.64) -- (13.11,-0.29);
+\node[testo, text width=5.2cm, anchor=west] at (13.77,-2.96)
+  {Campo di applicazione della\\ parte del sistema di comando\\ legata alla sicurezza};
+
+\draw[linea, decorate, decoration={brace, amplitude=8pt}]
+  (13.11,-16.43) -- (13.11,-6.14);
+\node[testo, text width=5.2cm, anchor=west] at (13.77,-11.46)
+  {Possibile rilevanza per il\\ rispetto dei principi di\\ sicurezza di base e collaudati};
+
+%--------------------------------------------------------------
+% Cornice
+%--------------------------------------------------------------
+\draw[draw=black, line width=1pt]
+  ([shift={(-0.45,0.45)}]current bounding box.north west) rectangle
+  ([shift={(0.45,-0.45)}]current bounding box.south east);
+
+\end{tikzpicture}

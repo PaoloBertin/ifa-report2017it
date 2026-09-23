@@ -18,6 +18,7 @@ La descrizione di ciascun esempio è strutturata come segue:
     \item calcolo della probabilità di guasto
     \item riferimenti più dettagliati
 \end{itemize}
+
 Alla voce "funzione di sicurezza" viene indicato il nome della funzione di sicurezza, unitamente agli eventi che la attivano e alle risposte di sicurezza richieste.
 
 La "descrizione funzionale" descrive le funzioni essenziali legate alla sicurezza, sulla base di uno schema concettuale. Viene spiegato il comportamento in caso di guasto, e vengono indicate le misure per il rilevamento dei guasti.
@@ -50,7 +51,6 @@ Alcuni degli esempi circuitali rappresentano "sistemi di comando che coinvolgono
 
 \subsection{Comandi elettromeccanici}
 \label{subsec:08-1-1}
-
 I comandi elettromeccanici impiegano principalmente componenti elettromeccanici sotto forma di dispositivi di controllo (ad esempio interruttori di posizione, selettori, pulsanti) e apparecchiature di commutazione (relè contattori, relè, contattori). Questi dispositivi hanno posizioni di commutazione definite. Generalmente non cambiano il loro stato di commutazione se non azionati esternamente o elettricamente. Se selezionati correttamente e utilizzati come previsto, sono in gran parte immuni a disturbi, come interferenze elettriche o elettromagnetiche. Sotto questo aspetto differiscono, in alcuni casi considerevolmente, dalle apparecchiature elettroniche. La loro durata e le modalità di guasto possono essere influenzate da un'adeguata selezione, dimensionamento e disposizione. Lo stesso vale per i conduttori impiegati, se opportunamente instradati all'interno e all'esterno dei vani elettrici.
 
 Per le ragioni sopra indicate, i componenti elettromeccanici generalmente soddisfano i “principi di sicurezza di base” e in molti casi devono essere considerati anche “componenti collaudati” per applicazioni di sicurezza. Ciò vale, tuttavia, solo quando vengono rispettati i requisiti della norma IEC 60204-1~\cite{iec60204-1} per le apparecchiature elettriche della macchina/impianto. In alcuni casi, sono possibili esclusioni di guasto, ad esempio su un contattore di comando per quanto riguarda l'attivazione in assenza di tensione di comando, o la mancata apertura di un contatto di interruzione con azione di apertura diretta su un interruttore secondo la norma IEC 60947-5-1~\cite{iec60947-5-1}, Allegato K.
@@ -59,18 +59,277 @@ Informazioni dettagliate sulla modellazione dei componenti elettromeccanici sono
 
 
 %--------------------------------------------------------------
-\section{Controlli idraulici}
-\label{sec:08-2}
-
+\subsection{Controlli idraulici}
+\label{sec:08-1-2}
 Negli impianti oleodinamici, la zona delle valvole, ovvero le valvole che controllano movimenti o stati pericolosi, deve essere considerata in particolare una "parte del sistema di controllo rilevante per la sicurezza". I circuiti oleodinamici elencati di seguito costituiscono solo esempi. Di norma, le funzioni di sicurezza richieste possono essere implementate anche mediante logiche di controllo alternative che impiegano tipologie di valvole appropriate, o in alcuni casi anche mediante soluzioni meccaniche aggiuntive come dispositivi di blocco o freni.
+
 Nei sistemi idraulici (vedere Figura 8.1), in questo contesto vanno considerate anche le misure per la limitazione della pressione nel sistema (1V2) e per la filtrazione del fluido idraulico (1Z2).
 I componenti 1Z1, 1S1 e 1S2 mostrati in Figura 8.1 sono presenti nella maggior parte dei sistemi idraulici e rivestono grande importanza, in particolare per le condizioni del fluido idraulico e di conseguenza per il funzionamento delle valvole.
 Il filtro di sfiato del serbatoio 1Z1, disposto sul serbatoio del fluido, impedisce l'ingresso di impurità esterne. L'indicatore di livello del fluido 1S2 garantisce che il livello del fluido rimanga entro i limiti specificati. L'indicatore di temperatura 1S1 costituisce una misura idonea per la limitazione dell'intervallo di temperatura di esercizio e quindi dell'intervallo di viscosità di esercizio del fluido idraulico. Se necessario, devono essere previsti dispositivi di riscaldamento e/o raffreddamento in combinazione con il controllo della temperatura a circuito chiuso (vedere anche l'Allegato~\ref{app:C} a questo proposito).
 Gli elementi di azionamento e i componenti per la conversione la trasmissione di energia nei sistemi oleodinamici generalmente non rientrano nell'ambito di applicazione della norma.
 
+Nei sistemi pneumatici (vedere Figura 8.2), i componenti per la prevenzione dei rischi associati alla conversione di energia e l'unità di manutenzione per il condizionamento dell'aria compressa devono essere considerati, dal punto di vista della sicurezza, in combinazione con l'area delle valvole. Per controllare le possibili conversioni di energia tenendo conto degli aspetti di sicurezza, si utilizza spesso una valvola di scarico in combinazione con un pressostato. Negli esempi di circuito in questo capitolo, questi componenti sono indicati con 0V1 (valvola di scarico) e 0S1 (pressostato).
+L'unità di manutenzione 0Z (vedere Figura 8.2) è generalmente composta da una valvola di intercettazione manuale 0V10, un filtro con separatore d'acqua 0Z10 con monitoraggio della contaminazione del filtro e una valvola di controllo della pressione 0V11 (con sfiato secondario adeguatamente dimensionato). L'indicatore di pressione 0Z11 soddisfa il requisito per il monitoraggio dei parametri del sistema.
 
-%--------------------------------------------------------------
-\section{Conclusioni del capitolo}
-\label{sec:08-3}
+% La minipage tiene insieme disegno e didascalia (figura non fluttuante)
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \centering
+        \captionsetup{hypcap=false}
+        \resizebox{0.92\textwidth}{!}{\input{immagini/fig08-01}}
+        \captionof{figure}{Campo di applicazione della EN ISO 13849 per i sistemi idraulici.}
+        \label{fig:08-01}
+    \end{minipage}
+\end{center}
 
-Sintesi dei contenuti e rimandi al capitolo successivo.
+% La minipage tiene insieme disegno e didascalia (figura non fluttuante)
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \centering
+        \captionsetup{hypcap=false}
+        \resizebox{!}{0.62\textheight}{\input{immagini/fig08-02}}
+        \captionof{figure}{Campo di applicazione della EN ISO 13849 per i sistemi pneumatici.}
+        \label{fig:08-02}
+    \end{minipage}
+\end{center}
+
+Oltre alla parte del sistema di comando legata alla sicurezza, i circuiti a fluido presentati come esempi in questo capitolo contengono soltanto i componenti aggiuntivi necessari per la comprensione del sistema a fluido, oppure direttamente correlati alla tecnica di comando. I requisiti che devono essere soddisfatti dai sistemi a fluido sono descritti integralmente in [58; 59]. [60–63] costituiscono ulteriori norme pertinenti.
+La maggior parte degli esempi di sistemi di comando sono comandi elettroidraulici o elettropneumatici. Una serie di requisiti di sicurezza su questi sistemi di comando è soddisfatta dalla parte elettrica del sistema di comando, ad esempio il requisito secondo cui le variazioni di energia sui sistemi di comando elettroidraulici devono essere controllate.
+Negli esempi di comando qui descritti, la funzione di sicurezza richiesta è l'arresto di un movimento pericoloso o l'inversione di una direzione di movimento. La prevenzione dell'avviamento inatteso è implicitamente inclusa.
+
+La funzione di sicurezza richiesta può tuttavia essere anche, ad esempio, un determinato livello di pressione o uno scarico di pressione.
+
+Le strutture della maggior parte dei sistemi di comando a fluido sono realizzate nelle categorie 1, 3 o 4. Poiché la categoria B richiede già l'osservanza delle norme pertinenti e dei principi di sicurezza di base, i sistemi di comando a fluido di categoria B e 1 non differiscono sostanzialmente nella loro struttura di comando, ma soltanto per la maggiore affidabilità legata alla sicurezza delle relative valvole. Per questo motivo, il presente rapporto non presenta alcun sistema di comando a fluido di categoria B.
+
+Ulteriori informazioni su idraulica e pneumatica si trovano sul sito web dell'IFA (www.dguv.de/ifa, Webcode: d1029520).
+
+\subsection{Sistemi di comando elettronici ed elettronici programmabili}
+\label{sec:08-1-3}
+I componenti elettronici sono generalmente più sensibili alle influenze ambientali esterne rispetto ai componenti elettromeccanici. Se non vengono adottate misure particolari, l'impiego di componenti elettronici a temperature inferiori a 0°C è soggetto a vincoli sostanzialmente maggiori rispetto ai componenti elettromeccanici. Esistono inoltre influenze ambientali praticamente irrilevanti per gli elementi circuitali elettromeccanici, ma che rappresentano problemi cruciali per i sistemi elettronici, ossia qualsiasi disturbo elettromagnetico che si accoppia nei sistemi elettronici sotto forma di disturbo condotto o di campi elettromagnetici. In alcuni casi è richiesto uno sforzo maggiore affinché venga raggiunta un'adeguata immunità ai disturbi per l'uso industriale. Sui componenti elettronici l'esclusione di guasto è praticamente impossibile. Di conseguenza, la sicurezza non può in linea di principio essere garantita dalla progettazione di un particolare componente, ma soltanto da determinati concetti circuitali e dall'applicazione di misure appropriate per il controllo dei guasti.
+
+Secondo gli elenchi dei guasti per i componenti elettrici/elettronici della EN ISO 13849-2, vengono essenzialmente ipotizzati i guasti di cortocircuito, circuito aperto, variazione di un parametro o di un valore, e guasti di tipo stuck-at (blocco su un valore fisso). Si tratta, senza eccezioni, di effetti di guasto ipotizzati come permanenti. I guasti transitori (che si verificano sporadicamente), come i soft error causati dall'inversione di carica di un condensatore in un chip a seguito di particelle ad alta energia quali le particelle alfa, possono generalmente essere rilevati solo con difficoltà e sono per lo più controllati mediante misure strutturali.
+
+Il modo di guasto dei componenti elettronici è spesso difficile da valutare; in generale non è possibile definire un modo di guasto predominante. Ciò può essere illustrato con un esempio: se un relè o un contattore non viene azionato elettricamente, ossia se la corrente non attraversa la sua bobina, non vi è motivo per cui i contatti si chiudano, quando il componente viene utilizzato entro i vincoli della propria specifica. In altre parole, un relè o un contattore diseccitato non si inserisce spontaneamente a seguito di un guasto interno. La situazione è diversa per la maggior parte dei componenti elettronici, come i transistor. Anche se un transistor è interdetto, ossia in assenza di una corrente di base sufficientemente elevata, non può comunque essere esclusa la possibilità che esso diventi improvvisamente conduttivo senza influenza esterna, a seguito di un guasto interno, e di conseguenza, in determinate circostanze, avvii un movimento pericoloso. Questo svantaggio, dal punto di vista della sicurezza, dei componenti elettronici deve anch'esso essere controllato mediante un concetto circuitale idoneo. In particolare, quando vengono utilizzati moduli altamente integrati, può non essere possibile dimostrare che un dispositivo o un'apparecchiatura sia completamente esente da guasti anche all'inizio del proprio tempo di missione, ossia alla messa in servizio. Anche a livello di componente, i fabbricanti non sono più in grado di dimostrare l'assenza di guasti con una copertura di prova del 100\% per i circuiti integrati complessi. Una situazione analoga esiste per il software dell'elettronica programmabile.
+
+A differenza dei circuiti elettromeccanici, i circuiti puramente elettronici presentano spesso il vantaggio che un cambiamento di stato può essere forzato dinamicamente. Ciò consente di raggiungere la DC richiesta a intervalli opportunamente brevi e senza alterazione dello stato dei segnali esterni (dinamica forzata). Tra i diversi canali sono necessarie misure di disaccoppiamento al fine di prevenire i guasti per causa comune. Tali misure consistono generalmente in contatti galvanicamente isolati, reti resistive o a diodi, circuiti di filtro, optoisolatori e trasformatori.
+
+I guasti sistematici possono portare al guasto simultaneo di canali di elaborazione ridondanti, qualora ciò non venga impedito mediante una considerazione tempestiva, in particolare durante la fase di progettazione e integrazione. L'impiego di principi quali la corrente di riposo, la diversità o il sovradimensionamento consente di progettare circuiti elettronici robusti. Non dovrebbero essere trascurate le misure che rendono i canali di elaborazione insensibili alle influenze fisiche riscontrate, ad esempio, in un ambiente industriale. Tali influenze comprendono temperatura, umidità, polvere, vibrazioni, urti, atmosfere corrosive, influenze elettromagnetiche, interruzione della tensione, sovratensione e sottotensione.
+
+Una SRP/CS di categoria 1 deve essere progettata e fabbricata con l'impiego di componenti ben collaudati e principi di sicurezza ben collaudati. Poiché componenti elettronici complessi quali PLC, microprocessori o ASIC non sono considerati ben collaudati nel senso della norma, il presente rapporto non contiene esempi corrispondenti di elettronica di categoria 1.
+Gli esempi circuitali comprendono un'indicazione dell'efficacia, ossia del relativo Performance Level, delle misure richieste per l'evitamento/il controllo dei guasti per l'elettronica programmabile. Ulteriori dettagli si trovano al punto 6.3. Qualora vengano impiegati ASIC in uno sviluppo, sono richieste misure per l'evitamento dei guasti nel processo di sviluppo. Tali misure si trovano ad esempio nella IEC 61508-2 [48], che specifica un modello a V per lo sviluppo di un ASIC, basato sul modello a V già noto dallo sviluppo del software.
+
+I seguenti punti meritano di essere menzionati, poiché tali questioni si presentano nella pratica:
+\begin{itemize}
+    \item in generale, due canali di una SRP/CS non devono essere instradati attraverso lo stesso circuito integrato. Per gli optoisolatori, questo requisito significa ad esempio che essi devono essere alloggiati in involucri separati quando vengono utilizzati per elaborare segnali provenienti da canali diversi.
+    \item l'influenza dei sistemi operativi, ecc., deve essere presa in considerazione anche quando viene impiegata l'elettronica programmabile. Un PC standard e un tipico sistema operativo commerciale non sono idonei all'impiego in un sistema di comando legato alla sicurezza. La richiesta assenza di guasti (o, più realisticamente, la bassa incidenza di guasti) non può generalmente essere dimostrata con uno sforzo ragionevole, o non risulterà raggiungibile, su un sistema operativo che non è stato progettato per applicazioni legate alla sicurezza.
+\end{itemize}
+
+\section{Esempi di circuiti}
+\label{sec:08-2}
+La Tabella 8.1 mostra una panoramica degli esempi circuitali da 1 a 38. Ulteriori esempi si trovano in [22]. La Tabella 8.2 (pag. 105) contiene un elenco alfabetico delle principali abbreviazioni utilizzate negli esempi circuitali.
+
+Nota: negli esempi contenenti più funzioni di sicurezza (17, 19, 23, 24), nello schema a blocchi legato alla sicurezza è rappresentata soltanto la prima funzione di sicurezza dell'esempio.
+
+\begin{table}[ht]
+    \centering
+    \definecolor{tabblue}{RGB}{31,73,125}
+    \setlength{\tabcolsep}{4pt}
+    \renewcommand{\arraystretch}{1.2}
+    \caption{Panoramica degli esempi circuitali.}
+    \label{tab:08-1}
+    \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{2.9cm}|>{\centering\arraybackslash}p{2.9cm}|C|C|C|}
+        \hline
+        \rowcolor{tabblue}
+        \textcolor{white}{\textbf{PL raggiunto}} &
+        \textcolor{white}{\textbf{Categoria\newline implementata}} &
+        \multicolumn{3}{c|}{\textcolor{white}{\textbf{Tecnologia/esempio n.}}} \\
+        \rowcolor{tabblue}
+        & &
+        \textcolor{white}{\textbf{Pneumatica}} &
+        \textcolor{white}{\textbf{Idraulica}} &
+        \textcolor{white}{\textbf{Elettrica}} \\
+        \hline
+        b & B &  &  & 1, 4 \\
+        \hline
+        \rowcolor{black!8}
+        c & 1 & 2 & 3, 38 & 5, 6, 7 \\
+        \hline
+        c & 2 &  &  & 9 \\
+        \hline
+        \rowcolor{black!8}
+        c & 3 &  &  & 10, 24 \\
+        \hline
+        d & 2 & 11 & 12 & 13 \\
+        \hline
+        \rowcolor{black!8}
+        d & 3 & 14 & 15, 16 & 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 \\
+        \hline
+        e & 3 & 25 & 27 & 28, 29, 30 \\
+        \hline
+        \rowcolor{black!8}
+        e & 4 & 31 & 32, 33 & 33, 34, 35, 37 \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+% Tabella lunga (longtable): puo' proseguire nella pagina successiva
+\begingroup
+\definecolor{tabblue}{RGB}{31,73,125}
+\fontsize{9}{11}\selectfont
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.2}
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{|p{2.4cm}|p{\dimexpr\textwidth-2.4cm-4\tabcolsep-3\arrayrulewidth\relax}|}
+    \caption{Panoramica delle abbreviazioni utilizzate negli esempi circuitali.}
+    \label{tab:08-2} \\
+    \hline
+    \rowcolor{tabblue}
+    \textcolor{white}{\textbf{Abbreviazione}} & \textcolor{white}{\textbf{Forma estesa}} \\
+    \hline
+    \endfirsthead
+    \hline
+    \rowcolor{tabblue}
+    \textcolor{white}{\textbf{Abbreviazione}} & \textcolor{white}{\textbf{Forma estesa}} \\
+    \hline
+    \endhead
+    \hline
+    \endfoot
+    \rowcolor{black!8}
+    {[D]} & Valori di B\textsubscript{10D} o \textit{MTTF}\textsubscript{D} tratti da banche dati (vedere ad esempio la sezione D.2.6) \\
+    \hline
+    {[E]} & Valori di B\textsubscript{10D} o \textit{MTTF}\textsubscript{D} stimati (vedere sopra) \\
+    \hline
+    \rowcolor{black!8}
+    {[M]} & Valori di B\textsubscript{10D} o \textit{MTTF}\textsubscript{D} basati sulle indicazioni del fabbricante \\
+    \hline
+    {[S]} & Valori di B\textsubscript{10D} o \textit{MTTF}\textsubscript{D} basati sui dati riportati nella EN ISO 13849-1 (vedere ad esempio la Tabella D.2 del presente rapporto) \\
+    \hline
+    \rowcolor{black!8}
+    µC & Microcontrollore \\
+    \hline
+    B\textsubscript{10} & Durata nominale: numero medio di cicli di commutazione (manovre) entro il quale si guasta il 10\% dei componenti considerati \\
+    \hline
+    \rowcolor{black!8}
+    B\textsubscript{10D} & Durata nominale (pericolosa): numero medio di cicli di commutazione (manovre) entro il quale il 10\% dei componenti considerati subisce un guasto pericoloso \\
+    \hline
+    CBC & Combinazione frizione/freno \\
+    \hline
+    \rowcolor{black!8}
+    CCF & Guasto di causa comune \\
+    \hline
+    CPU & Microprocessore (unità centrale di elaborazione) \\
+    \hline
+    \rowcolor{black!8}
+    \textit{DC} & Copertura diagnostica \\
+    \hline
+    \textit{DC}\textsubscript{avg} & Copertura diagnostica media \\
+    \hline
+    \rowcolor{black!8}
+    ESPE & Attrezzatura di protezione elettrosensibile \\
+    \hline
+    FIT & Numero di guasti in 10\textsuperscript{9} ore di funzionamento dei componenti (\textit{failures in time}) \\
+    \hline
+    \rowcolor{black!8}
+    FMEA & Analisi dei modi e degli effetti dei guasti \\
+    \hline
+    FI & Convertitore di frequenza \\
+    \hline
+    \rowcolor{black!8}
+    M & Motore \\
+    \hline
+    MPC & Comando multifunzione \\
+    \hline
+    \rowcolor{black!8}
+    \textit{MTTF}\textsubscript{D} & Tempo medio al guasto pericoloso \\
+    \hline
+    n\textsubscript{op} & Numero medio annuo di manovre \\
+    \hline
+    \rowcolor{black!8}
+    \textit{PFH}\textsubscript{D} & Probabilità media di un guasto pericoloso per ora \\
+    \hline
+    PL & Livello di prestazione (Performance Level) \\
+    \hline
+    \rowcolor{black!8}
+    PL\textsubscript{r} & Livello di prestazione richiesto \\
+    \hline
+    PLC & Controllore logico programmabile \\
+    \hline
+    \rowcolor{black!8}
+    RAM & Memoria ad accesso casuale (memoria variabile) \\
+    \hline
+    ROM & Memoria di sola lettura (memoria non modificabile) \\
+    \hline
+    \rowcolor{black!8}
+    SBC & Comando sicuro del freno; fornisce un segnale di uscita per comandare un dispositivo di frenatura/bloccaggio \\
+    \hline
+    SDE & Diseccitazione sicura; scarico di una parte di un impianto \\
+    \hline
+    \rowcolor{black!8}
+    SLS & Velocità limitata in sicurezza (vedere Tabella~\ref{tab:05-2}) \\
+    \hline
+    SRASW & Software applicativo legato alla sicurezza \\
+    \hline
+    \rowcolor{black!8}
+    SRESW & Software integrato legato alla sicurezza \\
+    \hline
+    SRP/CS & Parte di un sistema di comando legata alla sicurezza \\
+    \hline
+    \rowcolor{black!8}
+    SS1-r, SS1-t & Arresto sicuro 1 (vedere Tabella~\ref{tab:05-2}) \\
+    \hline
+    SS2-r, SS2-t & Arresto sicuro 2 (vedere Tabella~\ref{tab:05-2}) \\
+    \hline
+    \rowcolor{black!8}
+    SSC & Arresto e chiusura sicuri; intrappolamento dell'aria compressa nelle camere del pistone senza regolazione della posizione ad anello chiuso \\
+    \hline
+    STO & Coppia disinserita in sicurezza (vedere Tabella~\ref{tab:05-2}) \\
+    \hline
+    \rowcolor{black!8}
+    T\textsubscript{10D} & Tempo medio entro il quale il 10\% dei componenti considerati subisce un guasto pericoloso \\
+    \hline
+    THC & Comando bimanuale \\
+\end{longtable}
+\endgroup
+\clearpage
+\subsection{Esempio 1}
+\label{sec:08-2-1}
+\textit{Monitoraggio di posizione dei ripari mobili mediante interruttori di prossimità - categoria B - PL b}
+
+% La minipage tiene insieme disegno e didascalia (figura non fluttuante)
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \centering
+        \captionsetup{hypcap=false}
+        \resizebox{0.6\textwidth}{!}{\input{immagini/fig08-03}}
+        \captionof{figure}{Monitoraggio di posizione dei ripari mobili mediante interruttori di prossimità.}
+        \label{fig:08-03}
+    \end{minipage}
+\end{center}
+
+\textbf{Funzioni di sicurezza}
+\begin{itemize}
+    \item funzione di arresto legata alla sicurezza, avviata da un mezzo di protezione: l'azionamento dell'interruttore di prossimità all'apertura del riparo mobile (riparo di sicurezza) avvia la funzione di sicurezza STO (Safe Torque Off).
+\end{itemize}
+
+\textbf{Descrizione funzionale}
+\begin{itemize}
+    \item l'apertura del riparo mobile (es. riparo di sicurezza) viene rilevata da un interruttore di prossimità B1, che agisce sul relè di minima tensione (under Voltage release) di un avviatore motore Q1. La diseccitazione di Q1 interrompe o impedisce movimenti o stati pericolosi;
+    \item la funzione di sicurezza non può essere mantenuta a fronte di tutti i guasti dei componenti, ed è dipendente dall'affidabilità dei componenti.
+    \item la rimozione del dispositivo di protezione viene rilevata;
+    \item B1 non contiene misure di monitoraggio interne. Non sono realizzate ulteriori misure per il rilevamento dei guasti;
+\end{itemize}
+
+\textbf{Caratteristiche progettuali}
+\begin{itemize}
+    \item sono osservati i principi di sicurezza di base e sono soddisfatti i requisiti della categoria B. Sono realizzati circuiti di protezione (quali la protezione dei contatti), come descritto nei paragrafi iniziali del Capitolo 8. Il principio della corrente di riposo del relè di minima tensione è impiegato come principio di sicurezza di base;
+    \item per l'azionamento dell'interruttore di prossimità è garantita una disposizione stabile del mezzo di protezione (schermo di sicurezza);
+    \item a seconda della progettazione dell'interruttore di prossimità, potrebbe essere possibile un'elusione del funzionamento sicuro in modo ragionevolmente prevedibile. L'elusione può essere resa più difficoltosa, ad esempio mediante particolari condizioni di installazione, come l'installazione schermata/protetta (vedere anche EN ISO 14119);
+    \item l'alimentazione dell'intera macchina viene disinserita (arresto di categoria 0 secondo la IEC 60204-1);
+\end{itemize}
+
+\textbf{Calcolo della probabilità di guasto}\\
+MTTF\textsubscript{D}: B1 è un convenzionale interruttore di prossimità su uno schermo di sicurezza, con un MTTF\textsubscript{D} di 1.100 anni [M]. Per il relè di minima tensione dell'avviatore motore Q1, il valore di B10 si approssima alla durata elettrica di 10.000 cicli di commutazione [M]. Nell'ipotesi che il 50\% dei guasti sia pericoloso, il valore di B\textsubscript{10D} si ottiene raddoppiando il valore di B10. Assumendo un azionamento giornaliero dell'interruttore di prossimità, un nop di 365 cicli all'anno per Q1 produce un MTTF\textsubscript{D} di 548 anni. Per la combinazione di B1 e Q1, l'MTTF\textsubscript{D} per ciascun canale è pari a 365 anni. Questo valore viene limitato al valore massimo aritmetico per la categoria B, ossia 27 anni ("medio").
+La DCavg e le misure contro i guasti per causa comune non sono rilevanti nella categoria B.
+Il sistema di comando elettromeccanico soddisfa la categoria B con un MTTF\textsubscript{D} medio (27 anni). Ne risulta una probabilità media di guasto pericoloso di 4,2 10\textsuperscript{-6} all'ora. Ciò soddisfa il PL b.
+
+
