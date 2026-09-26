@@ -1,0 +1,92 @@
+%==============================================================
+%  Figura 8.11 - Controllo della posizione del riparo mobile per
+%  la prevenzione di movimenti pericolosi (STO) (Esempio 5)
+%  Adattamento in italiano della Figura 8.11 dell'IFA Report 2/2017
+%
+%  I simboli riproducono quelli dell'originale: le coordinate sono
+%  ricavate dal disegno di partenza (1 cm = 70 px, origine
+%  nell'angolo in alto a sinistra della cornice). Nessun cambio di
+%  corpo del font: le etichette sono ingrandite con "scale" (vedere
+%  la nota nella Figura 8.3).
+%==============================================================
+\definecolor{verdepotenza}{RGB}{22,67,38}
+\begin{tikzpicture}[
+  font=\normalsize,
+  filo/.style={draw=black, line width=0.6pt},
+  potenza/.style={draw=verdepotenza, line width=0.6pt},
+  meccanico/.style={draw=black, line width=0.6pt, dash pattern=on 0.286cm off 0.21cm},
+  etichetta/.style={inner sep=1pt, scale=1.5},
+  nodo/.style={circle, fill=black, inner sep=0pt, minimum size=4.2pt}
+]
+
+%--------------------------------------------------------------
+% Cornice
+%--------------------------------------------------------------
+\draw[draw=black, line width=1.2pt] (0.000,-0.000) rectangle (12.121,-14.807);
+
+%--------------------------------------------------------------
+% Riparo mobile con posizioni aperto/chiuso e direzione di apertura
+%--------------------------------------------------------------
+\draw[draw={rgb,255:red,77;green,77;blue,77}, line width=0.8pt, fill={rgb,255:red,216;green,216;blue,216}]
+  (2.207,-3.500) -- (4.171,-3.500) -- (5.029,-4.300) -- (5.029,-8.200) -- (4.171,-8.964)
+  -- (2.207,-8.964) -- cycle;
+\draw[filo] (0.707,-2.329) -- (3.050,-2.329);
+\draw[filo] (0.707,-8.964) -- (2.207,-8.964);
+\node[etichetta] at (1.207,-1.614) {Aperto};
+\node[etichetta, anchor=east] at (2.064,-8.357) {Chiuso};
+\draw[filo, -{Latex[length=0.464cm,width=0.286cm]}] (1.264,-7.414) -- (1.264,-3.786);
+
+%--------------------------------------------------------------
+% B1: interruttore di posizione con contatto di apertura ad
+% azionamento meccanico positivo, azionato dal riparo tramite rotella
+%--------------------------------------------------------------
+\draw[filo] (4.800,-3.800) circle (0.2);
+\draw[filo] (5.000,-3.800) -- (5.274,-3.800);
+\draw[meccanico] (5.479,-3.800) -- (7.200,-3.800);
+% simbolo di apertura positiva
+\draw[filo] (6.297,-3.239) circle (0.421);
+\draw[filo] (5.946,-3.239) -- (6.636,-3.239);
+\draw[filo] (6.297,-2.990) -- (6.636,-3.239) -- (6.297,-3.500);
+% alimentazione (+) e contatto
+\draw[filo] (6.893,-1.190) -- (7.183,-1.190);
+\draw[filo] (7.040,-1.047) -- (7.040,-1.343);
+\fill[black] (6.907,-1.396) -- (7.183,-1.396) -- (7.040,-2.000) -- cycle;
+\draw[filo] (7.040,-2.000) -- (7.040,-3.490) -- (7.446,-3.490);
+\draw[filo] (7.040,-4.276) -- (7.350,-3.357);
+\draw[filo] (7.040,-4.276) -- (7.040,-11.107);
+\node[etichetta] at (6.226,-4.453) {B1};
+
+%--------------------------------------------------------------
+% Q1: bobina del contattore, linea di ritorno e messa a terra
+%--------------------------------------------------------------
+\draw[potenza] (6.064,-11.107) rectangle (7.964,-12.014);
+\draw[filo] (7.036,-12.014) -- (7.036,-12.979);
+\node[etichetta] at (5.300,-11.393) {Q1};
+\draw[filo] (4.907,-12.979) -- (8.693,-12.979);
+\node[nodo] at (7.036,-12.979) {};
+\node[nodo] at (6.207,-12.979) {};
+\draw[filo] (6.207,-12.979) -- (6.207,-13.879);
+\draw[filo] (5.571,-13.879) -- (6.836,-13.879);
+\draw[filo] (5.743,-14.207) -- (6.679,-14.207);
+\draw[filo] (5.886,-14.536) -- (6.536,-14.536);
+
+%--------------------------------------------------------------
+% Circuito di potenza: linea trifase L, contatto principale di Q1
+% e motore M
+%--------------------------------------------------------------
+\draw[potenza] (10.300,-1.229) -- (10.300,-5.857);
+\draw[potenza] (9.764,-2.750) -- (10.821,-2.214);
+\draw[potenza] (9.764,-3.057) -- (10.821,-2.521);
+\draw[potenza] (9.764,-3.357) -- (10.821,-2.821);
+\node[etichetta, text=verdepotenza] at (10.279,-0.614) {L};
+% contatto principale con apertura automatica
+\draw[potenza] (10.300,-5.586) arc[start angle=90, end angle=270, radius=0.136];
+\draw[potenza] (9.943,-5.771) -- (10.300,-6.414);
+\draw[potenza] (10.300,-6.414) -- (10.300,-9.821);
+\node[etichetta] at (9.321,-6.143) {Q1};
+% motore trifase
+\draw[potenza] (10.389,-10.839) circle (1.018);
+\node[inner sep=1pt, scale=1.8, text=verdepotenza, font=\sffamily] at (10.321,-10.393) {M};
+\node[inner sep=1pt, scale=1.8, text=verdepotenza, font=\sffamily] at (10.300,-11.321) {3$\sim$};
+
+\end{tikzpicture}

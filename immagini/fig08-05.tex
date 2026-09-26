@@ -1,0 +1,204 @@
+%==============================================================
+%  Figura 8.5 - Valvola pneumatica per il comando di movimenti
+%  pericolosi (Esempio 2)
+%  Adattamento in italiano della Figura 8.5 dell'IFA Report 2/2017
+%
+%  I simboli dei componenti riproducono quelli dell'originale
+%  (ISO 1219): le coordinate sono ricavate dal disegno di partenza
+%  (1 cm = 70 px, origine nell'angolo in alto a sinistra della
+%  cornice). Nessun cambio di corpo del font: le etichette sono
+%  ingrandite con "scale" (vedere la nota nella Figura 8.3).
+%==============================================================
+\begin{tikzpicture}[
+  font=\normalsize,
+  linea/.style={draw=black, line width=0.8pt},
+  simbolo/.style={draw=black, line width=0.8pt},
+  sottile/.style={draw=black, line width=0.6pt},
+  freccia/.style={sottile, -{Latex[length=8pt,width=3.6pt]}},
+  doppia/.style={sottile, {Latex[length=8pt,width=3.6pt]}-{Latex[length=8pt,width=3.6pt]}},
+  pilota/.style={draw=black, line width=0.6pt, dash pattern=on 3.6pt off 2pt},
+  zona/.style={draw={rgb,255:red,22;green,67;blue,38}, line width=0.6pt,
+               dash pattern=on 0.636cm off 0.1cm on 0.4pt off 0.1cm},
+  etichetta/.style={inner sep=1pt, scale=1.2},
+  testo/.style={align=center, inner sep=1pt, scale=1.2,
+               execute at begin node=\setstretch{0.9}},
+  nodo/.style={circle, fill=black, inner sep=0pt, minimum size=5.2pt}
+]
+
+%--------------------------------------------------------------
+% Cornice
+%--------------------------------------------------------------
+\draw[draw=black, line width=1.2pt] (0.000,-0.000) rectangle (15.643,-18.664);
+
+%--------------------------------------------------------------
+% Cilindro 1A: camicia, pistone e stelo a doppia linea, blocco di
+% attacco con le due bocche
+%--------------------------------------------------------------
+\draw[simbolo] (2.764,-0.750) rectangle (4.921,-1.943);
+\draw[simbolo] (3.007,-0.750) -- (3.007,-1.943);
+\draw[simbolo] (3.479,-0.750) -- (3.479,-1.943);
+\draw[simbolo, fill=white] (3.479,-1.236) rectangle (5.629,-1.464);
+\draw[linea] (2.821,-1.943) -- (2.821,-2.786) -- (3.586,-2.786) -- (3.586,-4.990);
+\draw[linea] (4.843,-1.943) -- (4.843,-2.786) -- (4.061,-2.786) -- (4.061,-4.990);
+\node[etichetta] at (2.086,-0.943) {1A};
+
+% movimento pericoloso
+\draw[sottile, {Latex[length=6pt,width=3.4pt]}-{Latex[length=6pt,width=3.4pt]}]
+  (6.479,-1.347) -- (9.800,-1.347);
+\draw[sottile] (8.150,-1.229) -- (8.150,-1.469);
+\node[testo] at (8.143,-0.664) {movimento\\ pericoloso};
+
+%--------------------------------------------------------------
+% 1V1: valvola 4/3 a centro chiuso con scarichi, azionata da
+% elettromagneti su entrambi i lati e centrata da molle
+%--------------------------------------------------------------
+\draw[simbolo] (2.396,-4.704) rectangle (5.261,-5.661);
+\draw[simbolo] (3.357,-4.704) -- (3.357,-5.661);
+\draw[simbolo] (4.310,-4.704) -- (4.310,-5.661);
+% elettromagnete sinistro
+\draw[simbolo] (0.476,-5.190) rectangle (2.396,-5.661);
+\draw[simbolo] (1.429,-5.190) -- (1.429,-5.661);
+\draw[sottile] (0.824,-5.661) -- (1.076,-5.190);
+\draw[sottile] (1.429,-5.200) -- (1.847,-5.421) -- (1.429,-5.657);
+% molla sinistra
+\draw[sottile] (1.666,-4.943) -- (1.729,-5.190) -- (1.847,-4.704) -- (1.970,-5.190)
+  -- (2.086,-4.704) -- (2.209,-5.190) -- (2.326,-4.704) -- (2.396,-4.943);
+% elettromagnete destro
+\draw[simbolo] (5.261,-5.190) rectangle (7.181,-5.661);
+\draw[simbolo] (6.204,-5.190) -- (6.204,-5.661);
+\draw[sottile] (6.586,-5.190) -- (6.810,-5.661);
+\draw[sottile] (6.204,-5.200) -- (5.800,-5.421) -- (6.204,-5.657);
+% molla destra
+\draw[sottile] (5.991,-4.943) -- (5.929,-5.190) -- (5.810,-4.704) -- (5.687,-5.190)
+  -- (5.571,-4.704) -- (5.449,-5.190) -- (5.331,-4.704) -- (5.261,-4.943);
+% posizione sinistra
+\draw[freccia] (2.857,-5.661) -- (2.621,-4.704);
+\draw[freccia] (3.100,-4.704) -- (3.100,-5.661);
+\draw[sottile] (2.619,-5.661) -- (2.619,-5.381);
+\draw[sottile] (2.543,-5.381) -- (2.694,-5.381);
+% posizione centrale (tutte le bocche chiuse)
+\draw[sottile] (3.504,-4.990) -- (3.667,-4.990);
+\draw[sottile] (3.981,-4.990) -- (4.143,-4.990);
+\draw[sottile] (3.504,-5.381) -- (3.667,-5.381);
+\draw[sottile] (3.743,-5.381) -- (3.906,-5.381);
+\draw[sottile] (3.981,-5.381) -- (4.143,-5.381);
+% posizione destra
+\draw[freccia] (4.539,-4.704) -- (4.539,-5.661);
+\draw[freccia] (4.776,-5.661) -- (5.014,-4.704);
+\draw[sottile] (5.014,-5.661) -- (5.014,-5.381);
+\draw[sottile] (4.939,-5.381) -- (5.090,-5.381);
+% scarichi
+\draw[linea] (3.586,-5.381) -- (3.586,-6.143);
+\draw[linea] (4.061,-5.381) -- (4.061,-6.143);
+\draw[sottile] (3.467,-6.143) -- (3.704,-6.143) -- (3.586,-6.347) -- cycle;
+\draw[sottile] (3.943,-6.143) -- (4.180,-6.143) -- (4.061,-6.347) -- cycle;
+\node[etichetta] at (0.871,-4.186) {1V1};
+% valvola collaudata
+\draw[sottile] (4.771,-4.700) -- (5.957,-4.091);
+\node[testo, anchor=west] at (6.114,-3.807) {valvola collaudata per\\ applicazioni legate alla sicurezza};
+
+%--------------------------------------------------------------
+% Linea di alimentazione, derivazione verso ulteriori utenze e
+% pressostato 0S1
+%--------------------------------------------------------------
+\draw[linea] (3.824,-5.381) -- (3.824,-11.157);
+\node[nodo] at (3.824,-7.824) {};
+\draw[linea] (3.824,-7.824) -- (5.261,-7.824);
+\draw[sottile] (5.261,-7.696) -- (5.467,-7.824) -- (5.261,-7.933) -- cycle;
+\node[testo, anchor=west] at (5.729,-7.764) {ulteriori utenze e\\ sistemi di comando};
+
+\node[nodo] at (3.824,-9.490) {};
+\draw[linea] (3.824,-9.490) -- (5.261,-9.490);
+\draw[simbolo] (5.261,-9.019) rectangle (6.219,-9.976);
+\draw[sottile] (5.261,-9.976) -- (6.219,-9.019);
+\node[etichetta] at (5.557,-9.343) {P};
+\draw[sottile] (5.600,-9.847) -- (5.800,-9.847) -- (5.800,-9.729) -- (5.967,-9.729);
+\node[etichetta] at (4.629,-8.943) {0S1};
+
+%--------------------------------------------------------------
+% 0V1: valvola 3/2 con elettromagnete e ritorno a molla
+%--------------------------------------------------------------
+\draw[simbolo] (2.624,-11.157) rectangle (4.539,-12.114);
+\draw[simbolo] (3.576,-11.157) -- (3.576,-12.114);
+% elettromagnete
+\draw[simbolo] (0.704,-11.647) rectangle (2.624,-12.114);
+\draw[simbolo] (1.667,-11.647) -- (1.667,-12.114);
+\draw[sottile] (1.076,-12.114) -- (1.300,-11.647);
+\draw[sottile] (1.667,-11.647) -- (2.086,-11.886) -- (1.667,-12.114);
+% molla
+\draw[sottile] (4.539,-11.886) -- (4.600,-11.647) -- (4.719,-12.114) -- (4.847,-11.647)
+  -- (4.957,-12.114) -- (5.086,-11.647) -- (5.204,-12.114) -- (5.261,-11.871);
+% posizione di passaggio
+\draw[freccia] (2.861,-12.114) -- (2.861,-11.157);
+\draw[sottile] (3.357,-12.114) -- (3.357,-11.833);
+\draw[sottile] (3.267,-11.833) -- (3.429,-11.833);
+% posizione di scarico
+\draw[freccia] (3.824,-11.157) -- (4.300,-12.114);
+\draw[sottile] (3.733,-11.833) -- (3.900,-11.833);
+\draw[linea] (4.300,-12.114) -- (4.300,-12.633);
+\draw[sottile] (4.181,-12.633) -- (4.419,-12.633) -- (4.300,-12.833) -- cycle;
+\node[etichetta] at (1.086,-10.757) {0V1};
+
+%--------------------------------------------------------------
+% Linea di alimentazione verso l'unita' di manutenzione 0Z
+%--------------------------------------------------------------
+\draw[linea] (3.824,-11.833) -- (3.824,-16.229) -- (7.926,-16.229);
+\draw[linea] (8.879,-16.229) -- (9.647,-16.229);
+\draw[linea] (11.000,-16.229) -- (12.239,-16.229);
+\draw[linea] (13.190,-16.229) -- (14.976,-16.229);
+% sorgente di aria compressa
+\draw[sottile] (14.976,-16.229) -- (15.386,-15.990) -- (15.386,-16.476) -- cycle;
+
+\draw[zona] (5.379,-13.593) rectangle (14.307,-17.721);
+\node[etichetta] at (4.643,-13.800) {0Z};
+
+% manometro
+\draw[simbolo] (6.490,-15.271) circle (0.479);
+\draw[sottile, -{Latex[length=6pt,width=3.6pt]}] (6.704,-15.490) -- (6.276,-15.061);
+\draw[linea] (6.490,-15.750) -- (6.490,-16.229);
+\node[nodo] at (6.490,-16.229) {};
+
+% regolatore di pressione con molla regolabile, sfiato secondario
+% e pilotaggio
+\draw[simbolo] (7.926,-15.521) rectangle (8.879,-16.479);
+\draw[doppia] (7.933,-16.229) -- (8.871,-16.229);
+\draw[sottile] (8.879,-15.650) -- (9.129,-15.757) -- (8.879,-15.879);
+\draw[sottile] (8.657,-15.521) -- (8.504,-15.450) -- (8.879,-15.364) -- (8.504,-15.264)
+  -- (8.879,-15.179) -- (8.504,-15.079) -- (8.879,-14.986) -- (8.693,-14.936);
+\draw[sottile, -{Latex[length=6pt,width=3.6pt]}] (9.121,-15.321) -- (8.040,-15.079);
+\draw[pilota] (7.926,-16.229) -- (7.686,-16.497) -- (7.686,-16.897) -- (8.664,-16.897)
+  -- (8.664,-16.479);
+
+% filtro con separatore d'acqua e indicatore di intasamento
+\draw[simbolo] (10.333,-15.547) -- (11.000,-16.229) -- (10.333,-16.910) -- (9.647,-16.229) -- cycle;
+\draw[pilota] (10.333,-15.547) -- (10.333,-16.467);
+\draw[sottile] (9.886,-16.467) -- (10.776,-16.467);
+\draw[sottile] (10.014,-16.467) -- (10.333,-16.786) -- (10.657,-16.467);
+\draw[linea] (10.333,-16.910) -- (10.333,-18.229);
+\draw[simbolo] (9.753,-14.833) rectangle (10.933,-15.547);
+\draw[sottile, -{Latex[length=6pt,width=3.6pt]}] (10.286,-15.404) -- (9.857,-14.976);
+\draw[sottile] (10.581,-15.204) circle (0.186);
+\draw[sottile] (10.450,-15.073) -- (10.713,-15.336);
+\draw[sottile] (10.450,-15.336) -- (10.713,-15.073);
+
+% valvola di intercettazione manuale 3/2 con scarico
+\draw[simbolo] (12.239,-15.029) rectangle (13.190,-16.953);
+\draw[simbolo] (12.239,-15.990) -- (13.190,-15.990);
+% posizione di passaggio (bocca chiusa a destra)
+\draw[doppia] (12.246,-15.276) -- (13.183,-15.276);
+\draw[sottile] (12.910,-15.681) -- (12.910,-15.839);
+\draw[sottile] (12.910,-15.753) -- (13.190,-15.753);
+% posizione di scarico (bocca chiusa sulla linea)
+\draw[doppia] (12.246,-16.231) -- (13.183,-16.701);
+\draw[sottile] (12.910,-16.143) -- (12.910,-16.310);
+\draw[sottile] (12.910,-16.229) -- (13.190,-16.229);
+\draw[linea] (13.190,-16.704) -- (13.667,-16.704);
+\draw[sottile] (13.667,-16.586) -- (13.881,-16.704) -- (13.667,-16.833) -- cycle;
+% azionamento manuale con arresto
+\draw[linea] (12.896,-15.029) -- (12.896,-14.076);
+\draw[linea] (12.647,-15.029) -- (12.647,-14.667) -- (12.776,-14.553) -- (12.647,-14.443)
+  -- (12.647,-14.076);
+\draw[sottile] (12.529,-14.553) -- (12.647,-14.553);
+\draw[simbolo] (12.529,-14.076) -- (13.014,-14.076);
+
+\end{tikzpicture}

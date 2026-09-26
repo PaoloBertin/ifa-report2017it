@@ -327,9 +327,536 @@ Nota: negli esempi contenenti più funzioni di sicurezza (17, 19, 23, 24), nello
     \item l'alimentazione dell'intera macchina viene disinserita (arresto di categoria 0 secondo la IEC 60204-1);
 \end{itemize}
 
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \centering
+        \captionsetup{hypcap=false}
+        \resizebox{0.4\textwidth}{!}{\input{immagini/fig08-04}}
+        \captionof{figure}{Diagramma a blocchi.}
+        \label{fig:08-04}
+    \end{minipage}
+\end{center}
+
 \textbf{Calcolo della probabilità di guasto}\\
 MTTF\textsubscript{D}: B1 è un convenzionale interruttore di prossimità su uno schermo di sicurezza, con un MTTF\textsubscript{D} di 1.100 anni [M]. Per il relè di minima tensione dell'avviatore motore Q1, il valore di B10 si approssima alla durata elettrica di 10.000 cicli di commutazione [M]. Nell'ipotesi che il 50\% dei guasti sia pericoloso, il valore di B\textsubscript{10D} si ottiene raddoppiando il valore di B10. Assumendo un azionamento giornaliero dell'interruttore di prossimità, un nop di 365 cicli all'anno per Q1 produce un MTTF\textsubscript{D} di 548 anni. Per la combinazione di B1 e Q1, l'MTTF\textsubscript{D} per ciascun canale è pari a 365 anni. Questo valore viene limitato al valore massimo aritmetico per la categoria B, ossia 27 anni ("medio").
-La DCavg e le misure contro i guasti per causa comune non sono rilevanti nella categoria B.
-Il sistema di comando elettromeccanico soddisfa la categoria B con un MTTF\textsubscript{D} medio (27 anni). Ne risulta una probabilità media di guasto pericoloso di 4,2 10\textsuperscript{-6} all'ora. Ciò soddisfa il PL b.
 
+La DC\textsubscript{avg} e le misure contro i guasti per causa comune non sono rilevanti nella categoria B.
+Il sistema di comando elettromeccanico soddisfa la categoria B con un MTTF\textsubscript{D} medio (27 anni). Ne risulta una probabilità media di guasto pericoloso di 4,2 10\textsuperscript{-6} all'ora. Ciò soddisfa il PL b.
+\clearpage
+\subsection{Esempio 2}
+\label{sec:08-2-2}
+\textit{Valvola pneumatica (sottosistema) - categoria 1 - PL c}
+
+% La minipage tiene insieme disegno e didascalia (figura non fluttuante)
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \centering
+        \captionsetup{hypcap=false}
+        \resizebox{0.8\textwidth}{!}{\input{immagini/fig08-05}}
+        \captionof{figure}{Valvola pneumatica per il comando di movimenti pericolosi.}
+        \label{fig:08-05}
+    \end{minipage}
+\end{center}
+
+\textbf{Funzioni di sicurezza}
+\begin{itemize}
+    \item funzione di arresto legata alla sicurezza: arresto del movimento pericoloso e prevenzione dell'avviamento inatteso dalla posizione di riposo, realizzata mediante la sottofunzione di sicurezza SSC.
+    \item qui è mostrata soltanto la parte pneumatica del sistema di comando, sotto forma di sottosistema. Ulteriori parti dei sistemi di comando legate alla sicurezza (ad es. mezzi di protezione ed elementi logici elettrici) devono essere aggiunte sotto forma di sottosistemi per completare la funzione di sicurezza.
+\end{itemize}
+
+\textbf{Descrizione funzionale}
+\begin{itemize}
+    \item i movimenti pericolosi sono controllati da una valvola direzionale 1V1 ben collaudata per applicazioni di sicurezza.
+    \item il guasto della valvola direzionale può comportare la perdita della funzione di sicurezza. Il guasto dipende dall'affidabilità della valvola direzionale.
+    \item non sono realizzate misure per il rilevamento dei guasti.
+    \item qualora l'aria compressa intrappolata costituisca un ulteriore pericolo, sono necessarie misure aggiuntive.
+\end{itemize}
+
+\textbf{Caratteristiche progettuali}
+\begin{itemize}
+    \item sono osservati i principi di sicurezza di base e ben collaudati, e sono soddisfatti i requisiti della categoria B.
+    \item 1V1 è una valvola direzionale con posizione centrale chiusa, sovrapposizione sufficiente, posizione centrale centrata a molla e molle resistenti a fatica;
+    \item la posizione di commutazione orientata alla sicurezza viene raggiunta mediante l'annullamento del segnale di comando.
+    \item il fabbricante/utilizzatore deve confermare che la valvola direzionale è un componente ben collaudato per applicazioni di sicurezza (di affidabilità sufficientemente elevata);
+    \item la funzione di sicurezza può essere ottenuta anche mediante una disposizione logica di valvole idonee;
+\end{itemize}
+
+\textbf{Calcolo della probabilità di guasto}\\
+MTTF\textsubscript{D}: per la valvola direzionale 1V1 si assume un valore di B10D pari a 20.000.000 di cicli di commutazione [S]. Con 240 giorni lavorativi, 16 ore lavorative e un tempo di ciclo di 10 secondi, nop è pari a 1.382.400 cicli all'anno e l'MTTF\textsubscript{D} è di 145 anni. Questo è anche il valore di MTTF\textsubscript{D} per canale, che viene limitato a 100 anni ("alto").
+
+La DC\textsubscript{avg} e le misure contro i guasti per causa comune non sono rilevanti nella categoria 1.
+
+Il comando pneumatico soddisfa la categoria 1 con un MTTF\textsubscript{D} alto (100 anni). Ne risulta una probabilità media di guasto pericoloso di 1,1·10\textsuperscript{-6} all'ora. Ciò soddisfa il PL c. A seguito dell'aggiunta di ulteriori parti dei sistemi di comando legate alla sicurezza, sotto forma di sottosistemi, per il completamento della funzione di sicurezza, il PL potrebbe in determinate circostanze risultare inferiore. Tenendo conto della stima a favore della sicurezza sopra descritta, si ottiene un valore di 14 anni per il tempo di funzionamento (T\textsubscript{10D}) prima che la valvola direzionale 1V1, soggetta a usura, debba essere sostituita.
+\clearpage
+\subsection{Esempio 3}
+\label{sec:08-2-3}
+\textit{Valvola idraulica per il controllo di movimenti pericolosi}
+
+% La minipage tiene insieme disegno e didascalia (figura non fluttuante)
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \centering
+        \captionsetup{hypcap=false}
+        \resizebox{0.85\textwidth}{!}{\input{immagini/fig08-07}}
+        \captionof{figure}{Valvola idraulica per il controllo di movimenti pericolosi.}
+        \label{fig:08-07}
+    \end{minipage}
+\end{center}
+
+\textbf{Funzioni di sicurezza}
+\begin{itemize}
+    \item funzione di arresto legata alla sicurezza: arresto del movimento pericoloso e prevenzione dell'avviamento inatteso dalla posizione di riposo
+    \item qui è mostrata soltanto la parte idraulica del sistema di comando, sotto forma di sottosistema. Ulteriori parti dei sistemi di comando legate alla sicurezza (ad es. mezzi di protezione ed elementi logici elettrici) devono essere aggiunte sotto forma di sottosistemi per completare la funzione di sicurezza.
+\end{itemize}
+
+\textbf{Descrizioone funzionale}
+\begin{itemize}
+    \item i movimenti pericolosi sono controllati da una valvola direzionale 1V3 ben collaudata per applicazioni di sicurezza.
+    \item il guasto della valvola direzionale può comportare la perdita della funzione di sicurezza. Il guasto dipende dall'affidabilità della valvola direzionale.
+    \item non sono realizzate misure per il rilevamento dei guasti.
+\end{itemize}
+
+\textbf{Caratteristiche progettuali}
+\begin{itemize}
+    \item sono osservati i principi di sicurezza di base e ben collaudati, e sono soddisfatti i requisiti della categoria B.
+    \item 1V3 è una valvola direzionale con posizione centrale chiusa, sovrapposizione sufficiente, posizione centrale centrata a molla e molle resistenti a fatica.
+    \item la posizione di commutazione orientata alla sicurezza viene raggiunta mediante l'annullamento del segnale di comando.
+    \item ove necessario, il fabbricante/utilizzatore deve confermare che la valvola direzionale è un componente ben collaudato per applicazioni di sicurezza.
+    \item sono realizzate le seguenti misure specifiche per aumentare l'affidabilità della valvola direzionale: un filtro in pressione 1Z3 a monte della valvola direzionale, e misure idonee sul cilindro per impedire che lo sporco venga trascinato all'interno dallo stelo del pistone (es. raschiatore efficace sullo stelo del pistone, vedere * nella Figura 8.7).
+\end{itemize}
+
+\textbf{Calcolo della probabilità di guasto}
+MTTF\textsubscript{D}: per la valvola direzionale 1V3 si assume un MTTF\textsubscript{D} di 150 anni [M]. Questo è anche il valore di MTTF\textsubscript{D} per canale, che viene limitato a 100 anni ("alto").
+La DC\textsubscript{avg} e le misure contro i guasti per causa comune non sono rilevanti nella categoria 1.
+Il comando idraulico soddisfa la categoria 1 con un MTTF\textsubscript{D} alto (100 anni). Ne risulta una probabilità media di guasto pericoloso di 1,1 10\textsuperscript{-6} all'ora. Ciò soddisfa il PL c. A seguito dell'aggiunta di ulteriori parti del sistema di comando legate alla sicurezza, sotto forma di sottosistemi, per il completamento della funzione di sicurezza, il PL potrebbe in determinate circostanze risultare inferiore.
+\clearpage
+
+\subsection{Esempio 4}
+\label{sec:08-2-4}
+\textbf{Esempio 4}
+\textit{Arresto di una macchina per la lavorazione del legno - categoria B - PL b}
+
+% La minipage tiene insieme disegno e didascalia (figura non fluttuante)
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \centering
+        \captionsetup{hypcap=false}
+        \resizebox{0.85\textwidth}{!}{\input{immagini/fig08-09}}
+        \captionof{figure}{Combinazione di un equipaggiamento di comando elettromeccanico e di un semplice dispositivo di frenatura elettronico per l'arresto di macchine per la lavorazione del legno.}
+        \label{fig:08-09}
+    \end{minipage}
+\end{center}
+
+\textbf{Funzioni di sicurezza}
+\begin{itemize}
+    \item l'azionamento del pulsante di arresto (Off) determina l'SS1-t (safe stop 1, time controlled — arresto sicuro 1, controllato a tempo), ossia un arresto controllato del motore entro un tempo massimo ammissibile.
+\end{itemize}
+
+\textbf{Descrizione funzionale}
+\begin{itemize}
+    \item l'arresto del motore viene avviato dall'azionamento del pulsante di arresto S1. Il contattore motore Q1 si diseccita e viene avviata la funzione di frenatura. Il motore viene frenato mediante una corrente continua, generata nel dispositivo di frenatura K1 da un controllo dell'angolo di fase con tiristori, che genera una coppia frenante nell'avvolgimento del motore.
+    \item il tempo di arresto non deve superare un valore massimo (ad es. 10 secondi). Il livello di corrente di frenatura necessario a tale scopo può essere impostato mediante un potenziometro sul dispositivo di frenatura.
+    \item trascorso il tempo massimo di frenatura, il tiristore non viene più attivato e il percorso di corrente per la corrente di frenatura viene interrotto. Il processo di arresto corrisponde a un arresto di categoria 1 secondo la IEC 60204-1.
+    \item la funzione di sicurezza non può essere mantenuta a fronte di tutti i guasti dei componenti, ed è dipendente dall'affidabilità dei componenti.
+    \item non sono realizzate misure per il rilevamento dei guasti
+\end{itemize}
+
+\textbf{Caratteristiche progettuali}
+\begin{itemize}
+    \item sono osservati i principi di sicurezza di base e ben collaudati, e sono soddisfatti i requisiti della categoria B. Sono realizzati circuiti di protezione (quali la protezione dei contatti), come descritto nei paragrafi iniziali del Capitolo 8. Il principio di diseccitazione (principio della corrente di riposo) è applicato come principio di sicurezza di base. Per la protezione contro l'avviamento inatteso a seguito del ripristino dell'alimentazione, il sistema di comando è dotato di un'autoritenuta.
+    \item S1 è un pulsante con apertura ad azione positiva secondo la IEC 60947-5-1, Allegato K. S1 è pertanto considerato un componente ben collaudato.
+    \item il contattore Q1 è un componente ben collaudato, tenendo conto delle condizioni aggiuntive secondo la Tabella D.3 della EN ISO 13849-2.
+    \item il dispositivo di frenatura K1 è costruito interamente con componenti elettronici semplici, quali transistor, condensatori, diodi, resistori e tiristori. Il comportamento legato alla sicurezza è determinato dalla selezione dei componenti. Non sono realizzate misure interne per il rilevamento dei guasti.
+\end{itemize}
+
+\textbf{Applicazione}
+Su macchine per la lavorazione del legno o macchine analoghe, sulle quali un arresto non frenato comporterebbe una durata di arresto per inerzia inammissibilmente lunga dei movimenti pericolosi dell'utensile. Il comando della funzione di frenatura sulle macchine per la lavorazione del legno deve essere progettato in modo tale da raggiungere almeno il PL b (prEN ISO 19085-1:2014).
+
+\textbf{Calcolo della probabilità di guasto}
+\begin{itemize}
+    \item il pulsante S1 e il contattore Q1 sono combinati, ai fini del calcolo in SISTEMA, in un sottosistema che soddisfa i requisiti della categoria 1. Il dispositivo di frenatura K1 costituisce un sottosistema separato in categoria B.
+    \item S1 è un pulsante con apertura ad azione positiva secondo la IEC 60947-5-1, Allegato K.
+    \item MTTF\textsubscript{D}: per il pulsante S1 è specificato un valore di B10D pari a 20 10⁶ cicli di commutazione [M]. Per il contattore Q1 si assume un valore di B10D pari a 1.300.000 cicli di commutazione [S] a carico nominale. Con 300 giorni lavorativi, 8 ore lavorative e un tempo di ciclo di 2 minuti, nop è pari a 72.000 cicli all'anno. L'MTTF\textsubscript{D} è di 2.777 anni per il pulsante S1 e di 180 anni per Q1. Complessivamente, ne risulta un MTTF\textsubscript{D} di 169 anni, che conformemente alla norma viene ridotto a 100 anni ("alto") per il sottosistema. Il contattore Q1 ha un tempo di funzionamento limitato (T10D) di 18 anni. Se ne raccomanda la sostituzione tempestiva. L'MTTF\textsubscript{D} per il dispositivo di frenatura K1 è stato determinato mediante il metodo del conteggio dei componenti. Le informazioni sui componenti tratte dalla distinta dei componenti e i valori dalla banca dati SN 29500 [48] producono un MTTF\textsubscript{D} di 518 anni [D]. Anche questo viene ridotto a 100 anni ("alto").
+    \item la DC\textsubscript{avg} e le misure contro i guasti per causa comune non sono rilevanti nella categoria B e nella categoria 1.
+    \item il sottosistema S1/Q1 soddisfa la categoria 1 con un MTTFD alto (100 anni). Ne risulta una probabilità media di guasto pericoloso di 1,1 10\textsuperscript{-6} all'ora. Ciò soddisfa il PL c.
+    \item il sottosistema K1 soddisfa la categoria B con un MTTFD alto (100 anni). Ne risulta una probabilità media di guasto pericoloso di 4,2 10\textsuperscript{-6} all'ora. Ciò soddisfa il PL b.
+    \item per la funzione di arresto legata alla sicurezza, la probabilità media di guasto pericoloso risultante è di 5,4 10\textsuperscript{-6} all'ora. Ciò soddisfa il PL b
+\end{itemize}
+\clearpage
+
+\subsection{Esempio 5}
+\label{sec:08-2-5}
+\textbf{Esempio 5}
+\textit{Controllo della posizione dei ripari mobili - Categoria 1 - PL c}
+
+% La minipage tiene insieme disegno e didascalia (figura non fluttuante)
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \centering
+        \captionsetup{hypcap=false}
+        \resizebox{0.6\textwidth}{!}{\input{immagini/fig08-11}}
+        \captionof{figure}{Controllo della posizione del riparo mobile per la prevenzione di movimenti pericolosi (STO -- Safe Torque Off).}
+        \label{fig:08-11}
+    \end{minipage}
+\end{center}
+
+\textbf{Funzione di sicurezza}
+\begin{itemize}
+    \item funzione di arresto attinente alla sicurezza, avviata da un riparo: l'apertura del riparo mobile attiva la funzione di sicurezza STO (safe torque off).
+\end{itemize}
+
+\textbf{Descrizione funzionale}
+\begin{itemize}
+    \item l'apertura del riparo mobile (ad es. riparo di sicurezza) è rilevata da un interruttore di posizione B1 con contatto ad apertura positiva, che comanda un contattore Q1. La diseccitazione di Q1 interrompe o impedisce movimenti o stati pericolosi.
+    \item la funzione di sicurezza non può essere mantenuta a fronte di tutti i guasti dei componenti e dipende dall'affidabilità dei componenti stessi.
+    \item non sono attuate misure per il rilevamento dei guasti.
+    \item la rimozione del dispositivo di protezione non viene rilevata.
+\end{itemize}
+
+\textbf{Caratteristiche progettuali}
+\begin{itemize}
+    \item sono osservati i principi di sicurezza di base e i principi di sicurezza ben collaudati e sono soddisfatti i requisiti della Categoria B. Sono attuati i circuiti di protezione (quali la protezione dei contatti) descritti nei paragrafi iniziali del Capitolo 8. Il principio della corrente di riposo è impiegato come principio di sicurezza di base. La messa a terra del circuito di comando è considerata un principio di sicurezza ben collaudato.
+    \item l'interruttore B1 è un interruttore di posizione con contatto ad apertura positiva conforme alla IEC 60947-5-1, Allegato K, ed è pertanto considerato un componente ben collaudato. Il contatto di apertura interrompe il circuito direttamente per via meccanica quando il dispositivo di protezione non si trova nella posizione di sicurezza.
+    \item il contattore Q1 è un componente ben collaudato a condizione che siano soddisfatte le condizioni aggiuntive di cui alla Tabella D.3 della EN ISO 13849-2.
+    \item per il controllo della posizione è impiegato un interruttore di posizione. È assicurata una disposizione stabile del dispositivo di protezione ai fini dell'azionamento dell'interruttore di posizione. Gli elementi di azionamento dell'interruttore di posizione sono protetti contro lo spostamento. Sono impiegate esclusivamente parti meccaniche rigide (nessun elemento elastico che agisca nella direzione della forza di azionamento)
+    \item la corsa di azionamento dell'interruttore di posizione è conforme alle specifiche del costruttore.
+\end{itemize}
+
+\textbf{Calcolo della probabilità di guasto}
+\begin{itemize}
+    \item MTTF\textsubscript{D}: per B1 è dichiarato un MTTF\textsubscript{D} di 20 10\textsuperscript{6} cicli di manovra [M]. Con 365 giorni lavorativi, 16 ore lavorative al giorno e un tempo di ciclo di 10 minuti, il nop di questi componenti è pari a 35.040 cicli all'anno e l'MTTF\textsubscript{D} è di 5.707 anni. Per il contattore Q1, il valore B10 corrisponde, con carico induttivo (AC-3), a una durata elettrica di 1.300.000 cicli di manovra [M]. Ipotizzando che il 50\% dei guasti sia pericoloso, il valore B\textsubscript{10D} si ottiene raddoppiando il valore B\textsubscript{10}. Il valore di n\textsubscript{op} sopra ipotizzato porta a un MTTF\textsubscript{D} di 742 anni per Q1. La combinazione di B1 e Q1 dà un MTTF\textsubscript{D} di 656 anni per ciascun canale. Tale valore è limitato a 100 anni ("alto").
+    Il DC\textsubscript{avg} e le misure contro i guasti per causa comune non sono rilevanti nella Categoria 1.
+    \item il sistema di comando elettromeccanico soddisfa la Categoria 1 con un MTTF\textsubscript{D} alto (100 anni). Ne risulta una probabilità media di guasto pericoloso di 1,1 · 10\textsubscript{-6} all'ora. Ciò soddisfa il PL c. Il PL\textsubscript{r} pari a b è pertanto superato.
+\end{itemize}
+\clearpage
+
+\subsection{Esempio 6}
+\label{sec:08-2-6}
+\textbf{Esempio 6}
+\textit{Dispositivo di avvio/arresto con dispositivo di arresto di emergenza - Categoria 1 - PL c}
+
+% La minipage tiene insieme disegno e didascalia (figura non fluttuante)
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \centering
+        \captionsetup{hypcap=false}
+        \resizebox{0.6\textwidth}{!}{\input{immagini/fig08-13}}
+        \captionof{figure}{Dispositivo combinato di avvio/arresto con dispositivo di arresto di emergenza.}
+        \label{fig:08-13}
+    \end{minipage}
+\end{center}
+
+\textbf{Funzione di sicurezza}
+\begin{itemize}
+    \item funzione di arresto di emergenza, STO – coppia disinserita in sicurezza mediante azionamento del dispositivo di arresto di emergenza
+\end{itemize}
+
+\textbf{Descrizione funzionale}
+\begin{itemize}
+    \item i movimenti o gli stati pericolosi vengono disattivati mediante l'interruzione della tensione di comando del contattore Q1 all'azionamento del dispositivo di arresto di emergenza S1.
+    \item la funzione di sicurezza non può essere mantenuta in presenza di tutti i possibili guasti dei componenti e dipende dall'affidabilità dei componenti stessi.
+    \item non sono implementate misure per la rilevazione dei guasti.
+\end{itemize}
+
+\textbf[Caratteristiche di progetto]
+\begin{itemize}
+    \item sono rispettati i principi di sicurezza di base e i principi di sicurezza ben collaudati e sono soddisfatti i requisiti della Categoria B. Sono realizzati i circuiti di protezione (per es. la protezione dei contatti) descritti nei paragrafi iniziali del Capitolo 8. Il principio della corrente di riposo è impiegato come principio di sicurezza di base. Il circuito di comando è inoltre collegato a terra, in quanto principio di sicurezza ben collaudato.
+    \item il dispositivo di arresto di emergenza S1 è un interruttore con modo di azionamento positivo conforme alla IEC 60947-5-5 ed è pertanto un componente ben collaudato secondo la Tabella D.3 della EN ISO 13849-2.
+    \item il segnale è elaborato da un contattore (arresto di Categoria 0 secondo la IEC 60204-1).
+    \item il contattore Q1 è un componente ben collaudato a condizione che siano rispettate le condizioni supplementari indicate nella Tabella D.3 della EN ISO 13849-2.
+\end{itemize}
+
+\textbf{Note}
+\begin{itemize}
+    \item la funzione di arresto in caso di emergenza è una misura di protezione che integra le funzioni di sicurezza per la protezione delle zone pericolose.
+\end{itemize}
+
+\textbf{Calcolo della probabilità di guasto}
+\begin{itemize}
+    \item MTTF\textsubscript{D}: S1 è un dispositivo di arresto di emergenza standard secondo la EN ISO 13850. È costruito conformemente alla IEC 60947-5-5. Secondo la EN ISO 13849-1, Tabella C.1, per i dispositivi di arresto di emergenza in questo caso può essere assunto un valore B10D di 100.000 cicli di commutazione, indipendentemente dal carico [S]. Per il contattore Q1, il valore B10 corrisponde, con carico induttivo (AC 3), a una durata elettrica di 1.300.000 cicli di commutazione [M]. Nell'ipotesi che il 50\% dei guasti sia pericoloso, il valore B10D si ottiene raddoppiando il valore B\textsubscript{10}. Se si ipotizza che il dispositivo di avvio/arresto venga azionato due volte al giorno per 365 giorni lavorativi e che il dispositivo di arresto di emergenza venga azionato dodici volte all'anno, con un nop risultante di 742 cicli all'anno Q1 presenta un MTTF\textsubscript{D} di 35.040 anni. Questo è anche l'MTTF\textsubscript{D} del canale, che viene limitato a 100 anni ("alto").
+    \item il DC\textsubscript{avg} e le misure contro i guasti per causa comune non sono rilevanti nella Categoria 1.
+    \item il sistema di comando elettromeccanico soddisfa la Categoria 1 con un MTTF\textsubscript{D} elevato (100 anni). Ne risulta una probabilità media di guasto pericoloso di 1,1 10\textsubscript{-6} all'ora. Ciò soddisfa il PL c.
+\end{itemize}
+\clearpage
+
+\subsection{Esempio 7}
+\label{sec:08-2-7}
+\textbf{Esempio 7}
+\textit{Sganciatore di minima tensione azionato mediante dispositivo di arresto di emergenza - Categoria 1 - PL c}
+
+% La minipage tiene insieme disegno e didascalia (figura non fluttuante)
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \centering
+        \captionsetup{hypcap=false}
+        \resizebox{0.6\textwidth}{!}{\input{immagini/fig08-15}}
+        \captionof{figure}{Dispositivo di arresto di emergenza che agisce sullo sganciatore di minima tensione del dispositivo di sezionamento dell'alimentazione (avviatore motore).}
+        \label{fig:08-15}
+    \end{minipage}
+\end{center}
+
+\textbf{Funzioni di sicurezza}
+\begin{itemize}
+    \item funzione di arresto di emergenza, STO (coppia disinserita in sicurezza), ottenuta mediante azionamento del dispositivo di arresto di emergenza che agisce sullo sganciatore di minima tensione di un avviatore motore o, se del caso, del dispositivo di sezionamento dell'alimentazione.
+\end{itemize}
+
+\textbf{Descrizione funzionale}
+\begin{itemize}
+    \item i movimenti o gli stati pericolosi vengono interrotti, all'azionamento del dispositivo di arresto di emergenza S1, mediante lo sganciatore di minima tensione del dispositivo di sezionamento dell'alimentazione, in questo caso costituito da un avviatore motore Q1.
+    \item la funzione di sicurezza non può essere mantenuta in presenza di tutti i possibili guasti dei componenti e dipende dall'affidabilità dei componenti stessi.
+    \item non sono implementate misure per la rilevazione dei guasti.
+\end{itemize}
+
+\textbf{Caratteristiche di progetto}
+\begin{itemize}
+    \item sono rispettati i principi di sicurezza di base e i principi di sicurezza ben collaudati e sono soddisfatti i requisiti della Categoria B. Sono realizzati i circuiti di protezione (per es. la protezione dei contatti) descritti nei paragrafi iniziali del Capitolo 8. Il principio della corrente di riposo dello sganciatore di minima tensione è impiegato come principio di sicurezza di base.
+    \item il dispositivo di arresto di emergenza S1 è un interruttore con modo di azionamento positivo conforme alla IEC 60947-5-5 ed è pertanto un componente ben collaudato secondo la Tabella D.3 della EN ISO 13849-2.
+    \item l'avviatore motore Q1 deve essere considerato equivalente a un interruttore automatico secondo la Tabella D.3 della EN ISO 13849-2. Q1 può pertanto essere considerato un componente ben collaudato.
+    \item l'alimentazione dell'intera macchina viene disinserita (arresto di Categoria 0 secondo la IEC 60204-1).
+\end{itemize}
+
+\textbf{Note}
+La funzione di arresto in caso di emergenza è una misura di protezione che integra le funzioni di sicurezza per la protezione delle zone pericolose.
+
+\textbf{Calcolo della probabilità di guasto}
+\begin{itemize}
+    \item MTTF\textsubscript{D}: S1 è un dispositivo di arresto di emergenza standard secondo la EN ISO 13850. È costruito conformemente alla IEC 60947-5-5. Secondo la EN ISO 13849-1, Tabella C.1, per i dispositivi di arresto di emergenza in questo caso può essere assunto un valore B\textsubscript{10D}D di 100.000 cicli di commutazione, indipendentemente dal carico [S]. Per lo sganciatore di minima tensione dell'avviatore motore Q1, il valore B\textsubscript{10} corrisponde approssimativamente alla durata elettrica di 10.000 cicli di commutazione [M]. Nell'ipotesi che il 50\% dei guasti sia pericoloso, il valore B\textsubscript{10D} si ottiene raddoppiando il valore B\textsubscript{10}. Con un azionamento del dispositivo di arresto di emergenza dodici volte all'anno e un nop risultante di 12 cicli all'anno, Q1 presenta un MTTF\textsubscript{D} di 16.666 anni. Questo è anche l'MTTF\textsubscript{D} del canale, che viene limitato a 100 anni ("alto").
+    \item il DC\textsubscript{avg} e le misure contro i guasti per causa comune non sono rilevanti nella Categoria 1.
+    \item il sistema di comando elettromeccanico soddisfa la Categoria 1 con un MTTF\textsubscript{D} elevato (100 anni). Ne risulta una probabilità media di guasto pericoloso di 1,1 10\textsubscript{-6} all'ora. Ciò soddisfa il PL c.
+\end{itemize}
+\clearpage
+
+\subsection{Esempio 8}
+\label{sec:08-2-8}
+\textbf{Esempio 8}
+Questo esempio è stato eliminato, in quanto la tecnologia non è più attuale.
+\clearpage
+
+\subsection{Esempio 9}
+\label{sec:08-2-9}
+\textbf{Esempio 9}
+\textit{Barriere fotoelettriche testate - Categoria 2 - PL c con dispositivo di commutazione del segnale di uscita di Categoria 1 posto a valle}
+
+% La minipage tiene insieme disegno e didascalia (figura non fluttuante)
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \centering
+        \captionsetup{hypcap=false}
+        \resizebox{\textwidth}{!}{\input{immagini/fig08-17}}
+        \captionof{figure}{Test delle barriere fotoelettriche con un PLC standard.}
+        \label{fig:08-17}
+    \end{minipage}
+\end{center}
+
+\textbf{funzioni di sicurezza}
+\begin{itemize}
+    \item funzione di arresto legata alla sicurezza, attivata da un dispositivo di protezione: quando il fascio luminoso viene interrotto, un movimento pericoloso viene arrestato (STO - coppia disinserita in sicurezza).
+\end{itemize}
+
+\textbf{Descrizione funzionale}
+\begin{itemize}
+    \item l'interruzione di un fascio luminoso delle n barriere fotoelettriche F1,..Fn collegate in cascata determina un comando di disinserzione sia per via elettromeccanica, con la diseccitazione del contattore ausiliario K2, sia attraverso l'uscita del PLC (O1.1) del canale di test. Il movimento pericoloso viene quindi arrestato per mezzo del contattore principale Q1.
+    \item le barriere fotoelettriche vengono testate prima di ogni avvio del movimento pericoloso, a seguito della pressione del pulsante di avvio S2. A tale scopo l'uscita O1.2 del PLC diseccita l'emettitore della barriera fotoelettrica in risposta a un comando software. La reazione del ricevitore (K2 si diseccita nuovamente) è controllata sugli ingressi I1.1 e I1.2 del PLC. Se il comportamento risulta esente da guasti, K2 si automantiene tramite O1.2 e il movimento pericoloso può essere avviato rilasciando S2. K1 viene diseccitato tramite O1.0 e il contattore principale Q1 viene attivato tramite O1.1.
+    \item se il test rileva un guasto in una delle barriere fotoelettriche o in K2, le uscite O1.1 e O1.2 vengono disattivate e al contattore principale Q1 non viene più applicato alcun segnale di attivazione.
+    \item in caso di guasto globale del PLC (uscita O1.0 a potenziale basso, uscite O1.1 e O1.2 a potenziale alto), l'interruzione di un fascio luminoso determina la diseccitazione di K2 indipendentemente dal PLC. Per garantire questa indipendenza, le uscite delle barriere fotoelettriche sono disaccoppiate dal PLC mediante il diodo di disaccoppiamento R2. In circostanze sfavorevoli, le barriere fotoelettriche possono essere riattivate da K2 azionando il pulsante di avvio, con conseguente attivazione del contattore principale Q1. In questo caso risulterebbe guasta (soltanto) l'apparecchiatura di test. Il guasto dell'apparecchiatura di test viene rilevato in ragione della probabilità che, in tali circostanze, il processo presenti un funzionamento difettoso.
+    \item durante il test, l'attivazione di Q1 da parte di K1 e O1.1 è inibita.
+\end{itemize}
+
+\textbf{Caratteristiche di progetto}
+\begin{itemize}
+    \item sono rispettati i principi di sicurezza di base e i principi di sicurezza ben collaudati e sono soddisfatti i requisiti della Categoria B. Sono realizzati i circuiti di protezione (per es. la protezione dei contatti) descritti nei paragrafi iniziali del Capitolo 8.
+    \item vengono impiegate barriere fotoelettriche speciali con caratteristiche ottiche adeguate (angolo di apertura, immunità alla luce estranea, ecc.) secondo la IEC 61496-2.
+    \item più barriere fotoelettriche possono essere collegate in cascata e monitorate con soli due ingressi del PLC e un relè o un contattore ausiliario.
+    \item i contattori ausiliari K1 e K2 dispongono di elementi di contatto collegati meccanicamente secondo la IEC 60947-5-1, Allegato L. Il contattore principale Q1 dispone di un contatto a specchio secondo la IEC 60947-4-1, Allegato F.
+    \item i componenti standard F1..Fn e K3 sono impiegati conformemente alle indicazioni del punto 6.3.10.
+    \item il software (SRASW) è programmato secondo i requisiti per il PL b (riduzione dei requisiti nel canale di test grazie alla diversità) e le indicazioni del punto 6.3.10.
+    \item il pulsante di avvio S2 deve essere collocato all'esterno della zona pericolosa e in una posizione dalla quale la zona pericolosa sia visibile.
+    \item il numero, la disposizione e l'altezza dei fasci luminosi devono essere conformi alla EN ISO 13855 e alla IEC 62046.
+    \item se una disposizione per la protezione delle zone pericolose consente di oltrepassare il campo di rilevamento e di sostare al di là di esso, sono necessarie ulteriori misure, come un interblocco di riavvio. A tale scopo può essere utilizzato il pulsante di avvio S2: il PLC K3 confronta la durata della pressione del pulsante con un valore massimo e un valore minimo. Solo se le condizioni sono soddisfatte il comando di avvio è considerato valido.
+\end{itemize}
+
+\textbf{Note}
+\begin{itemize}
+    \item l'esempio è destinato all'impiego in applicazioni con richiesta poco frequente della funzione di sicurezza. Ciò consente di soddisfare il requisito previsto per l'architettura designata della Categoria 2, ossia "test molto più frequente della richiesta della funzione di sicurezza" (cfr. Allegato G).
+    \item dopo l'attivazione di un arresto, le barriere fotoelettriche restano disattivate fino al successivo avvio. In questo modo è possibile, per esempio, accedere a una zona pericolosa senza che ciò venga "registrato" dal circuito. Tale comportamento può essere modificato adattando opportunamente il circuito.
+\end{itemize}
+
+\textbf{Calcolo della probabilità di guasto}
+\begin{itemize}
+    \item a titolo di esempio, per il calcolo della probabilità di guasto vengono considerate tre barriere fotoelettriche F1…F3. La protezione di una seconda zona pericolosa costituisce un'ulteriore funzione di sicurezza, il cui calcolo viene eseguito separatamente.
+    \item per il calcolo della probabilità di guasto, il sistema complessivo è suddiviso in due sottosistemi: "barriere fotoelettriche" e "contattore principale" (Q1).
+\end{itemize}
+
+Per il sottosistema "barriere fotoelettriche":
+\begin{itemize}
+    \item F1, F2, F3 e K2 costituiscono il canale funzionale della struttura circuitale di Categoria 2; il PLC K3 (compreso il diodo di disaccoppiamento R2) costituisce l'apparecchiatura di test. S2 e K1 hanno la funzione di attivare il test della barriera fotoelettrica e non rientrano nel calcolo della probabilità di guasto.
+    \item MTTF\textsubscript{D}: per ciascuna delle barriere da F1 a F3 si assume un MTTF\textsubscript{D} di 100 anni [E]. Il valore B\textsubscript{10D} di K2 è pari a 20.000.000 di cicli [S]. Con 240 giorni lavorativi, 16 ore lavorative giornaliere e un tempo di ciclo di 180 secondi, n\textsubscript{op} risulta pari a 76.800 cicli all'anno. Il test descritto sopra raddoppia tale valore, portandolo a un nop di 153.600 cicli all'anno con un MTTFD di 1.302 anni per K2.
+\end{itemize}
+
+Da questi valori risulta un MTTF\textsubscript{D} di 32 anni ("alto") per il canale funzionale. Per K3 si assume un MTTF\textsubscript{D} di 50 anni [E]. Rispetto a tale valore, l'MTTF\textsubscript{D} di 228.311 anni [S] del diodo di disaccoppiamento R2 è irrilevante.
+
+\begin{itemize}
+    \item DC\textsubscript{avg}: la giustificazione del DC del 60\% per F1…F3 è il test funzionale descritto sopra. Il DC del 99\% per K2 deriva dal monitoraggio diretto in K3 mediante elementi di contatto collegati meccanicamente. La formula di media restituisce per il DC\textsubscript{avg} un risultato del 61\% ("basso").
+    \item misure adeguate contro i guasti per causa comune (85 punti): separazione (15), diversità (20), protezione contro le sovratensioni ecc. (15) e condizioni ambientali (25 + 10)
+    \item la combinazione degli elementi di comando del sottosistema "barriere fotoelettriche" soddisfa la Categoria 2 con un MTTFD elevato del canale funzionale (32 anni) e un DCavg basso (61\%). Ne risulta una probabilità media di guasto pericoloso PFHD di 1,9 10\textsuperscript{-6} all'ora.
+\end{itemize}
+
+Per il sottosistema "contattore principale" si assumono le ipotesi seguenti:
+\begin{itemize}
+    \item B\textsubscript{10D} = 1.300.000 cicli [S] con un n\textsubscript{op} di 76.800 cicli all'anno. Ne consegue un MTTF\textsubscript{D} di 169 anni, che secondo la norma viene limitato a 100 anni. La struttura soddisfa la Categoria 1; il DC\textsubscript{avg} e i guasti per causa comune non sono pertanto rilevanti. La probabilità media di guasto pericoloso risultante è di 1,1 10\textsubscript{-6} all'ora.
+    \item la somma delle probabilità medie di guasto pericoloso dei due sottosistemi dà un PFHD di 3,0 10⁻⁶ all'ora. Ciò soddisfa il PL c.
+    \item se si prevede che la funzione di sicurezza venga richiesta più frequentemente di quanto ipotizzato per l'architettura designata di Categoria 2 (rapporto inferiore a 100:1, cioè più di una volta ogni 5 ore), se ne può tenere conto, conformemente alla Nota 1 dell'Allegato K della norma, applicando una penalizzazione aggiuntiva del 10\% fino a un rapporto di 25:1. Nel caso qui considerato, con tre barriere fotoelettriche, il sottosistema "barriere fotoelettriche" raggiunge comunque un PFHD di 2,1 10\textsuperscript{-6} all'ora. La probabilità media di guasto pericoloso PFH\textsubscript{D} di 3,2 10\textsubscript{-6} all'ora consente però di raggiungere soltanto il PL b. Per raggiungere il PL c occorrerebbe, per esempio, ridurre il numero di barriere fotoelettriche oppure impiegare componenti con un MTTF\textsubscript{D} più elevato.
+    \item tenuto conto della stima cautelativa descritta sopra, per la sostituzione programmata del componente soggetto a usura Q1 risulta un tempo di funzionamento (T\textsubscript{10D}) di 17 anni.
+\end{itemize}
+\clearpage
+
+\textbf{Esempio 10}
+
+% La minipage tiene insieme disegno e didascalia (figura non fluttuante)
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \centering
+        \captionsetup{hypcap=false}
+        \resizebox{\textwidth}{!}{\input{immagini/fig08-19}}
+        \captionof{figure}{Arresto di un azionamento con convertitore di frequenza comandato da PLC a seguito di un comando di arresto di emergenza.}
+        \label{fig:08-19}
+    \end{minipage}
+\end{center}
+
+\textbf{Funzioni di sicurezza}
+\begin{itemize}
+    \item il movimento pericoloso viene arrestato azionando il pulsante di arresto S1 oppure uno dei dispositivi di arresto di emergenza S3 o S4. In questo esempio si considera unicamente l'azionamento del dispositivo di arresto di emergenza S3. In caso di emergenza l'azionamento viene arrestato in risposta alla manovra di S3: dapprima mediante la disattivazione del modulo di sicurezza per arresto di emergenza K4, con conseguente diseccitazione dei contattori ausiliari K1 e K2. L'apertura del contatto di chiusura K1 sull'ingresso I4 del PLC K5 determina l'annullamento del segnale di avvio sul convertitore di frequenza (FI) T1 tramite l'uscita O2 del PLC. In modo ridondante rispetto alla catena K1-K5-T1, l'apertura del contatto di chiusura K2 a monte del contattore ausiliario con ritardo alla diseccitazione K3 avvia un temporizzatore di frenatura; allo scadere del temporizzatore di frenatura viene interrotto il segnale di comando del contattore di rete Q1. L'impostazione del temporizzatore è scelta in modo tale che, in condizioni di funzionamento sfavorevoli, il movimento della macchina si arresti prima che il contattore di rete Q1 si sia diseccitato.
+    \item l'arresto funzionale dell'azionamento a seguito di un comando di arresto è avviato dall'apertura dei due contatti di apertura del pulsante di arresto S1. Come per l'arresto in caso di emergenza, lo stato viene dapprima interrogato dal PLC K5 tramite l'ingresso I0 e il convertitore di frequenza viene disattivato mediante il reset dell'uscita O2 del PLC. In modo ridondante rispetto a questo processo, il contattore ausiliario K3 viene diseccitato - con il ritardo alla diseccitazione fornito dal condensatore C1 - e, allo scadere del tempo di frenatura impostato, viene interrotto il segnale di attivazione del contattore di rete Q1.
+    \item in caso di guasto del PLC K5, del convertitore di frequenza T1, del contattore di rete Q1, dei contattori ausiliari K1/K2 o del contattore ausiliario con ritardo alla diseccitazione K3, l'arresto dell'azionamento è comunque garantito, poiché sono sempre presenti due percorsi di disinserzione indipendenti l'uno dall'altro. La mancata diseccitazione dei contattori ausiliari K1 e K2 viene rilevata - al più tardi dopo il ripristino del dispositivo di arresto di emergenza azionato - mediante il monitoraggio dei contatti di apertura collegati meccanicamente all'interno del modulo di sicurezza per arresto di emergenza K4. La mancata diseccitazione del contattore ausiliario K3 viene rilevata - al più tardi prima del nuovo avvio del movimento della macchina - tramite la retroazione all'ingresso I3 del PLC del contatto di apertura collegato meccanicamente. La mancata diseccitazione del contattore di rete Q1 viene rilevata dal contatto a specchio letto sull'ingresso I3 del PLC. L'incollaggio di questo contatto a specchio viene rilevato dal contatto ausiliario di chiusura collegato meccanicamente sull'ingresso I2 del PLC. In caso di guasto del condensatore C1, il tempo di diseccitazione misurato del contattore ausiliario K3 differisce dal tempo impostato nel PLC. Il guasto viene rilevato e determina lo spegnimento della macchina e il blocco del suo funzionamento. Misure organizzative garantiscono che ogni dispositivo di arresto di emergenza venga azionato almeno una volta all'anno.
+\end{itemize}
+
+\textbf{Caratteristiche di progetto}
+\begin{itemize}
+    \item sono rispettati i principi di sicurezza di base e i principi di sicurezza ben collaudati e sono soddisfatti i requisiti della Categoria B. Sono realizzati i circuiti di protezione (per es. la protezione dei contatti) descritti nei paragrafi iniziali del Capitolo 8.
+    \item •	I contattori ausiliari K1, K2 e K3 dispongono di contatti collegati meccanicamente secondo la IEC 60947-5-1, Allegato L.
+    \item i pulsanti S1, S3 e S4 dispongono di contatti ad apertura positiva secondo la IEC 60947-5-1, Allegato K.
+    \item il contattore Q1 dispone di un contatto a specchio secondo la IEC 60947-4-1, Allegato F.
+    \item i componenti standard K5 e T1 sono impiegati conformemente alle indicazioni del punto 6.3.10.
+    \item il software (SRASW) è programmato secondo i requisiti per il PL b (declassato in ragione della diversità) e le indicazioni del punto 6.3.10.
+    \item il raggiungimento ritardato dell'arresto per mezzo del solo secondo percorso di disinserzione, in caso di guasto, non deve comportare un rischio residuo inaccettabilmente elevato.
+    \item Le SRP/CS del modulo di sicurezza per arresto di emergenza K4 soddisfano tutti i requisiti per la Categoria 3 e il PL d.
+\end{itemize}
+
+\textbf{Calcolo della probabilità di guasto}
+Viene calcolata unicamente la probabilità di guasto della funzione di arresto di emergenza.
+\begin{itemize}
+    \item il dispositivo di arresto di emergenza S3 è dotato di due contatti di apertura S3.1 e S3.2. Il costruttore indica un B\textsubscript{10D} di 127.500 cicli per ciascuno dei blocchi S3.1 e S3.2. Con un azionamento annuale e un nop risultante di 1 ciclo all'anno, l'MTTF\textsubscript{D} di ciascun contatto è di 1.275.000 anni. Il modulo di sicurezza per arresto di emergenza K4 è un componente di sicurezza sottoposto a prove. La sua probabilità di guasto è di 3,0 10\textsubscript{-7} all'ora [M] e viene sommata al termine del calcolo.
+\end{itemize}
+
+Per la probabilità di guasto della struttura a due canali posta a valle vale quanto segue:
+\begin{itemize}
+    \item MTTF\textsubscript{D}: il PLC K5 ha un MTTFD di dieci anni [S]. Il convertitore di frequenza ha un MTTF\textsubscript{D} di 35 anni [M]. Il condensatore C1 è considerato nel calcolo con un MTTF\textsubscript{D} di 45.662 anni [D]. Con un valore B\textsubscript{10D} di 5.000.000 di cicli [M] e una frequenza di manovra pari a un'eccitazione giornaliera su 240 giorni lavorativi, si ottiene un MTTFD di 208.333 anni per K1 e K2. Con un valore B10D di 2.000.000 di cicli [M] e con 240 giorni lavorativi, 16 ore lavorative giornaliere e un tempo di ciclo di 3 minuti, nop è pari a 76.800 cicli all'anno e l'MTTFD di K3 è di 260 anni. Con un valore B10D di 600.000 cicli [M] e con 240 giorni lavorativi, 16 ore lavorative giornaliere e un tempo di ciclo di 3 minuti, nop è pari a 76.800 cicli all'anno e l'MTTFD di Q1 è di 7,8 anni. Da questi valori risulta per il canale un MTTFD simmetrizzato di 60 anni ("alto").
+    \item DC\textsubscript{avg}: è garantita una frequenza di prova adeguata dei dispositivi di arresto di emergenza (cfr. le indicazioni dei punti 6.2.14 e D.2.5.1). Il rilevamento dei guasti dei blocchi S3.1 e S3.2 è ottenuto mediante monitoraggio incrociato in K4 (DC = 90\%). Il rilevamento dei guasti da parte del processo in caso di mancata attuazione della rampa di decelerazione porta a un DC del 60\% per K5. Anche per T1 il DC è del 60\%, sempre per effetto del rilevamento dei guasti da parte del processo. K1 e K2 presentano un DC del 99\% grazie al rilevamento dei guasti integrato in K4. Per K3 il DC è del 99\% grazie al rilevamento dei guasti da parte di K5. Per C1 il DC è del 60\% grazie alla verifica nel PLC dell'elemento temporizzatore, in occasione della disinserzione del convertitore di frequenza, attraverso il tempo di diseccitazione del contattore ausiliario K3. Per Q1 il DC è quindi del 99\% grazie al monitoraggio diretto in K5. La formula di media per il DC\textsubscript{avg} fornisce un risultato del 64\% ("basso").
+    \item misure adeguate contro i guasti per causa comune (75 punti): separazione (15), diversità (20), FMEA (5) e condizioni ambientali (25 + 10)
+    \item la combinazione a due canali degli elementi di comando soddisfa la Categoria 3. Ne risulta una probabilità media di guasto pericoloso PFHD di 3,9 10\textsuperscript{-7} all'ora. Ciò soddisfa il PL d. Sommando la probabilità di guasto pericoloso di K4 e S3 si ottiene una probabilità di guasto complessiva di 7,4 10\textsuperscript{-7} all'ora. Anche in questo caso è soddisfatto il PL d.
+    \item il contattore Q1, soggetto a usura, dovrebbe essere sostituito dopo circa 7,8 anni (T\textsubscript{10D}).
+\end{itemize}
+\clearpage
+
+\textbf{Esempio 11}
+\textit{Valvola pneumatica testata (sottosistema) - Categoria 2 - PL d}
+
+% La minipage tiene insieme disegno e didascalia (figura non fluttuante)
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \centering
+        \captionsetup{hypcap=false}
+        \resizebox{0.84\textwidth}{!}{\input{immagini/fig08-21}}
+        \captionof{figure}{Valvola pneumatica con test elettronico per il comando di movimenti pericolosi.}
+        \label{fig:08-21}
+    \end{minipage}
+\end{center}
+
+\textbf{Funzioni di sicurezza}
+\begin{itemize}
+    \item funzione di arresto legata alla sicurezza: arresto di un movimento pericoloso e prevenzione dell'avviamento inatteso dalla posizione di riposo, realizzata mediante SSC e, in caso di guasti rilevati (rilevamento dei guasti), mediante SDE
+    \item qui è rappresentata unicamente la parte pneumatica del sistema di comando, sotto forma di sottosistema. Per completare la funzione di sicurezza devono essere aggiunte, sempre sotto forma di sottosistemi, ulteriori SRP/CS (per es. dispositivi di protezione ed elementi logici elettrici).
+\end{itemize}
+
+\textbf{Descrizione delle funzionalità}
+\begin{itemize}
+    \item i movimenti pericolosi sono comandati da una valvola distributrice 1V1.
+    \item un guasto della valvola distributrice 1V1 fra due test funzionali può comportare la perdita della funzione di sicurezza. Il guasto dipende dall'affidabilità della valvola distributrice.
+    \item il test della funzione di sicurezza è forzato dal PLC K1 mediante un sistema di misura dello spostamento 1S1. Il test viene eseguito a intervalli adeguati e in occasione di una richiesta della funzione di sicurezza. Il rilevamento di un guasto di 1V1 determina la disinserzione della valvola di scarico 0V1.
+    \item l'interruzione del movimento pericoloso mediante la valvola di scarico 0V1 comporta in genere una sovracorsa maggiore. La distanza dalla zona pericolosa deve essere scelta tenendo conto di tale maggiore sovracorsa.
+    \item la funzione di test non deve essere compromessa da un guasto della valvola distributrice. Un guasto della funzione di test non deve provocare il guasto della valvola distributrice.
+    \item se l'aria compressa intrappolata costituisce un ulteriore pericolo, sono necessarie misure aggiuntive.
+\end{itemize}
+
+\textbf{Caratteristiche progettuali}
+\begin{itemize}
+    \item sono rispettati i principi di sicurezza di base e i principi di sicurezza ben collaudati e sono soddisfatti i requisiti della Categoria B.
+    \item 1V1 è una valvola distributrice con posizione centrale chiusa, ricoprimento sufficiente e posizione centrale centrata a molla.
+    \item la posizione di commutazione orientata alla sicurezza è raggiunta con l'annullamento del segnale di comando.
+    \item il test può consistere, per esempio, nella verifica della caratteristica tempo/spazio (sistema di misura dello spostamento 1S1) dei movimenti pericolosi in relazione alla posizione di commutazione della valvola distributrice, con valutazione in un PLC (K1).
+    \item K1 non deve essere utilizzato per il comando elettrico di 1V1.
+    \item per prevenire un guasto sistematico, la funzione sovraordinata di messa fuori energia (che in questo esempio agisce sulla valvola di scarico 0V1) viene verificata a intervalli adeguati, per es. quotidianamente.
+    \item per l'impiego in applicazioni con interventi poco frequenti dell'operatore nella zona pericolosa. Ciò consente di soddisfare il requisito dell'architettura designata per la Categoria 2. Il requisito prevede che il test venga eseguito immediatamente al momento della richiesta della funzione di sicurezza e che il tempo complessivo necessario per rilevare il guasto e portare la macchina in uno stato non pericoloso - tenuto conto per esempio della sovracorsa, che dipende tra l'altro dai tempi di depressurizzazione e di commutazione delle valvole (in questo caso la depressurizzazione avviene a livello superiore attraverso la valvola 0V1) - sia inferiore al tempo necessario per raggiungere il punto pericoloso (vedere anche la EN ISO 13855 e cfr. il punto 6.2.14).
+    \item il componente standard K1 è impiegato conformemente alle indicazioni del punto 6.3.10.
+    \item il software (SRASW) è programmato secondo i requisiti per il PL b (declassato in ragione della diversità) e le indicazioni del punto 6.3.
+\end{itemize}
+
+\textbf{Calcolo della probabilità di guasto}
+\begin{itemize}
+    \item MTTF\textsubscript{D} del canale funzionale: per la valvola distributrice 1V1 si assume un valore B\textsubscript{10D} di 20.000.000 di cicli di commutazione [S]. Con 240 giorni lavorativi, 16 ore lavorative al giorno e un tempo di ciclo di 5 secondi, n\textsubscript{op} è pari a 2.764.800 cicli di commutazione all'anno e l'MTTF\textsubscript{D} è di 72,3 anni. Questo è anche il valore dell'MTTF\textsubscript{D} del canale funzionale.
+    \item MTTF\textsubscript{D} del canale di test: per il sistema di misura dello spostamento 1S1 si assume un valore MTTF\textsubscript{D} di 150 anni [E]. Per il PLC K1 si assume un valore MTTFD di 50 anni [E]. Per la valvola di scarico 0V1 vale un valore B10D di 20.000.000 di cicli [S]. Con un azionamento una volta al giorno su 240 giorni lavorativi, il valore MTTFD di 0V1 è di 833.333 anni. L'MTTFD del canale di test risulta quindi di 37,5 anni.
+    \item DC\textsubscript{avg}: il DC del 60\% per 1V1 si basa sul confronto della caratteristica spazio/tempo del movimento pericoloso in relazione allo stato di commutazione della valvola distributrice. Questo è anche il DC\textsubscript{avg} ("basso").
+    \item misure adeguate contro i guasti per causa comune (85 punti): separazione (15), diversità (20), protezione contro le sovratensioni ecc. (15) e condizioni ambientali (25 + 10)
+    \item la combinazione degli elementi di comando pneumatici soddisfa la Categoria 2 con un MTTFD elevato (72,3 anni) e un DCavg basso (60\%). Ne risulta una probabilità media di guasto pericoloso di 7,6 10\textsuperscript{-7} all'ora. Ciò soddisfa il PL d. L'aggiunta di ulteriori SRP/CS sotto forma di sottosistemi per completare la funzione di sicurezza può, in determinate circostanze, comportare un PL inferiore. L'elemento soggetto a usura 1V1 dovrebbe essere sostituito all'incirca ogni sette anni (T\textsubscript{10D}).
+\end{itemize}
+\clearpage
+
+\textbf{Esempio 12}
+\textit{Valvola idraulica testata (sottosistema) - Categoria 2 - PL d}
+
+% La minipage tiene insieme disegno e didascalia (figura non fluttuante)
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \centering
+        \captionsetup{hypcap=false}
+        \resizebox{0.83\textwidth}{!}{\input{immagini/fig08-23}}
+        \captionof{figure}{Valvola idraulica con test elettronico per il comando di movimenti pericolosi.}
+        \label{fig:08-23}
+    \end{minipage}
+\end{center}
+
+\textbf{Funzioni di sicurezza}
+\begin{itemize}
+    \item funzione di arresto legata alla sicurezza: arresto di un movimento pericoloso e prevenzione dell'avviamento inatteso dalla posizione di riposo.
+    \item qui è rappresentata unicamente la parte idraulica del sistema di comando, sotto forma di sottosistema. Per completare la funzione di sicurezza devono essere aggiunti, sempre sotto forma di sottosistemi, ulteriori componenti di comando legati alla sicurezza (per es. dispositivi di protezione ed elementi logici elettrici).
+\end{itemize}
+
+\textbf{Descrizione funzionale}
+\begin{itemize}
+    \item i movimenti pericolosi sono comandati dalla valvola distributrice 1V3.
+    \item un guasto della valvola distributrice 1V3 fra due test funzionali può comportare la perdita della funzione di sicurezza. La probabilità di guasto dipende dall'affidabilità della valvola distributrice.
+    \item il test della funzione di sicurezza è forzato dal PLC K1 mediante un sistema di misura dello spostamento. L'interruzione del movimento pericoloso da parte della pompa idraulica comporta in genere una sovracorsa maggiore. La distanza dalla zona pericolosa deve essere scelta tenendo conto di tale maggiore sovracorsa.
+    \item la funzione di test non deve essere compromessa da un guasto della valvola distributrice. Un guasto della funzione di test non deve provocare il guasto della valvola distributrice. Il test viene eseguito a intervalli adeguati e in occasione di una richiesta della funzione di sicurezza. Il rilevamento di un guasto di 1V3 determina la disinserzione della pompa idraulica 1M/1P per mezzo del contattore Q1.
+\end{itemize}
+
+\textbf{Caratteristiche di progetto}
+\begin{itemize}
+    \item sono rispettati i principi di sicurezza di base e i principi di sicurezza ben collaudati e sono soddisfatti i requisiti della Categoria B.
+    \item 1V3 è una valvola distributrice con posizione centrale chiusa, ricoprimento sufficiente e posizione centrale centrata a molla.
+    \item la posizione di commutazione orientata alla sicurezza è raggiunta con l'annullamento del segnale di comando.
+    \item il test può consistere, per esempio, nella verifica della caratteristica spazio/tempo (sistema di misura dello spostamento 1S3) dei movimenti pericolosi in relazione alla posizione di commutazione della valvola distributrice, con valutazione in un PLC (K1). K1 non deve essere utilizzato per il comando elettrico di 1V3.
+    \item per prevenire un guasto sistematico, la funzione sovraordinata di messa fuori energia (che in questo esempio agisce sulla pompa idraulica) viene verificata a intervalli adeguati, per es. quotidianamente.
+    \item per l'impiego in applicazioni con interventi poco frequenti dell'operatore nella zona pericolosa. Ciò consente di soddisfare il requisito dell'architettura designata per la Categoria 2. Il requisito prevede che il test venga eseguito immediatamente al momento della richiesta della funzione di sicurezza e che il tempo complessivo necessario per rilevare il guasto e portare la macchina in uno stato non pericoloso - tenuto conto, per esempio, della sovracorsa - sia inferiore al tempo necessario per raggiungere il punto pericoloso (vedere anche la EN ISO 13855 e cfr. il punto 6.2.14)
+    \item il componente standard K1 è impiegato conformemente alle indicazioni del punto 6.3.10.
+    \item il software (SRASW) è programmato secondo i requisiti per il PL b (declassato in ragione della diversità) e le indicazioni del punto 6.3.
+\end{itemize}
+
+\textbf{Calcolo della probabilità di guasto}
+\begin{itemize}
+    \item MTTF\textsubscript{D} del canale funzionale: per la valvola distributrice 1V3 si assume un MTTF\textsubscript{D} di 150 anni [M]. Questo è anche il valore dell'MTTF\textsubscript{D} del canale funzionale, che viene dapprima limitato a 100 anni.
+    \item MTTF\textsubscript{D} del canale di test: per il sistema di misura dello spostamento 1S3 si assume un valore MTTF\textsubscript{D} di 91 anni [M]. Per il PLC K1 si assume un valore MTTF\textsubscript{D} di 50 anni [E]. Per il contattore Q1 vale un valore B\textsubscript{10D} di 1.300.000 cicli [S]. Con un azionamento una volta al giorno su 240 giorni lavorativi, il valore MTTF\textsubscript{D} di Q1 è di 54.166 anni. L'MTTF\textsubscript{D} del canale di test risulta quindi di 32,3 anni. L'MTTF\textsubscript{D} del canale funzionale deve pertanto essere ridotto a 64,5 anni, conformemente al modello di analisi adottato.
+    \item DC\textsubscript{avg}: il DC del 60\% per 1V3 si basa sul confronto della caratteristica spazio/tempo del movimento pericoloso in relazione allo stato di commutazione della valvola distributrice. Questo è anche il DC\textsubscript{avg} ("basso").
+    \item misure adeguate contro i guasti per causa comune (85 punti): separazione (15), diversità (20), protezione contro le sovratensioni ecc. (15) e condizioni ambientali (25 + 10)
+    \item la combinazione degli elementi di comando soddisfa la Categoria 2 con un MTTFD elevato (75 anni) e un DC\textsubscript{avg} basso (60\%). Ne risulta una probabilità media di guasto pericoloso di 8,7 10\textsuperscript{-7} all'ora. Ciò soddisfa il PL d. L'aggiunta di ulteriori SRP/CS sotto forma di sottosistemi per completare la funzione di sicurezza può, in determinate circostanze, comportare un PL inferiore.
+\end{itemize}
 
